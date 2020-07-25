@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
-const Group = styled("div")`
+const CardGroup = styled("div")`
     display: grid;
-    grid-template-columns: repeat(${props => props.width}, 1fr);
+    grid-template-columns: repeat(${props => props.width === undefined ? 2 : props.width}, 1fr);
     grid-column-gap: var(--gridGap);
     grid-row-gap: var(--gridGap);
     
@@ -11,15 +11,5 @@ const Group = styled("div")`
       grid-template-columns: 1fr;
     }
 `;
-
-function CardGroup({width, children}) {
-    width = width === undefined ? 2 : width;
-
-    return (
-        <Group width={width}>
-            {children}
-        </Group>
-    );
-}
 
 export default CardGroup;
