@@ -1,24 +1,24 @@
 import React from "react";
 
 function Card({ title, description, children, tag, tagClass }) {
-    return (
-        <article className="uk-card uk-card-default uk-card-small uk-card-body">
-            {tag && (
+	return (
+		<article className="uk-card uk-card-default uk-card-small uk-card-body">
+			{tag &&
                 <span className={`uk-card-badge uk-label ${tagClass}`}>{tag}</span>
-            )}
-            {title && (
+			}
+			{title &&
                 <h2 className="uk-card-title uk-margin-xlarge-right">
-                    {title}
+                	{title}
                 </h2>
-            )}
-            {description && (
+			}
+			{description &&
                 <p>
-                    {description}
+                	{description}
                 </p>
-            )}
-            {children}
-        </article>
-    );
+			}
+			{children}
+		</article>
+	);
 }
 
 export default Card;
