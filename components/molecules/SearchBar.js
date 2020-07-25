@@ -9,7 +9,7 @@ const Search = styled("input")`
 function SearchBar({ label, onChangeHandler }) {
     return (
         <label>
-            { label }
+            {label}
             <Search className="uk-input" onChange={onChangeHandler}
                    type="text" placeholder="Type something..."/>
         </label>

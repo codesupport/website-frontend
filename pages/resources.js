@@ -81,28 +81,28 @@ export default class Resources extends Component {
         const {resources, status} = this.state;
 
         return (
-            <PageTemplate page="Resources">
-                <header>
-                    <IntroHero
-                        title="Resources"
-                        description="A collection of programming resources curated by the CodeSupport community."
-                    />
-                </header>
+            <PageTemplate page="Resources" meta={{
+                description: "A collection of programming resources curated by the CodeSupport community."
+            }}>
+                <IntroHero
+                    title="Resources"
+                    description="A collection of programming resources curated by the CodeSupport community."
+                />
                 <section id="filter-resources" role="search">
                     <Container>
                         <SearchBar label={"Search for a resource"} onChangeHandler={this.searchResources} />
                         <ResourceFilters>
-                        <Dropdown label={"Filter by category"} onChangeHandler={this.filterResources} value={this.state.filterResources}>
-                            <option value="Show All" key="all">Show All</option>
-                            {categories.map((category) => (
-                                <option value={category.toLowerCase()} key={category}>{category}</option>
-                            ))}
-                        </Dropdown>
-                        <Dropdown label={"Filter by price"} onChangeHandler={this.filterPrice} value={this.state.filterPrice}>
-                            <option value="Show All" key="all">Show All</option>
-                            <option value="true" key="true">Free</option>
-                            <option value="false" key="false">Paid</option>
-                        </Dropdown>
+                            <Dropdown label={"Filter by category"} onChangeHandler={this.filterResources} value={this.state.filterResources}>
+                                <option value="Show All" key="all">Show All</option>
+                                {categories.map((category) => (
+                                    <option value={category.toLowerCase()} key={category}>{category}</option>
+                                ))}
+                            </Dropdown>
+                            <Dropdown label={"Filter by price"} onChangeHandler={this.filterPrice} value={this.state.filterPrice}>
+                                <option value="Show All" key="all">Show All</option>
+                                <option value="true" key="true">Free</option>
+                                <option value="false" key="false">Paid</option>
+                            </Dropdown>
                         </ResourceFilters>
                     </Container>
                 </section>

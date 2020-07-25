@@ -9,9 +9,9 @@ const Drop = styled("select")`
 function Dropdown({ label, value, onChangeHandler, children }) {
     return (
         <label>
-            { label }
+            {label}
             <Drop className="uk-select" onChange={onChangeHandler} value={value}>
-                { children }
+                {children}
             </Drop>
         </label>
     );
