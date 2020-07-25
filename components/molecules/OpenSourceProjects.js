@@ -1,6 +1,6 @@
 import React from "react";
-import styled from "styled-components";
 import Card from "./Card";
+import CardGroup from "./CardGroup";
 
 const openSourceProjects = [
     {
@@ -28,17 +28,6 @@ const openSourceProjects = [
         repository: "https://github.com/codesupport/resources-api"
     }
 ];
-
-const CardGroup = styled("div")`
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-column-gap: var(--gridGap);
-    grid-row-gap: var(--gridGap);
-    
-    @media only screen and (max-width: 900px) {
-      grid-template-columns: 1fr;
-    }
-`;
 
 function OpenSourceProjects() {
     return (
