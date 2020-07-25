@@ -9,6 +9,7 @@ This repository contains the frontend for the CodeSupport Website. The project i
 - [React](https://www.npmjs.com/package/react)
 - [React DOM](https://www.npmjs.com/package/react-dom)
 - [Next](http://npmjs.com/package/next)
+- [Axios](https://www.npmjs.com/package/axios)
 
 ## Setup
 1. Navigate into the repository on your computer and run `npm i`

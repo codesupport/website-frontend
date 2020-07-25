@@ -1,0 +1,15 @@
+{
+  "resourceAPI": "https://codesupport.github.io/resources-api/categories",
+  "categories": [
+    "Hosting",
+    "JavaScript",
+    "CSS",
+    "Icons",
+    "Python",
+    "Software",
+    "CSharp",
+    "Fonts",
+    "UI",
+    "HTML"
+  ]
+}
