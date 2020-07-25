@@ -1,0 +1,76 @@
+* { box-sizing: border-box; }
+
+:root {
+    --cs-blue: #1457B3;
+
+    --background: #F7F7F7;
+    --foreground: #FFFFFF;
+    --border: #C0C0C0;
+    --text: #242424;
+    --error: #DC143C;
+
+    --lang-typescript: #396272;
+    --lang-json: #3C3C3D;
+    --lang-javascript: #EDDF7C;
+    --lang-java: #A57438;
+    --lang-python: #3A72A2;
+    --lang-html: #E04D31;
+    --lang-css: #563D79;
+
+    --mobileDevice: 600px;
+    --gridGap: 25px;
+}
+
+.uk-label {
+    background-color: #1E56AF;
+}
+
+.lang-typescript {
+    background-color: var(--lang-typescript);
+}
+
+.lang-json {
+    background-color: var(--lang-json);
+}
+
+.lang-javascript {
+    background-color: var(--lang-javascript);
+}
+
+.lang-java {
+    background-color: var(--lang-java);
+}
+
+.lang-python {
+    background-color: var(--lang-python);
+}
+
+.lang-html {
+    background-color: var(--lang-html);
+}
+
+.lang-css {
+    background-color: var(--lang-css);
+}
+
+html {
+    background-color: var(--background);
+}
+
+body {
+    color: var(--text);
+}
+
+@media only screen and (max-width: 600px) {
+    .uk-margin-xlarge-right {
+        /* Have to apply !important to overwrite UIkit */
+        margin-right: 100px !important;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .uk-margin-xlarge-right {
+        /* Have to apply !important to overwrite UIkit */
+        margin-right: 125px !important;
+    }
+}
