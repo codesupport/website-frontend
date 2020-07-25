@@ -1,0 +1,23 @@
+{
+  "name": "website-frontend",
+  "version": "0.1.0",
+  "private": false,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.30",
+    "@fortawesome/free-brands-svg-icons": "^5.14.0",
+    "@fortawesome/react-fontawesome": "^0.1.11",
+    "next": "9.4.4",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "styled-components": "^5.1.1",
+    "uikit": "^3.5.5"
+  },
+  "devDependencies": {
+    "babel-plugin-styled-components": "^1.10.7"
+  }
+}
