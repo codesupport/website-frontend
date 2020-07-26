@@ -4,18 +4,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDiscord, faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons";
 
 const socialLinks = [
-    {
-        icon: faDiscord,
-        link: "https://codesupport.dev/discord"
-    },
-    {
-        icon: faTwitter,
-        link: "https://twitter.com/codesupportdev"
-    },
-    {
-        icon: faGithub,
-        link: "https://github.com/codesupport"
-    }
+	{
+		icon: faDiscord,
+		link: "https://codesupport.dev/discord"
+	},
+	{
+		icon: faTwitter,
+		link: "https://twitter.com/codesupportdev"
+	},
+	{
+		icon: faGithub,
+		link: "https://github.com/codesupport"
+	}
 ];
 
 const SocialLinks = styled("ul")`
@@ -50,22 +50,22 @@ const Copyright = styled("p")`
 `;
 
 function Footer() {
-    return (
-        <footer>
-            <SocialLinks>
-                {socialLinks.map(({ icon, link }, i) => (
-                    <SocialIcon key={i}>
-                        <a target="_blank" href={link} rel="noopener noreferrer">
-                            <FontAwesomeIcon icon={icon} />
-                        </a>
-                    </SocialIcon>
-                ))}
-            </SocialLinks>
-            <Copyright>
+	return (
+		<footer>
+			<SocialLinks>
+				{socialLinks.map(({ icon, link }, i) =>
+					<SocialIcon key={i}>
+						<a target="_blank" href={link} rel="noopener noreferrer">
+							<FontAwesomeIcon icon={icon} />
+						</a>
+					</SocialIcon>
+				)}
+			</SocialLinks>
+			<Copyright>
                 &copy; CodeSupport {new Date().getFullYear()}
-            </Copyright>
-        </footer>
-    );
+			</Copyright>
+		</footer>
+	);
 }
 
 export default Footer;

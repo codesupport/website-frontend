@@ -18,27 +18,27 @@ const Hero = styled("header")`
 `;
 
 function IntroHero({ title, description, button }) {
-    return (
-        <Hero>
-            <Container>
-                <h1>
-                    {title}
-                </h1>
-                <p>
-                    {description}
-                </p>
-                {button && (
-                    <a
-                        href={button.href}
-                        target={button.target}
-                        className="uk-button uk-button-secondary"
-                    >
-                        {button.text}
-                    </a>
-                )}
-            </Container>
-        </Hero>
-    );
+	return (
+		<Hero>
+			<Container>
+				<h1>
+					{title}
+				</h1>
+				<p>
+					{description}
+				</p>
+				{button &&
+					<a
+						href={button.href}
+						target={button.target}
+						className="uk-button uk-button-secondary"
+					>
+						{button.text}
+					</a>
+				}
+			</Container>
+		</Hero>
+	);
 }
 
 export default IntroHero;
