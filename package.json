@@ -6,8 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint pages components --ext .js",
-    "lint:fix": "eslint pages components --ext .js --fix"
+    "lint": "eslint src --ext .js",
+    "lint:fix": "eslint src --ext .js --fix"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.30",
