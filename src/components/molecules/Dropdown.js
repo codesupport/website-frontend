@@ -2,8 +2,10 @@ import React from "react";
 import styled from "styled-components";
 
 const Drop = styled("select")`
-    width: 100%;
-    height: 25px !important;
+	&&&& {
+		width: 100%;
+		height: 25px;
+    }
 `;
 
 function Dropdown({ label, value, onChangeHandler, children }) {

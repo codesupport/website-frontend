@@ -9,8 +9,10 @@ const NavList = styled("ul")`
 `;
 
 const ImgLogo = styled("img")`
-    height: 50px;
-    padding: 20px !important;
+	&& {
+		height: 50px;
+		padding: 20px;
+    }
 `;
 
 function Navigation() {
