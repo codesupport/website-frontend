@@ -8,7 +8,9 @@ const NavList = styled("ul")`
     align-items: center;
 `;
 
-const ImgLogo = styled("img")`
+const Logo = styled("img")`
+	object-fit: contain;
+	
 	&& {
 		height: 50px;
 		padding: 20px;
@@ -21,7 +23,7 @@ function Navigation() {
 			<div className="uk-navbar-left">
 				<NavList className="uk-navbar-nav">
 					<Link href="/">
-						<ImgLogo
+						<Logo
 							className="uk-navbar-item uk-logo"
 							alt="CodeSupport Logo"
 							src="/logo.png"
