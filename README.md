@@ -1,5 +1,7 @@
 # CodeSupport Website Frontend
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/c60ad30ea5664c70a5b10c3525ed4f4f)](https://app.codacy.com/gh/codesupport/website-frontend?utm_source=github.com&utm_medium=referral&utm_content=codesupport/website-frontend&utm_campaign=Badge_Grade_Dashboard)
+
 ## About
 This repository contains the frontend for the CodeSupport Website. The project is written in JavaScript using the React user interface library on top of Next.js.
 
