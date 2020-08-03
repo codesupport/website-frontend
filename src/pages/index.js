@@ -1,8 +1,9 @@
 import React from "react";
 import PageTemplate from "../components/templates/PageTemplate";
 import IntroHero from "../components/molecules/IntroHero";
-import OpenSourceProjects from "../components/molecules/OpenSourceProjects";
 import Container from "../components/templates/Container";
+import OpenSourceProjects from "../components/molecules/index/OpenSourceProjects";
+import CommunityDiscord from "../components/molecules/index/CommunityDiscord";
 
 function Home() {
 	return (
@@ -18,6 +19,7 @@ function Home() {
 			/>
 			<main>
 				<Container>
+					<CommunityDiscord />
 					<OpenSourceProjects />
 				</Container>
 			</main>

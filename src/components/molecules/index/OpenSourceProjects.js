@@ -1,6 +1,6 @@
 import React from "react";
-import Card from "./Card";
-import CardGroup from "./CardGroup";
+import Card from "../Card";
+import CardGroup from "../CardGroup";
 
 const openSourceProjects = [
 	{
