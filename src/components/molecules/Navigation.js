@@ -2,6 +2,12 @@ import React from "react";
 import Link from "next/link";
 import styled from "styled-components";
 
+const Nav = styled("nav")`
+	width: 100%;
+	top: 0;
+	position: absolute;
+`;
+
 const NavList = styled("ul")`
     display: flex;
     justify-content: center;
@@ -19,7 +25,7 @@ const Logo = styled("img")`
 
 function Navigation() {
 	return (
-		<nav className="uk-navbar-container" data-uk-navbar>
+		<Nav className="uk-navbar-container uk-box-shadow-large" data-uk-navbar>
 			<div className="uk-navbar-left">
 				<NavList className="uk-navbar-nav">
 					<Link href="/">
@@ -42,7 +48,7 @@ function Navigation() {
 					</li>
 				</NavList>
 			</div>
-		</nav>
+		</Nav>
 	);
 }
 

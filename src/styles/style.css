@@ -61,6 +61,10 @@ body {
     color: var(--text);
 }
 
+body #__next > :nth-child(2) {
+    margin-top: 80px;
+}
+
 @media only screen and (max-width: 600px) {
     .uk-margin-xlarge-right {
         /* Have to apply !important to overwrite UIkit */
