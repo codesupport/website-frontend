@@ -30,7 +30,7 @@ function CommunityDiscord() {
 							A friendly place to chat,<br /> learn and share.
 						</h2>
 						<p>
-							Whether you're proficient in Java or just learning Python we are here to help you make new friends and grow as a developer our supportive community.
+							Whether you're proficient in Java or just learning Python, we are here to help you make new friends and grow as a developer in our supportive community.
 						</p>
 						<Button link="https://codesupport.dev/discord" target="_blank">
 							Join The Discord
