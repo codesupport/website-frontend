@@ -10,8 +10,10 @@ const Wrapper = styled("section")`
 	grid-column-gap: var(--gridGap);
 	
 	@media only screen and (max-width: 600px) {
+		margin: 25px 0;
 		grid-template-columns: 1fr;
 		grid-row-gap: var(--gridGap);
+		text-align: center;
 	}
 `;
 
