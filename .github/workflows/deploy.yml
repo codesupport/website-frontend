@@ -1,0 +1,20 @@
+name: CI
+on:
+  push:
+    branches:
+      - master
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Build source code
+        run: |
+          npm i
+          npm run export
+      - name: Install Firebase Tools
+        run: |
+          npm i firebase-tools
+      - name: Deploy to Firebase
+        run: |
+          ./node_modules/.bin/firebase deploy --token "${{ secrets.FIREBASE_TOKEN }}" --project codesupport-production
