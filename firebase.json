@@ -1,6 +1,7 @@
 {
   "hosting": {
     "public": "out",
+    "cleanUrls": true,
     "redirects": [
       {
         "source": "/discord",
@@ -11,12 +12,6 @@
         "source": "/eslint",
         "destination": "https://github.com/codesupport/eslint-config-codesupport",
         "type": 301
-      }
-    ],
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
       }
     ],
     "ignore": [
