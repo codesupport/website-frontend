@@ -1,4 +1,5 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
+import { useRouter } from "next/router";
 import styled from "styled-components";
 
 import PageTemplate from "../components/templates/PageTemplate";
@@ -12,6 +13,7 @@ import Container from "../components/templates/Container";
 import {fetchResources} from "../lib/fetchResources";
 import {categories} from "../config.json";
 import Dropdown from "../components/molecules/Dropdown";
+import getQueryParams from "../helpers/getQueryParams";
 
 const ResourceFilters = styled("div")`
 	padding-bottom: 25px;
@@ -21,7 +23,7 @@ const ResourceFilters = styled("div")`
 	grid-row-gap: 15px;
 `;
 
-export default class Resources extends Component {
+class Resources extends Component {
 	state = {
 		resources: this.props.resources,
 		constantResources: this.props.resources,
@@ -76,6 +78,19 @@ export default class Resources extends Component {
 
 		this.setState({resources, filterPrice: value});
 	};
+
+	componentDidMount() {
+		const categoriesLower = categories.map(c => c.toLowerCase());
+		const category = getQueryParams(this.props.router)?.category.toLowerCase();
+
+		if (category && categoriesLower.includes(category)) {
+			this.filterResources({
+				target: {
+					value: category
+				}
+			});
+		}
+	}
 
 	render() {
 		const {resources, status} = this.state;
@@ -139,6 +154,12 @@ export default class Resources extends Component {
 		);
 	}
 }
+
+export default props => {
+	const router = useRouter();
+
+	return <Resources {...props} router={router} />;
+};
 
 export async function getStaticProps() {
 	const resources = await fetchResources();
