@@ -81,7 +81,7 @@ class Resources extends Component {
 
 	componentDidMount() {
 		const categoriesLower = categories.map(c => c.toLowerCase());
-		const category = getQueryParams(this.props.router)?.category.toLowerCase();
+		const category = getQueryParams(this.props.router).category?.toLowerCase();
 
 		if (category && categoriesLower.includes(category)) {
 			this.filterResources({
