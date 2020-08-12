@@ -1,3 +1,5 @@
+import React from "react";
+import "../services/FirebaseService";
 import "../../node_modules/uikit/dist/css/uikit.min.css";
 import "../styles/style.css";
 
