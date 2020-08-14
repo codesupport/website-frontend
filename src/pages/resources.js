@@ -64,6 +64,8 @@ class Resources extends Component {
 		if (value !== "Show All") {
 			resources = await resources.filter(resource => resource.category.toLowerCase() === value);
 			this.props.router.push(`/resources?category=${value}`);
+		} else {
+			this.props.router.push("/resources");
 		}
 
 		this.setState({resources, filterResources: value});
