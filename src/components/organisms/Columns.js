@@ -33,9 +33,9 @@ function Columns({ columns }) {
 			{columns.map(column => (
 				<Column key={column.name}>
 					<FontAwesomeIcon icon={column.icon} size="2x" />
-					<h2>
+					<h3 className="uk-margin-small">
 						{column.title}
-					</h2>
+					</h3>
 					<p className="uk-margin-small-top">
 						{column.description}
 					</p>
