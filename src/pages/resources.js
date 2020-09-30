@@ -7,15 +7,15 @@ import IntroHero from "../components/molecules/IntroHero";
 import Card from "../components/molecules/Card";
 import CardGroup from "../components/molecules/CardGroup";
 import SearchBar from "../components/molecules/SearchBar";
-
 import Container from "../components/templates/Container";
-
-import {fetchResources} from "../lib/fetchResources";
-import {categories} from "../config.json";
 import Dropdown from "../components/molecules/Dropdown";
+
+import { fetchResources } from "../lib/fetchResources";
+import { categories } from "../config.json";
 import getQueryParams from "../helpers/getQueryParams";
 
 const ResourceFilters = styled("div")`
+	padding-top: 15px;
 	padding-bottom: 25px;
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
@@ -36,7 +36,7 @@ class Resources extends Component {
 		const query = event.target.value.toLowerCase();
 
 		if (query === "") {
-			this.setState({resources: this.state.constantResources});
+			this.setState({ resources: this.state.constantResources });
 		} else {
 			const resourcesThatMatchQuery = [];
 
