@@ -12,6 +12,9 @@ jobs:
         run: |
           npm i
           npm run export
+      - name: Generates Sitemap
+        run: |
+          node .github/scripts/generate-sitemap.js
       - name: Install Firebase Tools
         run: |
           npm i firebase-tools
