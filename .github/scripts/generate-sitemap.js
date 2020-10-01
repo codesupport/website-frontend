@@ -3,7 +3,7 @@ const sitemap = require("nextjs-sitemap-generator");
 sitemap({
 	baseUrl: "https://codesupport.dev",
 	pagesDirectory: "out/",
-	targetDirectory: "public/",
+	targetDirectory: "out/",
 	ignoredExtensions: [
 		"png",
 		"ico"
