@@ -17,9 +17,10 @@ module.exports = {
 		"no-invalid-this": "off",
 		"multiline-ternary": "off",
 		"no-extra-parens": [
-			"error", "all", {
-			"enforceForArrowConditionals": false
-		}],
+			"error",
+			"all",
+			{ "enforceForArrowConditionals": false }
+		],
 		"curly": ["error", "multi-line"],
 		"lines-between-class-members": "off",
 		"space-before-function-paren": ["error", {

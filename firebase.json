@@ -12,6 +12,11 @@
         "source": "/eslint",
         "destination": "https://github.com/codesupport/eslint-config-codesupport",
         "type": 301
+      },
+      {
+        "source": "/sitemap",
+        "destination": "sitemap.xml",
+        "type": 301
       }
     ],
     "ignore": [
