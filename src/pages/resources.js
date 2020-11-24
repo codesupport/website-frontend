@@ -74,7 +74,12 @@ class Resources extends Component {
 		} else {
 			this.props.router.push("/resources", undefined, { shallow: true });
 		}
-		this.setState({resources, filterResources: value});
+		if(resources.length === 0){
+			this.setState({resources, filterResources: value});
+		}
+		else{
+			this.setState({resources, filterResources: value, status:"No matches found..."});
+		}
 	};
 
 	filterPrice = async event => {
@@ -90,7 +95,12 @@ class Resources extends Component {
 				return result
 			} );
 		}
-		this.setState({resources, filterPrice: value});
+		if(resources.length === 0){
+			this.setState({resources, filterPrice: value});
+		}
+		else{
+			this.setState({resources, filterPrice: value, status:"No matches found..."});
+		}
 	};
 
 	componentDidMount() {

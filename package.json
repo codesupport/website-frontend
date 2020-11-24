@@ -2,6 +2,7 @@
   "name": "website-frontend",
   "version": "0.1.0",
   "private": false,
+  "dev": "NODE_OPTIONS='--inspect' next dev",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
