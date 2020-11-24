@@ -24,7 +24,6 @@ const ResourceFilters = styled("div")`
 `;
 
 class Resources extends Component {
-
 	state = {
 		resources: this.props.resources,
 		constantResources: this.props.resources,
@@ -48,7 +47,7 @@ class Resources extends Component {
 			}
 
 			if (!resourcesThatMatchQuery.length) {
-				this.setState({status: "No matches found..."});
+				this.setState({ status: "No matches found..." });
 			}
 
 			this.setState({
@@ -61,45 +60,45 @@ class Resources extends Component {
 	filterResources = async event => {
 		let resources = this.state.constantResources;
 		const value = event.target.value,
-		priceFilter = this.state.filterPrice
+			priceFilter = this.state.filterPrice;
 
 		if (value !== "Show All") {
 			resources = await resources.filter(resource => {
 				const isResource = resource.category.toLowerCase() === value,
-				isPrice = (priceFilter !== "Show All") ? resource.free === JSON.parse(priceFilter) : true ;
-				const result = isPrice && isResource
-				return result
+					isPrice = (priceFilter !== "Show All") ? resource.free === JSON.parse(priceFilter) : true;
+				const result = isPrice && isResource;
+
+				return result;
 			});
 			this.props.router.push(`/resources?category=${value}`, undefined, { shallow: true });
 		} else {
 			this.props.router.push("/resources", undefined, { shallow: true });
 		}
-		if(resources.length === 0){
-			this.setState({resources, filterResources: value});
-		}
-		else{
-			this.setState({resources, filterResources: value, status:"No matches found..."});
+		if (resources.length === 0) {
+			this.setState({ resources, filterResources: value });
+		} else {
+			this.setState({ resources, filterResources: value, status: "No matches found..." });
 		}
 	};
 
 	filterPrice = async event => {
 		let resources = this.state.constantResources;
 		const value = event.target.value,
-		resourceFilter = this.state.filterResources
+			resourceFilter = this.state.filterResources;
 
 		if (value !== "Show All" && ["true", "false"].includes(value)) {
 			resources = await resources.filter(resource => {
 				const isPrice = resource.free === JSON.parse(value),
-				isResource = resource.category.toLowerCase() === resourceFilter,
-				result = isPrice && isResource
-				return result
-			} );
+					isResource = resource.category.toLowerCase() === resourceFilter,
+					result = isPrice && isResource;
+
+				return result;
+			});
 		}
-		if(resources.length === 0){
-			this.setState({resources, filterPrice: value});
-		}
-		else{
-			this.setState({resources, filterPrice: value, status:"No matches found..."});
+		if (resources.length === 0) {
+			this.setState({ resources, filterPrice: value });
+		} else {
+			this.setState({ resources, filterPrice: value, status: "No matches found..." });
 		}
 	};
 
@@ -117,7 +116,7 @@ class Resources extends Component {
 	}
 
 	render() {
-		const {resources, status} = this.state;
+		const { resources, status } = this.state;
 
 		return (
 			<PageTemplate page="Resources" meta={{
