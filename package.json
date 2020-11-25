@@ -2,9 +2,8 @@
   "name": "website-frontend",
   "version": "0.1.0",
   "private": false,
-  "dev": "NODE_OPTIONS='--inspect' next dev",
   "scripts": {
-    "dev": "next dev",
+    "dev": "NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
     "start": "next start",
     "export": "next build && next export",

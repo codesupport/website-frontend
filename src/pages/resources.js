@@ -59,16 +59,15 @@ class Resources extends Component {
 
 	filterResources = async event => {
 		let resources = this.state.constantResources;
-		const value = event.target.value,
-			priceFilter = this.state.filterPrice;
+		const value = event.target.value;
+		const priceFilter = this.state.filterPrice;
 
 		if (value !== "Show All") {
 			resources = await resources.filter(resource => {
 				const isResource = resource.category.toLowerCase() === value,
 					isPrice = (priceFilter !== "Show All") ? resource.free === JSON.parse(priceFilter) : true;
-				const result = isPrice && isResource;
 
-				return result;
+				return isPrice && isResource;
 			});
 			this.props.router.push(`/resources?category=${value}`, undefined, { shallow: true });
 		} else {
@@ -83,8 +82,8 @@ class Resources extends Component {
 
 	filterPrice = async event => {
 		let resources = this.state.constantResources;
-		const value = event.target.value,
-			resourceFilter = this.state.filterResources;
+		const value = event.target.value;
+		const resourceFilter = this.state.filterResources;
 
 		if (value !== "Show All" && ["true", "false"].includes(value)) {
 			resources = await resources.filter(resource => {
