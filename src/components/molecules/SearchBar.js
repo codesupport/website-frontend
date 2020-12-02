@@ -8,11 +8,11 @@ const Search = styled("input")`
     }
 `;
 
-function SearchBar({ label, onChangeHandler }) {
+function SearchBar({className, label, onChangeHandler }) {
 	return (
 		<label>
 			{label}
-			<Search className="uk-input" onChange={onChangeHandler}
+			<Search className={`${className } uk-input`} onChange={onChangeHandler}
 				type="text" placeholder="Type something..."/>
 		</label>
 	);

@@ -8,11 +8,11 @@ const Drop = styled("select")`
     }
 `;
 
-function Dropdown({ label, value, onChangeHandler, children }) {
+function Dropdown({ className, label, value, onChangeHandler, children }) {
 	return (
 		<label>
 			{label}
-			<Drop className="uk-select" onChange={onChangeHandler} value={value}>
+			<Drop className={`${className } uk-select`} onChange={onChangeHandler} value={value}>
 				{children}
 			</Drop>
 		</label>
