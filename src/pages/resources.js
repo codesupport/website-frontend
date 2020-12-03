@@ -27,49 +27,43 @@ class Resources extends Component {
 	state = {
 		resources: this.props.resources,
 		constantResources: this.props.resources,
-		filterResources: "Show All",
+		filterCategory: "Show All",
 		filterPrice: "Show All",
+		filterSearch: "",
 		status: "Loading..."
 	};
 
-	filterResources = async () => {
-		const resourcesAndFilters = this.getResourcesAndFilters();
+	filterResources = async event => {
+		const resourcesAndFilters = this.getResourcesAndFilters(event);
 
-		resourcesAndFilters[0] = this.getFilteredResources(...resourcesAndFilters);
-		this.changeUrl(resourcesAndFilters[2]);
+		resourcesAndFilters.resources = this.getFilteredResources(...Object.values(resourcesAndFilters));
+		this.changeUrl(resourcesAndFilters.category);
 
 		this.setState({
-			resources: resourcesAndFilters[0],
-			filterResources: resourcesAndFilters[1],
-			filterPrice: resourcesAndFilters[2]
+			resources: resourcesAndFilters.resources,
+			filterCategory: resourcesAndFilters.category,
+			filterPrice: resourcesAndFilters.price,
+			filterSearch: resourcesAndFilters.search
 		});
 
-		const noMatchesFound = resourcesAndFilters[0].length !== 0;
+		const noMatchesFound = resourcesAndFilters.resources.length !== 0;
 
 		if (noMatchesFound) {
 			this.setState({ status: "No matches found..." });
 		}
 	};
 
-	getResourcesAndFilters() {
-		const resources = this.state.constantResources;
+	getResourcesAndFilters(event) {
+		const value = event.target.value;
+		const targetName = event.target.name;
+		const resourcesAndFilters = {
+			resources: this.state.constantResources,
+			category: this.state.filterCategory,
+			price: this.state.filterPrice,
+			search: this.state.filterSearch
+		};
 
-		const categoryFilter = document.getElementsByClassName(
-			"resources__filter-category"
-		)[0].value;
-		const priceFilter = document.getElementsByClassName(
-			"resources__filter-price"
-		)[0].value;
-		const searchFilter = document.getElementsByClassName(
-			"resources__search-filter"
-		)[0].value;
-
-		const resourcesAndFilters = [
-			resources,
-			categoryFilter,
-			priceFilter,
-			searchFilter
-		];
+		resourcesAndFilters[targetName] = value;
 
 		return resourcesAndFilters;
 	}
@@ -80,19 +74,19 @@ class Resources extends Component {
 		thePriceFilter,
 		theSearchFilter
 	) => {
-		const showAll = "Show All";
-		const blank = "";
+		const SHOW_ALL = "Show All";
+		const BLANK = "";
 
 		return theResources.filter(resource => {
-			const isResource = theCategoryFilter === showAll
+			const isResource = theCategoryFilter === SHOW_ALL
 				? true
 				: resource.category.toLowerCase() === theCategoryFilter;
 
-			const isPrice = thePriceFilter === showAll
+			const isPrice = thePriceFilter === SHOW_ALL
 				? true
 				: resource.free === JSON.parse(thePriceFilter);
 
-			const isSearch = theSearchFilter === blank
+			const isSearch = theSearchFilter === BLANK
 				? true
 				: resource.name.toLowerCase().includes(theSearchFilter.toLowerCase());
 
@@ -101,17 +95,13 @@ class Resources extends Component {
 	};
 
 	changeUrl(theCategoryFilter) {
-		const showAll = "Show All";
+		const SHOW_ALL = "Show All";
 
-		if (theCategoryFilter !== showAll) {
-			this.props.router.push(
-				`/resources?category=${theCategoryFilter}`,
-				undefined,
-				{ shallow: true }
-			);
-		} else {
-			this.props.router.push("/resources", undefined, { shallow: true });
-		}
+		this.props.router.push(
+			(theCategoryFilter !== SHOW_ALL) ? `/resources?category=${theCategoryFilter}` : "/resources",
+			undefined,
+			{ shallow: true }
+		);
 	}
 
 	componentDidMount() {
@@ -121,7 +111,8 @@ class Resources extends Component {
 		if (category && categoriesLower.includes(category)) {
 			this.filterResources({
 				target: {
-					value: category
+					value: category,
+					name: "category"
 				}
 			});
 		}
@@ -144,16 +135,16 @@ class Resources extends Component {
 				<section id="filter-resources" role="search">
 					<Container>
 						<SearchBar
-							className="resources__search-filter"
-							label={"Search for a resource"}
+							label="Search for a resource"
+							name="search"
 							onChangeHandler={this.filterResources}
 						/>
 						<ResourceFilters>
 							<Dropdown
-								className="resources__filter-category"
-								label={"Filter by category"}
+								name="category"
+								label="Filter by category"
 								onChangeHandler={this.filterResources}
-								value={this.state.filterResources}
+								value={this.state.filterCategory}
 							>
 								<option value="Show All" key="all">
 									Show All
@@ -165,19 +156,19 @@ class Resources extends Component {
 								))}
 							</Dropdown>
 							<Dropdown
-								className="resources__filter-price"
-								label={"Filter by price"}
+								name="price"
+								label="Filter by price"
 								onChangeHandler={this.filterResources}
 								value={this.state.filterPrice}
 							>
 								<option value="Show All" key="all">
-								Show All
+									Show All
 								</option>
 								<option value="true" key="true">
-								Free
+									Free
 								</option>
 								<option value="false" key="false">
-								Paid
+									Paid
 								</option>
 							</Dropdown>
 						</ResourceFilters>
@@ -207,7 +198,7 @@ class Resources extends Component {
 												href={resource.url}
 												rel="noopener noreferrer"
 											>
-											Learn More
+												Learn More
 											</a>
 										</Card>
 									))}
