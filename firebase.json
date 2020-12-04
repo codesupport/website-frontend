@@ -17,6 +17,11 @@
         "source": "/sitemap",
         "destination": "sitemap.xml",
         "type": 301
+      },
+      {
+        "source": "/advent",
+        "destination": "https://adventofcode.com/2020/leaderboard/private/view/490120",
+        "type": 301
       }
     ],
     "ignore": [
