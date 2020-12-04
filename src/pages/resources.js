@@ -77,6 +77,7 @@ class Resources extends Component {
 		const SHOW_ALL = "Show All";
 		const BLANK = "";
 
+		debugger;
 		return theResources.filter(resource => {
 			const isResource = theCategoryFilter === SHOW_ALL
 				? true
@@ -88,7 +89,7 @@ class Resources extends Component {
 
 			const isSearch = theSearchFilter === BLANK
 				? true
-				: resource.name.toLowerCase().includes(theSearchFilter.toLowerCase());
+				: resource.name.toLowerCase().includes(theSearchFilter.toLowerCase()) || resource.tags.some(val => val.includes(theSearchFilter.toLowerCase()));
 
 			return isPrice && isResource && isSearch;
 		});
@@ -121,6 +122,8 @@ class Resources extends Component {
 	render() {
 		const { resources, status } = this.state;
 
+		const sortedCategories = categories.sort();
+
 		return (
 			<PageTemplate
 				page="Resources"
@@ -149,7 +152,7 @@ class Resources extends Component {
 								<option value="Show All" key="all">
 									Show All
 								</option>
-								{categories.map(category => (
+								{sortedCategories.map(category => (
 									<option value={category.toLowerCase()} key={category}>
 										{category}
 									</option>
