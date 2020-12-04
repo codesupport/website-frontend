@@ -77,7 +77,6 @@ class Resources extends Component {
 		const SHOW_ALL = "Show All";
 		const BLANK = "";
 
-		debugger;
 		return theResources.filter(resource => {
 			const isResource = theCategoryFilter === SHOW_ALL
 				? true
@@ -87,9 +86,11 @@ class Resources extends Component {
 				? true
 				: resource.free === JSON.parse(thePriceFilter);
 
+			const name = resource.name.toLowerCase();
+			const filter = theSearchFilter.toLowerCase();
 			const isSearch = theSearchFilter === BLANK
 				? true
-				: resource.name.toLowerCase().includes(theSearchFilter.toLowerCase()) || resource.tags.some(val => val.includes(theSearchFilter.toLowerCase()));
+				: name.includes(filter) || resource.tags.some(val => val.includes(filter));
 
 			return isPrice && isResource && isSearch;
 		});
