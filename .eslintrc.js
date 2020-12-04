@@ -18,8 +18,6 @@ module.exports = {
 		"multiline-ternary": "off",
 		"no-extra-parens": [
 			"error",
-			"all",
-			{ "enforceForArrowConditionals": false },
 			"functions"
 		],
 		"curly": ["error", "multi-line"],
