@@ -1,34 +1,10 @@
 import React from "react";
-import styled from "styled-components";
 import { getArticleIds, getArticleById } from "../../lib/fetchArticles";
 import PageTemplate from "../../components/templates/PageTemplate";
 import Container from "../../components/templates/Container";
+import Article from "../../components/molecules/Article";
 import IntroHero from "../../components/molecules/IntroHero";
 import Markdown from "../../components/atoms/Markdown";
-
-const Article = styled("article")`
-	h1 {
-		font-size: 1.75rem;
-	}
-	
-	h2 {
-		font-size: 1.5rem;
-	}
-	
-	h3 {
-		font-size: 1.25rem;
-	}
-	
-	h4 {
-		font-size: 1rem;
-	}
-	
-	img {
-		margin: 0 auto;
-		display: block;
-		border-radius: 3px;
-	}
-`;
 
 function ArticlePreviewer({ data }) {
 	const {
