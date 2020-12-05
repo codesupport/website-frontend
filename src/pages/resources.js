@@ -86,9 +86,11 @@ class Resources extends Component {
 				? true
 				: resource.free === JSON.parse(thePriceFilter);
 
+			const name = resource.name.toLowerCase();
+			const filter = theSearchFilter.toLowerCase();
 			const isSearch = theSearchFilter === BLANK
 				? true
-				: resource.name.toLowerCase().includes(theSearchFilter.toLowerCase());
+				: name.includes(filter) || resource.tags.some(val => val.includes(filter));
 
 			return isPrice && isResource && isSearch;
 		});
@@ -121,6 +123,8 @@ class Resources extends Component {
 	render() {
 		const { resources, status } = this.state;
 
+		const sortedCategories = categories.sort();
+
 		return (
 			<PageTemplate
 				page="Resources"
@@ -149,7 +153,7 @@ class Resources extends Component {
 								<option value="Show All" key="all">
 									Show All
 								</option>
-								{categories.map(category => (
+								{sortedCategories.map(category => (
 									<option value={category.toLowerCase()} key={category}>
 										{category}
 									</option>
