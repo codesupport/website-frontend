@@ -4,6 +4,8 @@ import SyntaxHighlighter from "react-syntax-highlighter";
 import { materialDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
 
 function CodeBlock({ language, value }) {
+	if (!value) return null;
+
 	return (
 		<SyntaxHighlighter
 			language={language}

@@ -22,11 +22,13 @@ const TextArea = styled("textarea")`
 
 const Preview = styled(Article)`
 	padding: 15px;
+	word-break: break-all;
 	border: 1px solid var(--border);
 `;
 
 const Output = styled("p")`
 	font-family: "Courier New", sans-serif;
+	word-break: break-all;
 `;
 
 class ArticlePreview extends Component {
@@ -78,7 +80,7 @@ class ArticlePreview extends Component {
 				<Layout>
 					<section>
 						<h2>Input</h2>
-						<TextArea onChange={this.handleEdit} value={input} />
+						<TextArea onChange={this.handleEdit} value={input} cols={50} />
 						<button className="uk-button-secondary" onClick={this.loadFromSaved}>
 							Load from saved
 						</button>
