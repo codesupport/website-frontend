@@ -42,6 +42,11 @@ function Navigation() {
 						</Link>
 					</li>
 					<li>
+						<Link href="/articles">
+							<a>Articles</a>
+						</Link>
+					</li>
+					<li>
 						<Link href="/resources">
 							<a>Resources</a>
 						</Link>

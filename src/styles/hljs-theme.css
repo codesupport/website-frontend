@@ -1,0 +1,143 @@
+.hljs-atrule {
+    color: #c792ea;
+}
+
+.hljs-attr-name {
+    color: #ffcb6b;
+}
+
+.hljs-attr-value {
+    color: #a5e844;
+}
+
+.hljs-attribute {
+    color: #a5e844;
+}
+
+.hljs-boolean {
+    color: #c792ea;
+}
+
+.hljs-builtin {
+    color: #ffcb6b;
+}
+
+.hljs-cdata {
+    color: #80cbc4;
+}
+
+.hljs-char {
+    color: #80cbc4;
+}
+
+.hljs-class {
+    color: #ffcb6b;
+}
+
+.hljs-class-name {
+    color: #f2ff00;;
+}
+
+.hljs-comment {
+    color: #616161;
+}
+
+.hljs-constant {
+    color: #c792ea;
+}
+
+.hljs-deleted {
+    color: #ff6666;
+}
+
+.hljs-doctype {
+    color: #616161;
+}
+
+.hljs-entity {
+    color: #ff6666;
+}
+
+.hljs-function {
+    color: #c792ea;
+}
+
+.hljs-hexcode {
+    color: #f2ff00;
+}
+
+.hljs-id {
+    color: #c792ea;
+}
+
+.hljs-important {
+    color: #c792ea;
+}
+
+.hljs-inserted {
+    color: #80cbc4;
+}
+
+.hljs-keyword {
+    color: #c792ea;
+}
+
+.hljs-number {
+    color: #fd9170;
+}
+
+.hljs-operator {
+    color: #89ddff;
+}
+
+.hljs-prolog {
+    color: #616161;
+}
+
+.hljs-property {
+    color: #80cbc4;
+}
+
+.hljs-pseudo-class {
+    color: #a5e844;
+}
+
+.hljs-pseudo-element {
+    color: #a5e844;
+}
+
+.hljs-punctuation {
+    color: #89ddff;
+}
+
+.hljs-regex {
+    color: #f2ff00;
+}
+
+.hljs-selector {
+    color: #ff6666;
+}
+
+.hljs-string {
+    color: #a5e844;
+}
+
+.hljs-symbol {
+    color: #c792ea;
+}
+
+.hljs-tag {
+    color: #ff6666;
+}
+
+.hljs-unit {
+    color: #fd9170;
+}
+
+.hljs-url {
+    color: #ff6666;
+}
+
+.hljs-variable {
+    color: #ff6666;
+}
