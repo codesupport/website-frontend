@@ -18,8 +18,7 @@ module.exports = {
 		"multiline-ternary": "off",
 		"no-extra-parens": [
 			"error",
-			"all",
-			{ "enforceForArrowConditionals": false }
+			"functions"
 		],
 		"curly": ["error", "multi-line"],
 		"lines-between-class-members": "off",
@@ -28,7 +27,7 @@ module.exports = {
 			"named": "never",
 			"asyncArrow": "always"
 		}],
-		"template-curly-spacing" : "off",
+		"template-curly-spacing": "off",
 		"indent": ["error", "tab", {
 			"ignoredNodes": ["TemplateLiteral"]
 		}]
