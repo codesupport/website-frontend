@@ -7,7 +7,7 @@ import IntroHero from "../components/molecules/IntroHero";
 
 const Layout = styled("div")`
 	max-width: 1500px;
-	margin: 0 25px;
+	margin: 0 auto;
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	grid-column-gap: 25px;

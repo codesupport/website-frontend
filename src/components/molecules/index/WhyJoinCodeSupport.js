@@ -10,16 +10,19 @@ const Wrapper = styled("section")`
 const reasons = [
 	{
 		icon: faHeart,
+		name: "passionate",
 		title: "Responses from passionate people.",
 		description: "Receive prompt responses from proficient and qualified developers who are keen to help you."
 	},
 	{
 		icon: faUsers,
+		name: "like-minded",
 		title: "A like-minded and talented community.",
 		description: "Discuss the latest developments and best practices with fellow enthusiasts, all motivated to improve their code."
 	},
 	{
 		icon: faBoxes,
+		name: "organised",
 		title: "Simple, organised and accessible.",
 		description: "Easily find the support you need from understanding community members with no sign-up required."
 	}
