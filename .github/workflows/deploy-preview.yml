@@ -1,0 +1,17 @@
+name: Deploy Preview
+on: [pull_request]
+jobs:
+  deploy_preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - run: |
+        npm ci
+        npm run build
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_TOKEN }}"
+          projectId: codesupport-development
+        env:
+          FIREBASE_CLI_PREVIEWS: hostingchannels
