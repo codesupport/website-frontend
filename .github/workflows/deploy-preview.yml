@@ -6,8 +6,8 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - run: |
-        npm ci
-        npm run build
+          npm ci
+          npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
