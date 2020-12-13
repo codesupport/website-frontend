@@ -6,7 +6,10 @@ let firebaseAnalytics;
 let firebasePerformance;
 
 if (typeof window !== "undefined" && !firebase.apps.length) {
-	if (location.hostname === "localhost") {
+	const isLocal = location.hostname === "localhost";
+	const isPreviewChannel = location.hostname.includes("web.app");
+
+	if (isLocal || isPreviewChannel) {
 		firebase.initializeApp({
 			apiKey: "AIzaSyBshIWr5s-dU8ugQTHKJstI4E5ZyLi_V6g",
 			authDomain: "codesupport-development.firebaseapp.com",

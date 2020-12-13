@@ -16,7 +16,7 @@ function PageTemplate({ children, page, meta }) {
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<meta name="theme-color" content="#1457B3" />
 				<meta name="description" content={meta?.description ?? DEFAULT_DESCRIPTION} />
-				<meta name="twitter:card" content={meta?.image ? SUMMARY_CARD : LARGE_IMAGE_CARD} />
+				<meta name="twitter:card" content={meta?.image ? LARGE_IMAGE_CARD : SUMMARY_CARD} />
 				<meta name="twitter:image" content={meta?.image ?? DEFAULT_IMAGE} />
 				<meta name="twitter:site" content="@codesupportdev" />
 				<meta name="twitter:title" content={`${page} - CodeSupport`} />
