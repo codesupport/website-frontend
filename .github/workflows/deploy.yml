@@ -25,6 +25,6 @@ jobs:
           ./node_modules/.bin/firebase deploy --token "${{ secrets.FIREBASE_TOKEN }}" --project codesupport-production
       - name: Notify Discord Channel
         run: |
-          if [ "${{ github.event.head_commit.message }}" != ""]
+          if [ "${{ github.event.head_commit.message }}" != "" ]; then
             curl -XPOST -H "Content-type: application/json" -d '{"embeds":[{"title":"Website Frontend Deployment","description":"The Website Frontend has successfully deployed.\n```${{ github.event.head_commit.message }}```","color":4627674,"author":{"name":"Firebase","icon_url":"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.NF8Usqcvj3UVmNtOmBfeMAD4D7%26pid%3DApi&f=1"}}],"username":"Firebase","avatar_url":"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.NF8Usqcvj3UVmNtOmBfeMAD4D7%26pid%3DApi&f=1"}' '${{ secrets.WEBHOOK_URL }}'
           fi
