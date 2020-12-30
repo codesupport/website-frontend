@@ -3,9 +3,9 @@ import ArticleService from "../services/ArticleService";
 export async function getArticleIds() {
 	const articles = await ArticleService.getAllArticles();
 
-	return articles.map(article => ({
+	return articles.map(({ id, article }) => ({
 		params: {
-			id: `${article.title.toLowerCase().replace(/\s/g, "-")}-${article.id}`
+			id: `${article.title.toLowerCase().replace(/\s/g, "-")}-${id}`
 		}
 	}));
 }
