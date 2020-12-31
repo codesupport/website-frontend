@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { getArticleIds, getArticleById } from "../../lib/fetchArticles";
 import PageTemplate from "../../components/templates/PageTemplate";
 import Container from "../../components/templates/Container";

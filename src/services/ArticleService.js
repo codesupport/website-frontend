@@ -8,7 +8,7 @@ export class ArticleService {
 		try {
 			const { data } = await axios.get(`${backendAPI}/${this.BASE_URL}`);
 
-			return data.response[0];
+			return data.response;
 		} catch ({ message }) {
 			console.error(message);
 		}
@@ -20,25 +20,26 @@ export class ArticleService {
 		try {
 			const { data } = await axios.get(`${backendAPI}/${this.BASE_URL}/${id}`);
 			const [response] = data.response;
+			const { article } = response;
 
-			const date = new Date(+response.createdOn).toString().split(" ");
+			const date = new Date(+article.createdOn).toString().split(" ");
 
 			return {
 				id: id,
-				title: response.title,
-				description: response.description,
+				title: article.title,
+				description: article.description,
 				author: {
-					id: response.createdBy.id,
-					name: response.createdBy.alias
+					id: article.createdBy.id,
+					name: article.createdBy.alias
 				},
-				content: response.content,
+				content: article.content,
 				created: `${date[2]} ${date[1]} ${date[3]}`
 			};
 		} catch ({ message }) {
 			console.error(message);
 		}
 
-		return [];
+		return {};
 	}
 }
 
