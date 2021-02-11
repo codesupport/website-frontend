@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { getArticleIds, getArticleById } from "../../lib/fetchArticles";
+import React from "react";
+import { getArticleById, getAllArticles } from "../../lib/fetchArticles";
 import PageTemplate from "../../components/templates/PageTemplate";
 import Container from "../../components/templates/Container";
 import Article from "../../components/molecules/Article";
@@ -9,9 +9,9 @@ import Markdown from "../../components/atoms/Markdown";
 function ArticlePreviewer({ data }) {
 	const {
 		title,
-		author,
-		content,
-		created,
+		createdBy,
+		revision,
+		createdOn,
 		description
 	} = data;
 
@@ -21,14 +21,14 @@ function ArticlePreviewer({ data }) {
 		}}>
 			<IntroHero
 				title={title}
-				description={description}
+				description={revision?.description}
 			/>
 			<Container>
 				<Article className="uk-article">
 					<p className="uk-article-meta">
-						Written on {created} by {author.name}
+						Written on {createdOn} by {createdBy?.alias}
 					</p>
-					<Markdown content={content} />
+					<Markdown content={revision?.content} />
 				</Article>
 			</Container>
 		</PageTemplate>
@@ -36,10 +36,14 @@ function ArticlePreviewer({ data }) {
 }
 
 export async function getStaticPaths() {
-	const paths = await getArticleIds();
+	const articles = await getAllArticles();
 
 	return {
-		paths,
+		paths: articles.map(article => ({
+			params: {
+				id: article.path
+			}})
+		),
 		fallback: false
 	};
 }

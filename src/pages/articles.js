@@ -4,7 +4,7 @@ import IntroHero from "../components/molecules/IntroHero";
 import Container from "../components/templates/Container";
 import CardGroup from "../components/molecules/CardGroup";
 import Card from "../components/molecules/Card";
-import { getArticleById, getArticleIds } from "../lib/fetchArticles";
+import { getAllArticles } from "../lib/fetchArticles";
 
 const MAX_ARTICLES_TO_FETCH = 10;
 
@@ -26,10 +26,10 @@ function Articles({ articles }) {
 						{articles && articles.map(article => <Card
 							key={article.id}
 							title={article.title}
-							description={article.description}
+							description={article.revision?.description}
 						>
 							<p className="uk-text-small">
-								{article.created} by {article.author.name}
+								{article.createdOn} by {article.createdBy?.alias}
 							</p>
 							<a
 								className="uk-button uk-button-text uk-margin-right"
@@ -46,30 +46,12 @@ function Articles({ articles }) {
 }
 
 export async function getStaticProps() {
-	const articleIds = await getArticleIds();
-	const articles = await Promise.all(articleIds
-		.reverse()
-		.slice(0, MAX_ARTICLES_TO_FETCH)
-		.map(async ({ params }) => {
-			const data = await getArticleById(params.id);
-
-			if (data) {
-				return {
-					id: data.id,
-					path: params.id,
-					title: data.title,
-					description: data.description,
-					created: data.created,
-					author: {
-						name: data.author?.name
-					}
-				};
-			}
-		})
-	);
+	const articles = await getAllArticles();
 
 	return {
-		props: { articles }
+		props: {
+			articles: articles.reverse().slice(0, MAX_ARTICLES_TO_FETCH)
+		}
 	};
 }
 
