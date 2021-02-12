@@ -2,7 +2,7 @@ import fs from "fs";
 import { promisify } from "util";
 
 class FileUtils {
-	static WRITE = "W";
+	static WRITE = "w";
 
 	static open = promisify(fs.open);
 	static readFile = promisify(fs.readFile);
