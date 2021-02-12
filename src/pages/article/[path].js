@@ -5,6 +5,9 @@ import Container from "../../components/templates/Container";
 import Article from "../../components/molecules/Article";
 import IntroHero from "../../components/molecules/IntroHero";
 import Markdown from "../../components/atoms/Markdown";
+import FileUtils from "../../helpers/FileUtils";
+
+const PATH_TO_ID_FILE = "./temp-path-to-id.json";
 
 function ArticlePreviewer({ data }) {
 	const {
@@ -37,11 +40,17 @@ function ArticlePreviewer({ data }) {
 
 export async function getStaticPaths() {
 	const articles = await getAllArticles();
+	const pathToId = Object.assign({}, ...articles.map(article => ({
+		[article.path]: article.id
+	})));
+
+	await FileUtils.open(PATH_TO_ID_FILE, FileUtils.WRITE);
+	await FileUtils.writeFile(PATH_TO_ID_FILE, JSON.stringify(pathToId));
 
 	return {
 		paths: articles.map(article => ({
 			params: {
-				id: article.path
+				path: article.path
 			}})
 		),
 		fallback: false
@@ -49,7 +58,8 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-	const data = await getArticleById(params.id);
+	const pathToId = JSON.parse((await FileUtils.readFile(PATH_TO_ID_FILE)).toString());
+	const data = await getArticleById(pathToId[params.path]);
 
 	return {
 		props: { data }

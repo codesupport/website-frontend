@@ -7,8 +7,7 @@ export async function getAllArticles() {
 }
 
 export async function getArticleById(id) {
-	const [actualId] = id.match(/\d$/g);
-	const article = await ArticleService.getArticleById(actualId);
+	const article = await ArticleService.getArticleById(id);
 
 	return article;
 }

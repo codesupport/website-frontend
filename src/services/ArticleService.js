@@ -5,7 +5,10 @@ export class ArticleService {
 	BASE_URL = "article/v1/articles";
 
 	static buildArticleURL(article) {
-		return `${encodeURIComponent(article.title.replace(/\s/g, "-").toLowerCase())}-${article.id}`;
+		return article.title
+			.replace(/[^A-Za-z0-9 ]/g, "")
+			.replace(/\s/g, "-")
+			.toLowerCase();
 	}
 
 	async getAllArticles() {
