@@ -1,11 +1,11 @@
 import React from "react";
+import { promises as fs } from "fs";
 import { getArticleById, getAllArticles } from "../../lib/fetchArticles";
 import PageTemplate from "../../components/templates/PageTemplate";
 import Container from "../../components/templates/Container";
 import Article from "../../components/molecules/Article";
 import IntroHero from "../../components/molecules/IntroHero";
 import Markdown from "../../components/atoms/Markdown";
-import FileUtils from "../../helpers/FileUtils";
 import { ArticleService } from "../../services/ArticleService";
 
 const PATH_TO_ID_FILE = "./temp-path-to-id.json";
@@ -46,7 +46,7 @@ export async function getStaticPaths() {
 		[article.path]: article.id
 	})));
 
-	await FileUtils.writeFile(PATH_TO_ID_FILE, JSON.stringify(pathToId));
+	await fs.writeFile(PATH_TO_ID_FILE, JSON.stringify(pathToId));
 
 	return {
 		paths: articles.map(article => ({
@@ -59,7 +59,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-	const pathToId = JSON.parse((await FileUtils.readFile(PATH_TO_ID_FILE)).toString());
+	const pathToId = JSON.parse((await fs.readFile(PATH_TO_ID_FILE)).toString());
 	const data = await getArticleById(pathToId[params.path]);
 
 	return {
