@@ -1,10 +1,12 @@
 import axios from "axios";
-import ArticleService, { ArticleService as ArticleServiceStatic } from "../../src/services/ArticleService";
+import ArticleService from "../../src/services/ArticleService";
 
 describe("ArticleService", () => {
+	const instance = ArticleService.getInstance();
+
 	describe("::buildArticleURL()", () => {
 		it("removes any alphanumeric characters", () => {
-			const res = ArticleServiceStatic.buildArticleURL({
+			const res = ArticleService.buildArticleURL({
 				title: "$@!Hello#£*"
 			});
 
@@ -12,7 +14,7 @@ describe("ArticleService", () => {
 		});
 
 		it("replaces any spaces with dashes", () => {
-			const res = ArticleServiceStatic.buildArticleURL({
+			const res = ArticleService.buildArticleURL({
 				title: "this is an article title"
 			});
 
@@ -20,7 +22,7 @@ describe("ArticleService", () => {
 		});
 
 		it("makes the title lowercase", () => {
-			const res = ArticleServiceStatic.buildArticleURL({
+			const res = ArticleService.buildArticleURL({
 				title: "eXamPlE"
 			});
 
@@ -39,7 +41,7 @@ describe("ArticleService", () => {
 				}
 			};
 
-			const res = ArticleServiceStatic.buildArticleRichResult(article);
+			const res = ArticleService.buildArticleRichResult(article);
 
 			expect(res).toEqual({
 				"@context": "https://schema.org",
@@ -82,7 +84,7 @@ describe("ArticleService", () => {
 				}
 			}));
 
-			const res = await ArticleService.getAllArticles();
+			const res = await instance.getAllArticles();
 
 			expect(res).toEqual([
 				{
@@ -106,7 +108,7 @@ describe("ArticleService", () => {
 				new Error("Request Failed")
 			));
 
-			const res = await ArticleService.getAllArticles();
+			const res = await instance.getAllArticles();
 
 			expect(res).toEqual([]);
 		});
@@ -126,7 +128,7 @@ describe("ArticleService", () => {
 				}
 			}));
 
-			const res = await ArticleService.getArticleById(1);
+			const res = await instance.getArticleById(1);
 
 			expect(res).toEqual({
 				id: 1,
@@ -142,7 +144,7 @@ describe("ArticleService", () => {
 				new Error("Request Failed")
 			));
 
-			const res = await ArticleService.getArticleById(1);
+			const res = await instance.getArticleById(1);
 
 			expect(res).toEqual({});
 		});

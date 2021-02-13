@@ -4,6 +4,16 @@ import { backendAPI } from "../config.json";
 export class ArticleService {
 	BASE_URL = "article/v1/articles";
 
+	static instance = undefined;
+
+	static getInstance() {
+		if (!ArticleService.instance) {
+			ArticleService.instance = new ArticleService();
+		}
+
+		return ArticleService.instance;
+	}
+
 	static buildArticleURL(article) {
 		return article.title
 			.replace(/[^A-Za-z0-9 ]/g, "")
@@ -73,4 +83,4 @@ export class ArticleService {
 	}
 }
 
-export default new ArticleService();
+export default ArticleService;
