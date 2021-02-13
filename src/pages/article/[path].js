@@ -6,6 +6,7 @@ import Article from "../../components/molecules/Article";
 import IntroHero from "../../components/molecules/IntroHero";
 import Markdown from "../../components/atoms/Markdown";
 import FileUtils from "../../helpers/FileUtils";
+import { ArticleService } from "../../services/ArticleService";
 
 const PATH_TO_ID_FILE = "./temp-path-to-id.json";
 
@@ -20,7 +21,8 @@ function ArticlePreviewer({ data }) {
 
 	return (
 		<PageTemplate page={title} meta={{
-			description
+			description,
+			schema: ArticleService.buildArticleRichResult(data)
 		}}>
 			<IntroHero
 				title={title}
@@ -29,7 +31,7 @@ function ArticlePreviewer({ data }) {
 			<Container>
 				<Article className="uk-article">
 					<p className="uk-article-meta">
-						Written on {createdOn} by {createdBy?.alias}
+						Written on {createdOn} by {createdBy.alias}
 					</p>
 					<Markdown content={revision?.content} />
 				</Article>
@@ -44,7 +46,6 @@ export async function getStaticPaths() {
 		[article.path]: article.id
 	})));
 
-	await FileUtils.open(PATH_TO_ID_FILE, FileUtils.WRITE);
 	await FileUtils.writeFile(PATH_TO_ID_FILE, JSON.stringify(pathToId));
 
 	return {

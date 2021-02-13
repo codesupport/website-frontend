@@ -11,6 +11,28 @@ export class ArticleService {
 			.toLowerCase();
 	}
 
+	static buildArticleRichResult(article) {
+		return {
+			"@context": "https://schema.org",
+			"@type": "Article",
+			"headline": article.title,
+			"datePublished": new Date(article.createdOn).toISOString(),
+			"dateModified": new Date(article.updatedOn).toISOString(),
+			"author": {
+				"@type": "Person",
+				"name": article.createdBy.alias
+			},
+			"publisher": {
+				"@type": "Organization",
+				"name": "CodeSupport",
+				"logo": {
+					"@type": "ImageObject",
+					"url": "https://codesupport.dev/logo.png"
+				}
+			}
+		};
+	}
+
 	async getAllArticles() {
 		try {
 			const { data } = await axios.get(`${backendAPI}/${this.BASE_URL}?publishedonly=true`);
