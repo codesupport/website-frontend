@@ -21,6 +21,11 @@ function PageTemplate({ children, page, meta }) {
 				<meta name="twitter:site" content="@codesupportdev" />
 				<meta name="twitter:title" content={`${page} - CodeSupport`} />
 				<meta name="twitter:description" content={meta?.description ?? DEFAULT_DESCRIPTION} />
+				{meta?.schema && (
+					<script type="application/ld+json">
+						{JSON.stringify(meta.schema)}
+					</script>
+				)}
 			</Head>
 			<Navigation />
 			{children}
