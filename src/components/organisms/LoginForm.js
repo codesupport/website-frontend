@@ -13,8 +13,7 @@ const Form = styled("form")`
 	padding: var(--gridGap);
 	background-color: var(--foreground);
 	
-	.uk-alert-danger p {
-		margin: 0;
+	.uk-alert-danger {
 		padding: 5px;
 	}
 	
@@ -95,12 +94,10 @@ class LoginForm extends Component {
 				</p>
 				{error && (
 					<section className="uk-alert-danger">
-						<p>
-							<strong>There was a problem logging you in:</strong>
-							<ul>
-								{error.split(",").map(e => <li>{e}</li>)}
-							</ul>
-						</p>
+						<strong>There was a problem logging you in:</strong>
+						<ul>
+							{error.split(",").map((e, i) => <li key={i}>{e}</li>)}
+						</ul>
 					</section>
 				)}
 				<Inputs $loading={loading}>

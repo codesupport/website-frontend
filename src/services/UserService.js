@@ -1,5 +1,5 @@
 import axios from "axios";
-import { backendAPI } from "../config.json";
+import { backendAPI, defaultError } from "../config.json";
 
 class UserService {
 	static BASE_URL = "user";
@@ -10,7 +10,7 @@ class UserService {
 
 			return data.response[0];
 		} catch ({ response }) {
-			throw new Error(response.data.response.message[0]);
+			throw new Error(response?.data?.message ?? defaultError);
 		}
 	}
 }
