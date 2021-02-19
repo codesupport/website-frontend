@@ -1,4 +1,4 @@
-import React, { Component, useContext } from "react";
+import React, { Component } from "react";
 import styled from "styled-components";
 import { useRouter } from "next/router";
 import Button from "../atoms/Button";
@@ -7,18 +7,26 @@ import TextInput from "../atoms/TextInput";
 import AuthService from "../../services/AuthService";
 import UserService from "../../services/UserService";
 import { analytics } from "../../services/FirebaseService";
-import { AuthContext } from "../../context/AuthContext";
 
 const Form = styled("form")`
 	max-width: 600px;
 	padding: var(--gridGap);
 	background-color: var(--foreground);
 	
-	h1 {
-		font-size: 2rem;
-		font-weight: 700;
-		font-family: "Raleway", sans-serif;
+	.uk-alert-danger p {
+		margin: 0;
+		padding: 5px;
 	}
+	
+	ul { margin: 0; }
+	
+	button[type=submit] {
+		margin-top: 10px;
+	}
+`;
+
+const Inputs = styled("div")`
+	${({ $loading }) => $loading && "opacity: 50%;"}
 `;
 
 class LoginForm extends Component {
@@ -54,14 +62,13 @@ class LoginForm extends Component {
 
 			const user = await this.user.getCurrentUser();
 
-			this.props.authContext.updateUser(user);
-
 			analytics.setUserId(user.id);
 
-			// this.props.router.push(`/profile/${user.alias}`);
+			this.props.router.push(`/profile/${user.alias}`);
 		} catch ({ message }) {
 			this.setState({
-				error: message
+				error: message,
+				loading: false
 			});
 		}
 	}
@@ -76,42 +83,53 @@ class LoginForm extends Component {
 	}
 
 	render() {
-		const { error, loading, success, inputs } = this.state;
+		const { error, loading } = this.state;
 
 		return (
-			<Form onSubmit={this.handleSubmit}>
-				{error}
-				{loading}
-				{JSON.stringify(inputs)}
+			<Form className="uk-form-stacked" onSubmit={this.handleSubmit}>
 				<h1>
 					Login to CodeSupport
 				</h1>
 				<p>
 					When you login with your CodeSupport account you are able to do stuff.
 				</p>
-				<FormLabel>
-					Email
-					<TextInput
-						name="email"
-						onChange={this.handleInputChange}
-						placeholder="richard.hendricks@piedpiper.com"
-						required
-						type="text"
-					/>
-				</FormLabel>
-				<FormLabel>
-					Password
-					<TextInput
-						name="password"
-						onChange={this.handleInputChange}
-						placeholder="••••••••"
-						required
-						type="password"
-					/>
-				</FormLabel>
-				<Button type="submit">
-					Login
-				</Button>
+				{error && (
+					<section className="uk-alert-danger">
+						<p>
+							<strong>There was a problem logging you in:</strong>
+							<ul>
+								{error.split(",").map(e => <li>{e}</li>)}
+							</ul>
+						</p>
+					</section>
+				)}
+				<Inputs $loading={loading}>
+					<FormLabel>
+						Email
+						<TextInput
+							disabled={loading}
+							name="email"
+							onChange={this.handleInputChange}
+							placeholder="richard.hendricks@piedpiper.com"
+							required
+							type="text"
+						/>
+					</FormLabel>
+					<FormLabel>
+						Password
+						<TextInput
+							disabled={loading}
+							name="password"
+							onChange={this.handleInputChange}
+							placeholder="••••••••"
+							required
+							type="password"
+						/>
+					</FormLabel>
+					<Button type="submit">
+						Login
+					</Button>
+				</Inputs>
 			</Form>
 		);
 	}
@@ -119,11 +137,6 @@ class LoginForm extends Component {
 
 export default props => {
 	const router = useRouter();
-	const authContext = useContext(AuthContext);
 
-	return <LoginForm
-		{...props}
-		router={router}
-		authContext={authContext}
-	/>;
+	return <LoginForm {...props} router={router} />;
 };

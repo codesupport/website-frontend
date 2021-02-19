@@ -12,7 +12,7 @@ const Wrapper = styled("div")`
 function FormLabel({ text, children }) {
 	return (
 		<Wrapper>
-			<label>
+			<label className="uk-form-label">
 				{text}
 			</label>
 			{children}

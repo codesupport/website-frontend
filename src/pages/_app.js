@@ -1,15 +1,15 @@
 import React from "react";
+import axios from "axios";
 import "../services/FirebaseService";
 import "../../node_modules/uikit/dist/css/uikit.min.css";
 import "../styles/hljs-theme.css";
 import "../styles/style.css";
-import AuthProvider from "../context/AuthContext";
+
+axios.defaults.withCredentials = true;
 
 function App({ Component, pageProps }) {
 	return (
-		<AuthProvider>
-			<Component {...pageProps} />
-		</AuthProvider>
+		<Component {...pageProps} />
 	);
 }
 

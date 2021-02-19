@@ -12,11 +12,9 @@ class AuthService {
 			});
 
 			return data;
-		} catch ({ message }) {
-			console.error(message);
+		} catch ({ response }) {
+			throw new Error(response.data.message);
 		}
-
-		return {};
 	}
 }
 

@@ -1,7 +1,9 @@
 import React from "react";
-import styled from "styled-components";
 
-const TextInput = styled("input")`
-`;
+function TextInput(props) {
+	return (
+		<input {...props} className="uk-input" />
+	);
+}
 
 export default TextInput;

@@ -8,12 +8,10 @@ class UserService {
 		try {
 			const { data } = await axios.get(`${backendAPI}/${UserService.BASE_URL}/v1/current`);
 
-			return data;
-		} catch ({ message }) {
-			console.error(message);
+			return data.response[0];
+		} catch ({ response }) {
+			throw new Error(response.data.response.message[0]);
 		}
-
-		return {};
 	}
 }
 
