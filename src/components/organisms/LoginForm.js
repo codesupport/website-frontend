@@ -63,7 +63,7 @@ class LoginForm extends Component {
 
 			analytics.setUserId(user.id);
 
-			this.props.router.push(`/profile/${user.alias}`);
+			this.props.router.push(`/profile/${user.alias.toLowerCase()}`);
 		} catch ({ message }) {
 			this.setState({
 				error: message,
