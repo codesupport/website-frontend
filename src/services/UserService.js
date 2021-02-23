@@ -9,7 +9,7 @@ class UserService {
 			"@context": "https://schema.org",
 			"@type": "Person",
 			"name": profile.alias,
-			"url": `https://codesupport.dev/profile/${profile.alias.toLowerCase()}`,
+			"url": `https://codesupport.dev/profile/${profile.alias.toLowerCase()}`
 		};
 
 		if (profile.jobTitle) {
