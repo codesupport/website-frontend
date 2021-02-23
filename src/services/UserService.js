@@ -10,10 +10,6 @@ class UserService {
 			"@type": "Person",
 			"name": profile.alias,
 			"url": `https://codesupport.dev/profile/${profile.alias.toLowerCase()}`,
-			"image": {
-				"@type": "ImageObject",
-				"url": profile.avatarLink
-			}
 		};
 
 		if (profile.jobTitle) {
