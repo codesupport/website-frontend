@@ -1,5 +1,6 @@
 import axios from "axios";
 import { backendAPI } from "../config.json";
+import UserService from "./UserService";
 
 export class ArticleService {
 	BASE_URL = "article/v1/articles";
@@ -28,10 +29,7 @@ export class ArticleService {
 			"headline": article.title,
 			"datePublished": new Date(article.createdOn).toISOString(),
 			"dateModified": new Date(article.updatedOn).toISOString(),
-			"author": {
-				"@type": "Person",
-				"name": article.createdBy.alias
-			},
+			"author": UserService.buildProfileRichResult(article.createdBy),
 			"publisher": {
 				"@type": "Organization",
 				"name": "CodeSupport",

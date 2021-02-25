@@ -7,6 +7,7 @@ import Article from "../../components/molecules/Article";
 import IntroHero from "../../components/molecules/IntroHero";
 import Markdown from "../../components/atoms/Markdown";
 import { ArticleService } from "../../services/ArticleService";
+import Link from "next/link";
 
 const PATH_TO_ID_FILE = "./temp-path-to-id.json";
 
@@ -31,7 +32,11 @@ function ArticlePreviewer({ data }) {
 			<Container>
 				<Article className="uk-article">
 					<p className="uk-article-meta">
-						Written on {createdOn} by {createdBy.alias}
+						Written on {createdOn} by
+						{" "}
+						<Link href={`/profile/${createdBy.alias.toLowerCase()}`}>
+							{createdBy.alias}
+						</Link>
 					</p>
 					<Markdown content={revision?.content} />
 				</Article>
