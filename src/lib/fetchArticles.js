@@ -1,15 +1,11 @@
 import ArticleService from "../services/ArticleService";
 
-const Service = ArticleService.getInstance();
+const articles = new ArticleService();
 
 export async function getAllArticles() {
-	const articles = await Service.getAllArticles();
-
-	return articles;
+	return await articles.getAllArticles();
 }
 
 export async function getArticleById(id) {
-	const article = await Service.getArticleById(id);
-
-	return article;
+	return await articles.getArticleById(id);
 }

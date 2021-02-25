@@ -2,7 +2,7 @@ import axios from "axios";
 import ArticleService from "../../src/services/ArticleService";
 
 describe("ArticleService", () => {
-	const instance = ArticleService.getInstance();
+	const instance = new ArticleService();
 
 	describe("::buildArticleURL()", () => {
 		it("removes any alphanumeric characters", () => {
@@ -50,8 +50,10 @@ describe("ArticleService", () => {
 				"datePublished": "2021-02-13T00:00:00.000Z",
 				"dateModified": "2021-02-11T12:26:54.697Z",
 				"author": {
+					"@context": "https://schema.org",
 					"@type": "Person",
-					"name": "ExampleUser"
+					"name": "ExampleUser",
+					"url": "https://codesupport.dev/profile/exampleuser"
 				},
 				"publisher": {
 					"@type": "Organization",
