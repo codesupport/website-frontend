@@ -71,4 +71,4 @@ export class ArticleService {
 	}
 }
 
-export default new ArticleService();
+export default ArticleService;

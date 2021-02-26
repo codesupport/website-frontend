@@ -8,6 +8,7 @@
     "build": "next build",
     "start": "next start",
     "export": "next build && next export",
+    "test": "jest",
     "lint": "eslint src --ext .js",
     "lint:fix": "eslint src --ext .js --fix"
   },
@@ -33,6 +34,7 @@
     "eslint": "^7.5.0",
     "eslint-config-codesupport": "^1.0.2",
     "eslint-plugin-react": "^7.20.3",
+    "jest": "^26.6.3",
     "nextjs-sitemap-generator": "^1.1.1"
   }
 }
