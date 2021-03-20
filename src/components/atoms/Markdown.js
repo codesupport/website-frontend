@@ -1,7 +1,7 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
-import SyntaxHighlighter from "react-syntax-highlighter";
-import { materialDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { darcula } from "react-syntax-highlighter/dist/cjs/styles/prism";
 
 function CodeBlock({ language, value }) {
 	if (!value) return null;
@@ -9,7 +9,7 @@ function CodeBlock({ language, value }) {
 	return (
 		<SyntaxHighlighter
 			language={language}
-			style={materialDark}
+			style={darcula}
 		>
 			{value}
 		</SyntaxHighlighter>
