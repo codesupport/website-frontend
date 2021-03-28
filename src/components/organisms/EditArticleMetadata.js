@@ -42,7 +42,7 @@ class EditArticleMetadata extends Component {
 			const revisionId = await this.revision.createArticleRevision(articleData.id, {
 				content: articleData.revision?.content,
 				description,
-				tags: tags.split(", ")
+				tags
 			});
 
 			this.setState({
@@ -81,7 +81,7 @@ class EditArticleMetadata extends Component {
 			inputs: {
 				title: article?.title,
 				description: revision?.description,
-				tags: revision?.tags.join(", ")
+				tags: revision?.tags
 			}
 		});
 	}
@@ -123,7 +123,7 @@ class EditArticleMetadata extends Component {
 						<FormLabel>
 							Tags
 							<TextInput
-								disabled={loading}
+								disabled={true}
 								type="text"
 								name="tags"
 								onChange={this.handleInputChange}

@@ -49,10 +49,14 @@ function ProtectedPageTemplate({ children, page, meta }) {
 					</section>
 					<Links>
 						<li>
-							<Link href="/">Homepage</Link>
+							<Link href="/">
+								<a>Homepage</a>
+							</Link>
 						</li>
 						<li>
-							<Link href="/login">Login</Link>
+							<Link href="/login">
+								<a>Login</a>
+							</Link>
 						</li>
 					</Links>
 				</Wrapper>

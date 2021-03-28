@@ -14,8 +14,8 @@ function Breadcrumb({ links }) {
 	return (
 		<Wrapper>
 			<ul className="uk-breadcrumb">
-				{links.map(link => (
-					<li key={link.link}>
+				{links.map((link, i) => (
+					<li key={i}>
 						{link.link && <Link href="/cms">{link.text}</Link>}
 						{!link.link && <span>{link.text}</span>}
 					</li>
