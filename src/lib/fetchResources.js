@@ -15,6 +15,15 @@ export async function fetchResources(category) {
 			})));
 		}
 
+		resources = resources.sort((resOne, resTwo) => {
+			const a = resOne.name.toLowerCase();
+			const b = resTwo.name.toLowerCase();
+
+			if (a > b) return 1;
+			if (b > a) return -1;
+			return 0;
+		});
+
 		return resources;
 	} catch (error) {
 		throw new Error(`There was an error getting the ${category} resources.`);

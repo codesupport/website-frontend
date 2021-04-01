@@ -1,8 +1,11 @@
 {
   "resourceAPI": "https://codesupport.github.io/resources-api/categories",
+  "backendAPI": "https://api.codesupport.dev",
+  "defaultError": "An unknown error occurred.",
   "categories": [
     "Hosting",
     "JavaScript",
+    "Java",
     "CSS",
     "Icons",
     "Python",
@@ -10,6 +13,8 @@
     "CSharp",
     "Fonts",
     "UI",
-    "HTML"
+    "HTML",
+    "Projects",
+    "Concepts"
   ]
 }

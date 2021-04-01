@@ -2,3 +2,8 @@ node_modules/
 .next/
 .idea/
 out/
+.firebase/
+.firebaserc
+temp-path-to-id.json
+temp-alias-to-id.json
+public/sitemap.xml

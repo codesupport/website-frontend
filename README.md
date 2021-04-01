@@ -11,11 +11,16 @@ This repository contains the frontend for the CodeSupport Website. The project i
 - [React](https://www.npmjs.com/package/react)
 - [React DOM](https://www.npmjs.com/package/react-dom)
 - [Next](http://npmjs.com/package/next)
+- [UI Kit](http://npmjs.com/package/uikit)
+- [Styled Components](http://npmjs.com/package/styled-components)
 - [Axios](https://www.npmjs.com/package/axios)
+- [Firebase](https://www.npmjs.com/package/firebase)
+- [React Markdown](https://www.npmjs.com/package/react-markdown)
+- [React Syntax Highlighter](https://www.npmjs.com/package/react-syntax-highlighter)
 
 ## Setup
 1. Navigate into the repository on your computer and run `npm i`
-2. Start the React app with `npm start`
+2. Start the React app with `npm run dev`
 3. Navigate to [http://localhost:3000](http://localhost:3000) in your browser
 
 **Want an easier setup?** Pull down our [website development environment](https://github.com/codesupport/website-dev-env) and quickly start working.

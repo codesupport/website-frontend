@@ -4,6 +4,7 @@ import IntroHero from "../components/molecules/IntroHero";
 import Container from "../components/templates/Container";
 import OpenSourceProjects from "../components/molecules/index/OpenSourceProjects";
 import CommunityDiscord from "../components/molecules/index/CommunityDiscord";
+import WhyJoinCodeSupport from "../components/molecules/index/WhyJoinCodeSupport";
 
 function Home() {
 	return (
@@ -20,6 +21,7 @@ function Home() {
 			<main>
 				<Container>
 					<CommunityDiscord />
+					<WhyJoinCodeSupport />
 					<OpenSourceProjects />
 				</Container>
 			</main>

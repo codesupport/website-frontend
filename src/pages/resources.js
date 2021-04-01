@@ -1,4 +1,5 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
+import { useRouter } from "next/router";
 import styled from "styled-components";
 
 import PageTemplate from "../components/templates/PageTemplate";
@@ -6,130 +7,207 @@ import IntroHero from "../components/molecules/IntroHero";
 import Card from "../components/molecules/Card";
 import CardGroup from "../components/molecules/CardGroup";
 import SearchBar from "../components/molecules/SearchBar";
-
 import Container from "../components/templates/Container";
-
-import {fetchResources} from "../lib/fetchResources";
-import {categories} from "../config.json";
 import Dropdown from "../components/molecules/Dropdown";
 
+import { fetchResources } from "../lib/fetchResources";
+import { categories } from "../config.json";
+import getQueryParams from "../helpers/getQueryParams";
+
 const ResourceFilters = styled("div")`
-	padding-bottom: 25px;
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	grid-column-gap: 15px;
-	grid-row-gap: 15px;
+  padding-top: 15px;
+  padding-bottom: 25px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 15px;
+  grid-row-gap: 15px;
 `;
 
-export default class Resources extends Component {
+class Resources extends Component {
 	state = {
 		resources: this.props.resources,
 		constantResources: this.props.resources,
-		filterResources: "Show All",
+		filterCategory: "Show All",
 		filterPrice: "Show All",
+		filterSearch: "",
 		status: "Loading..."
 	};
 
-	searchResources = event => {
-		const query = event.target.value.toLowerCase();
+	filterResources = async event => {
+		const resourcesAndFilters = this.getResourcesAndFilters(event);
 
-		if (query === "") {
-			this.setState({resources: this.state.constantResources});
-		} else {
-			const resourcesThatMatchQuery = [];
+		resourcesAndFilters.resources = this.getFilteredResources(...Object.values(resourcesAndFilters));
+		this.changeUrl(resourcesAndFilters.category);
 
-			for (const resource of this.state.constantResources) {
-				if (resource.name.toLowerCase().includes(query)) {
-					resourcesThatMatchQuery.push(resource);
+		this.setState({
+			resources: resourcesAndFilters.resources,
+			filterCategory: resourcesAndFilters.category,
+			filterPrice: resourcesAndFilters.price,
+			filterSearch: resourcesAndFilters.search
+		});
+
+		const noMatchesFound = resourcesAndFilters.resources.length !== 0;
+
+		if (noMatchesFound) {
+			this.setState({ status: "No matches found..." });
+		}
+	};
+
+	getResourcesAndFilters(event) {
+		const value = event.target.value;
+		const targetName = event.target.name;
+		const resourcesAndFilters = {
+			resources: this.state.constantResources,
+			category: this.state.filterCategory,
+			price: this.state.filterPrice,
+			search: this.state.filterSearch
+		};
+
+		resourcesAndFilters[targetName] = value;
+
+		return resourcesAndFilters;
+	}
+
+	getFilteredResources = (
+		theResources,
+		theCategoryFilter,
+		thePriceFilter,
+		theSearchFilter
+	) => {
+		const SHOW_ALL = "Show All";
+		const BLANK = "";
+
+		return theResources.filter(resource => {
+			const isResource = theCategoryFilter === SHOW_ALL
+				? true
+				: resource.category.toLowerCase() === theCategoryFilter;
+
+			const isPrice = thePriceFilter === SHOW_ALL
+				? true
+				: resource.free === JSON.parse(thePriceFilter);
+
+			const name = resource.name.toLowerCase();
+			const filter = theSearchFilter.toLowerCase();
+			const isSearch = theSearchFilter === BLANK
+				? true
+				: name.includes(filter) || resource.tags.some(val => val.includes(filter));
+
+			return isPrice && isResource && isSearch;
+		});
+	};
+
+	changeUrl(theCategoryFilter) {
+		const SHOW_ALL = "Show All";
+
+		this.props.router.push(
+			(theCategoryFilter !== SHOW_ALL) ? `/resources?category=${theCategoryFilter}` : "/resources",
+			undefined,
+			{ shallow: true }
+		);
+	}
+
+	componentDidMount() {
+		const categoriesLower = categories.map(c => c.toLowerCase());
+		const category = getQueryParams(this.props.router).category?.toLowerCase();
+
+		if (category && categoriesLower.includes(category)) {
+			this.filterResources({
+				target: {
+					value: category,
+					name: "category"
 				}
-			}
-
-			if (!resourcesThatMatchQuery.length) {
-				this.setState({status: "No matches found..."});
-			}
-
-			this.setState({
-				status: null,
-				resources: resourcesThatMatchQuery
 			});
 		}
-	};
-
-	filterResources = async event => {
-		let resources = this.state.constantResources;
-		const value = event.target.value;
-
-		if (value !== "Show All") {
-			resources = await resources.filter(resource => resource.category.toLowerCase() === value);
-		}
-
-		this.setState({resources, filterResources: value});
-	};
-
-	filterPrice = async event => {
-		let resources = this.state.constantResources;
-		const value = event.target.value;
-
-		if (value !== "Show All" && ["true", "false"].includes(value)) {
-			resources = await resources.filter(resource => resource.free === JSON.parse(value));
-		}
-
-		this.setState({resources, filterPrice: value});
-	};
+	}
 
 	render() {
-		const {resources, status} = this.state;
+		const { resources, status } = this.state;
+
+		const sortedCategories = categories.sort();
 
 		return (
-			<PageTemplate page="Resources" meta={{
-				description: "A collection of programming resources curated by the CodeSupport community."
-			}}>
+			<PageTemplate
+				page="Resources"
+				meta={{
+					description: "A collection of programming resources curated by the CodeSupport community."
+				}}
+			>
 				<IntroHero
 					title="Resources"
 					description="A collection of programming resources curated by the CodeSupport community."
 				/>
 				<section id="filter-resources" role="search">
 					<Container>
-						<SearchBar label={"Search for a resource"} onChangeHandler={this.searchResources} />
+						<SearchBar
+							label="Search for a resource"
+							name="search"
+							onChangeHandler={this.filterResources}
+						/>
 						<ResourceFilters>
-							<Dropdown label={"Filter by category"} onChangeHandler={this.filterResources} value={this.state.filterResources}>
-								<option value="Show All" key="all">Show All</option>
-								{categories.map(category =>
-									<option value={category.toLowerCase()} key={category}>{category}</option>
-								)}
+							<Dropdown
+								name="category"
+								label="Filter by category"
+								onChangeHandler={this.filterResources}
+								value={this.state.filterCategory}
+							>
+								<option value="Show All" key="all">
+									Show All
+								</option>
+								{sortedCategories.map(category => (
+									<option value={category.toLowerCase()} key={category}>
+										{category}
+									</option>
+								))}
 							</Dropdown>
-							<Dropdown label={"Filter by price"} onChangeHandler={this.filterPrice} value={this.state.filterPrice}>
-								<option value="Show All" key="all">Show All</option>
-								<option value="true" key="true">Free</option>
-								<option value="false" key="false">Paid</option>
+							<Dropdown
+								name="price"
+								label="Filter by price"
+								onChangeHandler={this.filterResources}
+								value={this.state.filterPrice}
+							>
+								<option value="Show All" key="all">
+									Show All
+								</option>
+								<option value="true" key="true">
+									Free
+								</option>
+								<option value="false" key="false">
+									Paid
+								</option>
 							</Dropdown>
 						</ResourceFilters>
 					</Container>
 				</section>
 				<main>
 					<Container>
-						{!resources.length ? status :
-							<CardGroup width={3}>
-								{resources.map(resource =>
-									<Card
-										key={resource.key}
-										tag={resource.category}
-										tagClass={`lang-${resource.category.toLowerCase()}`}
-										title={resource.affiliate_link ? `${resource.name}*` : resource.name}
-										description={resource.description}
-									>
-										<a
-											className="uk-button uk-button-text uk-margin-right"
-											target="_blank"
-											href={resource.url}
-											rel="noopener noreferrer"
+						{!resources.length
+							? status
+							: (
+								<CardGroup width={3}>
+									{resources.map(resource => (
+										<Card
+											key={resource.key}
+											tag={resource.category}
+											tagClass={`lang-${resource.category.toLowerCase()}`}
+											title={
+												resource.affiliate_link
+													? `${resource.name}*`
+													: resource.name
+											}
+											description={resource.description}
 										>
-											Learn More
-										</a>
-									</Card>
-								)}
-							</CardGroup>
-						}
+											<a
+												className="uk-button uk-button-text uk-margin-right"
+												target="_blank"
+												href={resource.url}
+												rel="noopener noreferrer"
+											>
+												Learn More
+											</a>
+										</Card>
+									))}
+								</CardGroup>
+							)}
 						<p>
 							<b>Disclaimer:</b> Resources with a <code>*</code> are affiliate links.
 						</p>
@@ -139,6 +217,12 @@ export default class Resources extends Component {
 		);
 	}
 }
+
+export default props => {
+	const router = useRouter();
+
+	return <Resources {...props} router={router} />;
+};
 
 export async function getStaticProps() {
 	const resources = await fetchResources();
