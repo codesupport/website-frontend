@@ -65,7 +65,7 @@ class ManageArticle extends Component {
 		try {
 			const revisionId = await this.revisionService.createArticleRevision(articleData.id, {
 				content,
-				description: articleData.revision?.description,
+				description: articleData.revision?.description ?? "Not set",
 				tags: articleData.revision?.tags
 			});
 
@@ -78,6 +78,8 @@ class ManageArticle extends Component {
 			this.setState({
 				success: `Created and saved new revision (Revision ID: ${revisionId})`
 			});
+
+			setTimeout(() => this.setState({ success: undefined }), 3000);
 		} catch ({ message }) {
 			this.setState({
 				error: message
@@ -114,7 +116,9 @@ class ManageArticle extends Component {
 	}
 
 	getData = async revisionId => {
-		const articleId = 1; // TODO: use actual article id
+		const articleId = +this.props.router.query.path;
+
+		console.log(articleId);
 
 		try {
 			this.setState({
@@ -130,7 +134,7 @@ class ManageArticle extends Component {
 				articleData,
 				revisionsData,
 				activeRevision,
-				content: activeRevision.content,
+				content: activeRevision?.content,
 				error: undefined,
 				loading: false
 			});
