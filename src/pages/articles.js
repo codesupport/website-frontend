@@ -3,7 +3,7 @@ import PageTemplate from "../components/templates/PageTemplate";
 import IntroHero from "../components/molecules/IntroHero";
 import Container from "../components/templates/Container";
 import CardGroup from "../components/molecules/CardGroup";
-import Card from "../components/molecules/Card";
+import URLCard from "../components/molecules/URLCard";
 import { getAllArticles } from "../lib/fetchArticles";
 
 const MAX_ARTICLES_TO_FETCH = 10;
@@ -23,21 +23,17 @@ function Articles({ articles }) {
 						or because no articles have been published yet.
 					</p>}
 					<CardGroup>
-						{articles && articles.map(article => <Card
+						{articles && articles.map(article => <URLCard
 							key={article.id}
+							href={`/article/${article.path}`}
 							title={article.title}
 							description={article.revision?.description}
 						>
 							<p className="uk-text-small">
 								{article.createdOn} by {article.createdBy?.alias}
 							</p>
-							<a
-								className="uk-button uk-button-text uk-margin-right"
-								href={`/article/${article.path}`}
-							>
-								Read More
-							</a>
-						</Card>)}
+							<p className="uk-text-uppercase">Read More</p>
+						</URLCard>)}
 					</CardGroup>
 				</Container>
 			</main>

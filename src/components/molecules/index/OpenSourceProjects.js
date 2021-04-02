@@ -1,5 +1,5 @@
 import React from "react";
-import Card from "../Card";
+import URLCard from "../URLCard";
 import CardGroup from "../CardGroup";
 
 const openSourceProjects = [
@@ -40,22 +40,18 @@ function OpenSourceProjects() {
 			</p>
 			<CardGroup>
 				{openSourceProjects.map(project =>
-					<Card
+					<URLCard
 						key={project.title}
+						href={project.repository}
+						target="_blank"
+						rel="noopener noreferrer"
 						title={project.title}
 						tag={project.language}
 						tagClass={`lang-${project.language.toLowerCase()}`}
 						description={project.description}
 					>
-						<a
-							className="uk-button uk-button-text uk-margin-right"
-							target="_blank"
-							href={project.repository}
-							rel="noopener noreferrer"
-						>
-                            GitHub Repository
-						</a>
-					</Card>
+						<p className="uk-text-uppercase">GitHub Repository</p>
+					</URLCard>
 				)}
 			</CardGroup>
 		</section>
