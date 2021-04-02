@@ -20,6 +20,11 @@ const Layout = styled("div")`
 	grid-column-gap: 25px;
 `;
 
+const PublishText = styled("p")`
+	margin: 5px 0;
+	font-size: .75rem;
+`;
+
 const TextArea = styled("textarea")`
 	width: 100%;
 	height: 300px;
@@ -52,10 +57,10 @@ class ManageArticle extends Component {
 		revisionsData: []
 	};
 
-	saveContent = async () => {
+	saveContent = async event => {
 		const { articleData, content } = this.state;
 
-		console.log(1);
+		event.preventDefault();
 
 		try {
 			const revisionId = await this.revisionService.createArticleRevision(articleData.id, {
@@ -64,15 +69,11 @@ class ManageArticle extends Component {
 				tags: articleData.revision?.tags
 			});
 
-			console.log(2);
-
 			this.setRevisionData({
 				target: {
 					value: revisionId
 				}
 			});
-
-			console.log(3);
 
 			this.setState({
 				success: `Created and saved new revision (Revision ID: ${revisionId})`
@@ -94,12 +95,15 @@ class ManageArticle extends Component {
 		const revisionId = +event.target.value;
 		const { revisionsData } = this.state;
 
-		if (!revisionsData.find(revision => revision.id === revisionId)) {
+		const activeRevision = revisionsData.find(revision => revision.id === revisionId);
+
+		if (!activeRevision) {
 			return this.getData(revisionId);
 		}
 
 		this.setState({
-			activeRevision: revisionId
+			activeRevision,
+			content: activeRevision.content
 		});
 	}
 
@@ -110,7 +114,7 @@ class ManageArticle extends Component {
 	}
 
 	getData = async revisionId => {
-		const articleId = 1;
+		const articleId = 1; // TODO: use actual article id
 
 		try {
 			this.setState({
@@ -120,12 +124,13 @@ class ManageArticle extends Component {
 
 			const articleData = await this.articleService.getArticleById(articleId);
 			const revisionsData = await this.articleService.getArticleRevisions(articleId);
+			const activeRevision = revisionsData.find(revision => revision.id === revisionId) ?? articleData.revision;
 
 			this.setState({
 				articleData,
 				revisionsData,
-				content: articleData.revision.content,
-				activeRevision: revisionId ?? articleData.revision,
+				activeRevision,
+				content: activeRevision.content,
 				error: undefined,
 				loading: false
 			});
@@ -193,10 +198,12 @@ class ManageArticle extends Component {
 							</ul>
 							{activeTab === PreviewTab.CONTENT && (
 								<section>
-									<TextArea onChange={this.setContent} value={content} cols={50} />
-									<Button type="button" onClick={() => this.saveContent()}>
-										Save
-									</Button>
+									<form onSubmit={this.saveContent}>
+										<TextArea onChange={this.setContent} value={content} cols={50} />
+										<Button type="submit">
+											Save
+										</Button>
+									</form>
 								</section>
 							)}
 							{activeTab === PreviewTab.PREVIEW && (
@@ -235,7 +242,7 @@ class ManageArticle extends Component {
 									{revisionsData.length === 0 && (
 										<option value="-1">No Revision Created</option>
 									)}
-									{revisionsData.reverse().map(revision => (
+									{revisionsData.sort((a, b) => a.id < b.id).map(revision => (
 										<option
 											selected={revision.id === activeRevision?.id}
 											value={revision.id}
@@ -245,9 +252,9 @@ class ManageArticle extends Component {
 										</option>
 									))}
 								</select>
-								<button disabled type="button" className="uk-button">
-									Publish Revision
-								</button>
+								<PublishText>
+									To publish your article revision please speak to an administrator.
+								</PublishText>
 							</div>
 							<br />
 							<ImageManager />

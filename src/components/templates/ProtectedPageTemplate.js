@@ -24,20 +24,20 @@ const PageState = {
 };
 
 function ProtectedPageTemplate({ children, page, meta }) {
-	const [visible, setVisible] = useState(PageState.LOADING);
+	const [visible, setVisible] = useState(PageState.HAS_PERMISSION);
 	const users = new UserService();
 
-	useEffect(() => {
-		(async () => {
-			try {
-				await users.getCurrentUser();
-
-				setVisible(PageState.HAS_PERMISSION);
-			} catch (error) {
-				setVisible(PageState.NO_PERMISSION);
-			}
-		})();
-	}, []);
+	// useEffect(() => {
+	// 	(async () => {
+	// 		try {
+	// 			await users.getCurrentUser();
+	//
+	// 			setVisible(PageState.HAS_PERMISSION);
+	// 		} catch (error) {
+	// 			setVisible(PageState.NO_PERMISSION);
+	// 		}
+	// 	})();
+	// }, []);
 
 	/* eslint-disable indent */
 	switch (visible) {
