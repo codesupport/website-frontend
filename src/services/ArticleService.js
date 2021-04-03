@@ -34,7 +34,7 @@ export class ArticleService {
 	static formatArticleDate(input) {
 		const date = new Date(input).toString().split(" ");
 
-		return ` ${date[2]} ${date[1]} ${date[3]}`;
+		return `${date[2]} ${date[1]} ${date[3]}`;
 	}
 
 	async getAllArticles() {
@@ -44,6 +44,7 @@ export class ArticleService {
 			return data.response.map(article => ({
 				...article,
 				createdOn: ArticleService.formatArticleDate(+article.createdOn),
+				updatedOn: ArticleService.formatArticleDate(+article.updatedOn),
 				path: ArticleService.buildArticleURL(article)
 			}));
 		} catch ({ message }) {

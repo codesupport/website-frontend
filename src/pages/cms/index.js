@@ -29,7 +29,7 @@ function CMS() {
 						data-uk-toggle="target: #create-article-form"
 						className="uk-button uk-button-default uk-button-small"
 					>
-						Create A Article
+						Create An Article
 					</button>
 				</section>
 			</Container>

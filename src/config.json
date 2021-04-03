@@ -1,6 +1,6 @@
 {
   "resourceAPI": "https://codesupport.github.io/resources-api/categories",
-  "backendAPI": "http://localhost:8082",
+  "backendAPI": "https://api.codesupport.dev",
   "defaultError": "An unknown error occurred.",
   "categories": [
     "Hosting",
