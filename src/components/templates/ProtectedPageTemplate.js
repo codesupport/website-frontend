@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import PageTemplate from "./PageTemplate";
-import UserService from "../../services/UserService";
 import Link from "next/link";
 
 const Wrapper = styled("section")`
@@ -17,6 +16,8 @@ const Links = styled("ul")`
 	li { display: inline }
 `;
 
+const SESSION_STORAGE_KEY = "user_data";
+
 const PageState = {
 	LOADING: 0,
 	NO_PERMISSION: 1,
@@ -24,20 +25,15 @@ const PageState = {
 };
 
 function ProtectedPageTemplate({ children, page, meta }) {
-	const [visible, setVisible] = useState(PageState.HAS_PERMISSION);
-	const users = new UserService();
+	const [visible, setVisible] = useState(PageState.LOADING);
 
-	// useEffect(() => {
-	// 	(async () => {
-	// 		try {
-	// 			await users.getCurrentUser();
-	//
-	// 			setVisible(PageState.HAS_PERMISSION);
-	// 		} catch (error) {
-	// 			setVisible(PageState.NO_PERMISSION);
-	// 		}
-	// 	})();
-	// }, []);
+	useEffect(() => {
+		const loggedIn = sessionStorage.getItem(SESSION_STORAGE_KEY);
+
+		if (loggedIn) return setVisible(PageState.HAS_PERMISSION);
+
+		setVisible(PageState.NO_PERMISSION);
+	}, []);
 
 	/* eslint-disable indent */
 	switch (visible) {

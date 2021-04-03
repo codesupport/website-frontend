@@ -28,6 +28,8 @@ const Inputs = styled("div")`
 	${({ $loading }) => $loading && "opacity: 50%;"}
 `;
 
+const SESSION_STORAGE_KEY = "user_data";
+
 class LoginForm extends Component {
 	auth = new AuthService();
 	user = new UserService();
@@ -62,8 +64,8 @@ class LoginForm extends Component {
 			const user = await this.user.getCurrentUser();
 
 			analytics.setUserId(user.id);
+			sessionStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(user));
 
-			// this.props.router.push(`/profile/${user.alias.toLowerCase()}`);
 			this.props.router.push("/cms");
 		} catch ({ message }) {
 			this.setState({
