@@ -116,9 +116,7 @@ class ManageArticle extends Component {
 	}
 
 	getData = async revisionId => {
-		const articleId = +this.props.router.query.path;
-
-		console.log(articleId);
+		const articleId = +window.location.pathname.replace("/cms/article/", "");
 
 		try {
 			this.setState({
