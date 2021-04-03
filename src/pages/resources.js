@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import PageTemplate from "../components/templates/PageTemplate";
 import IntroHero from "../components/molecules/IntroHero";
-import Card from "../components/molecules/Card";
+import URLCard from "../components/molecules/URLCard";
 import CardGroup from "../components/molecules/CardGroup";
 import SearchBar from "../components/molecules/SearchBar";
 import Container from "../components/templates/Container";
@@ -185,8 +185,11 @@ class Resources extends Component {
 							: (
 								<CardGroup width={3}>
 									{resources.map(resource => (
-										<Card
+										<URLCard
 											key={resource.key}
+											href={resource.url}
+											target="_blank"
+											rel="noopener noreferrer"
 											tag={resource.category}
 											tagClass={`lang-${resource.category.toLowerCase()}`}
 											title={
@@ -196,15 +199,8 @@ class Resources extends Component {
 											}
 											description={resource.description}
 										>
-											<a
-												className="uk-button uk-button-text uk-margin-right"
-												target="_blank"
-												href={resource.url}
-												rel="noopener noreferrer"
-											>
-												Learn More
-											</a>
-										</Card>
+											<p className="uk-text-uppercase">Learn More</p>
+										</URLCard>
 									))}
 								</CardGroup>
 							)}
