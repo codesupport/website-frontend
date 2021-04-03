@@ -31,19 +31,21 @@ export class ArticleService {
 		};
 	}
 
+	static formatArticleDate(input) {
+		const date = new Date(input).toString().split(" ");
+
+		return ` ${date[2]} ${date[1]} ${date[3]}`;
+	}
+
 	async getAllArticles() {
 		try {
 			const { data } = await axios.get(`${backendAPI}/${this.BASE_URL}?publishedonly=true`);
 
-			return data.response.map(article => {
-				const date = new Date(+article.createdOn).toString().split(" ");
-
-				return {
-					...article,
-					createdOn: `${date[2]} ${date[1]} ${date[3]}`,
-					path: ArticleService.buildArticleURL(article)
-				};
-			});
+			return data.response.map(article => ({
+				...article,
+				createdOn: ArticleService.formatArticleDate(+article.createdOn),
+				path: ArticleService.buildArticleURL(article)
+			}));
 		} catch ({ message }) {
 			console.error(message);
 		}
@@ -56,17 +58,12 @@ export class ArticleService {
 			// TODO: this needs to be changed to an endpoint that just returns my articles, needs developing though
 			const { data } = await axios.get(`${backendAPI}/${this.BASE_URL}`);
 
-			return data.response.map(article => {
-				const createdDate = new Date(+article.createdOn).toString().split(" ");
-				const updatedDate = new Date(+article.updatedOn).toString().split(" ");
-
-				return {
-					...article,
-					createdOn: `${createdDate[2]} ${createdDate[1]} ${createdDate[3]}`,
-					updatedOn: `${updatedDate[2]} ${updatedDate[1]} ${updatedDate[3]}`,
-					path: ArticleService.buildArticleURL(article)
-				};
-			});
+			return data.response.map(article => ({
+				...article,
+				createdOn: ArticleService.formatArticleDate(+article.createdOn),
+				updatedOn: ArticleService.formatArticleDate(+article.updatedOn),
+				path: ArticleService.buildArticleURL(article)
+			}));
 		} catch ({ response }) {
 			throw new Error(response?.data?.message ?? defaultError);
 		}
@@ -77,11 +74,10 @@ export class ArticleService {
 			const { data } = await axios.get(`${backendAPI}/${this.BASE_URL}/${id}`);
 			const [article] = data.response;
 
-			const date = new Date(+article.createdOn).toString().split(" ");
-
 			return {
 				...article,
-				createdOn: `${date[2]} ${date[1]} ${date[3]}`,
+				createdOn: ArticleService.formatArticleDate(+article.createdOn),
+				updatedOn: ArticleService.formatArticleDate(+article.updatedOn),
 				path: ArticleService.buildArticleURL(article)
 			};
 		} catch ({ message }) {
@@ -112,7 +108,7 @@ export class ArticleService {
 
 				return {
 					...revision,
-					createdOn: `${createdDate[2]} ${createdDate[1]} ${createdDate[3]}`,
+					createdOn: `${createdDate[2]} ${createdDate[1]} ${createdDate[3]}`
 				};
 			});
 		} catch ({ response }) {
