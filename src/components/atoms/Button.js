@@ -1,12 +1,12 @@
 import React from "react";
 
-function Button({ children, type, link, target }) {
+function Button({ children, type, link, target, display }) {
 	return link ?
-		<a className="uk-button uk-button-secondary" href={link} target={target}>
+		<a className={`uk-button uk-button-${display ?? "secondary"}`} href={link} target={target}>
 			{children}
 		</a>
 		:
-		<button type={type} className="uk-button uk-button-secondary">
+		<button type={type} className={`uk-button uk-button-${display ?? "secondary"}`}>
 			{children}
 		</button>
 	;
