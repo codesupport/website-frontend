@@ -54,10 +54,9 @@ export class ArticleService {
 		return [];
 	}
 
-	async getAllArticlesByUser() {
+	async getAllArticlesByUser(userId) {
 		try {
-			// TODO: this needs to be changed to an endpoint that just returns my articles, needs developing though
-			const { data } = await axios.get(`${backendAPI}/${this.BASE_URL}`);
+			const { data } = await axios.get(`${backendAPI}/${this.BASE_URL}?creatorId=${userId}`);
 
 			return data.response.map(article => ({
 				...article,

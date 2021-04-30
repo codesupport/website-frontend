@@ -132,7 +132,10 @@ class ManageArticle extends Component {
 				articleData,
 				revisionsData,
 				activeRevision,
-				content: activeRevision?.content,
+				content: activeRevision?.content ?? `
+WARNING - NO ACTIVE REVISION SET
+Select one via the dropdown to the right or create a new one by pressing "save".
+				`.trim(),
 				error: undefined,
 				loading: false
 			});
@@ -243,6 +246,9 @@ class ManageArticle extends Component {
 								<select defaultValue="-1" className="uk-select" id="revision-selector" onChange={this.setRevisionData}>
 									{revisionsData.length === 0 && (
 										<option value="-1">No Revision Created</option>
+									)}
+									{(!activeRevision && revisionsData.length !== 0) && (
+										<option value="-2">No Active Revision</option>
 									)}
 									{revisionsData.sort((a, b) => a.id < b.id).map(revision => (
 										<option

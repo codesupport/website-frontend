@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Link from "next/link";
 import { faPencilAlt, faTrash } from "@fortawesome/free-solid-svg-icons";
 import ArticleService from "../../services/ArticleService";
-import Link from "next/link";
+import UserService from "../../services/UserService";
 
 function ArticleTable() {
+	const userService = new UserService();
 	const articleService = new ArticleService();
 	const [articles, setArticles] = useState(undefined);
 	const [error, setError] = useState(undefined);
@@ -12,7 +14,8 @@ function ArticleTable() {
 	useEffect(() => {
 		(async () => {
 			try {
-				const data = await articleService.getAllArticlesByUser();
+				const userData = await userService.getCurrentUser();
+				const data = await articleService.getAllArticlesByUser(userData.id);
 
 				setArticles(data);
 			} catch ({ message }) {
@@ -24,7 +27,7 @@ function ArticleTable() {
 	return (
 		<section>
 			{error && <div className="uk-alert uk-alert-danger">{error}</div>}
-			{!error && articles?.length > 1 ? (
+			{!error && articles?.length >= 1 ? (
 				<table className="uk-table uk-table-small uk-table-divider uk-table-hover">
 					<thead>
 						<tr>

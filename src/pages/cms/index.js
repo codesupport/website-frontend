@@ -23,7 +23,6 @@ function CMS() {
 						These are articles that you have created or been invited to contribute to.
 					</p>
 					<ArticleTable />
-
 					<button
 						type="button"
 						data-uk-toggle="target: #create-article-form"
