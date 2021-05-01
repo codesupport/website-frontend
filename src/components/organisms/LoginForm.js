@@ -7,18 +7,15 @@ import TextInput from "../atoms/TextInput";
 import AuthService from "../../services/AuthService";
 import UserService from "../../services/UserService";
 import { analytics } from "../../services/FirebaseService";
+import Alert from "../atoms/Alert";
 
 const Form = styled("form")`
 	max-width: 600px;
 	padding: var(--gridGap);
 	background-color: var(--foreground);
-	
-	.uk-alert-danger {
-		padding: 5px;
-	}
-	
+
 	ul { margin: 0; }
-	
+
 	button[type=submit] {
 		margin-top: 10px;
 	}
@@ -93,12 +90,14 @@ class LoginForm extends Component {
 					When you login with your CodeSupport account you are able to do stuff.
 				</p>
 				{error && (
-					<section className="uk-alert-danger">
-						<strong>There was a problem logging you in:</strong>
+					<Alert
+						type="danger"
+						title="There was a problem logging you in:"
+					>
 						<ul>
 							{error.split(",").map((e, i) => <li key={i}>{e}</li>)}
 						</ul>
-					</section>
+					</Alert>
 				)}
 				<Inputs $loading={loading}>
 					<FormLabel>
