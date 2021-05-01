@@ -33,7 +33,7 @@ class EditArticleMetadata extends Component {
 			const articleData = this.props.article;
 
 			if ([title, description, tags].includes("")) {
-				this.setState({
+				return this.setState({
 					error: "You must supply a title, description and tags.",
 					loading: false
 				});

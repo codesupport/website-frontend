@@ -103,14 +103,10 @@ export class ArticleService {
 		try {
 			const { data } = await axios.get(`${backendAPI}/${this.BASE_URL}/${id}/revisions`);
 
-			return data.response.map(revision => {
-				const createdDate = new Date(+revision.createdOn).toString().split(" ");
-
-				return {
-					...revision,
-					createdOn: `${createdDate[2]} ${createdDate[1]} ${createdDate[3]}`
-				};
-			});
+			return data.response.map(revision => ({
+				...revision,
+				createdOn: ArticleService.formatArticleDate(+revision.createdOn)
+			}));
 		} catch ({ response }) {
 			throw new Error(response?.data?.message ?? defaultError);
 		}

@@ -47,7 +47,7 @@ class CreateArticleForm extends Component {
 			const { title } = this.state.inputs;
 
 			if ([title].includes("")) {
-				this.setState({
+				return this.setState({
 					error: "You must supply a title for your article.",
 					loading: false
 				});
