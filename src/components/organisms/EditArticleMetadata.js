@@ -4,6 +4,7 @@ import FormLabel from "../molecules/FormLabel";
 import TextInput from "../atoms/TextInput";
 import Button from "../atoms/Button";
 import ArticleRevisionService from "../../services/ArticleRevisionService";
+import Container from "../templates/Container";
 
 const Inputs = styled("div")`
 	${({ $loading }) => $loading && "opacity: 50%;"}
@@ -14,6 +15,7 @@ class EditArticleMetadata extends Component {
 	state = {
 		loading: false,
 		error: false,
+		success: false,
 		inputs: {
 			title: "",
 			description: "",
@@ -40,14 +42,15 @@ class EditArticleMetadata extends Component {
 			}
 
 			const revisionId = await this.revision.createArticleRevision(articleData.id, {
-				content: articleData.revision?.content,
+				content: articleData.revision?.content ?? "No content supplied with saved metadata revision.",
 				description,
 				tags
 			});
 
 			this.setState({
 				error: false,
-				loading: false
+				loading: false,
+				success: "Saved updated metadata."
 			});
 
 			this.props.updateRevision({
@@ -55,10 +58,13 @@ class EditArticleMetadata extends Component {
 					value: revisionId
 				}
 			});
+
+			setTimeout(() => this.setState({ success: false }), 3000);
 		} catch ({ message }) {
 			this.setState({
 				error: message,
-				loading: false
+				loading: false,
+				success: false
 			});
 		}
 	}
@@ -76,6 +82,7 @@ class EditArticleMetadata extends Component {
 		const { article, revision } = this.props;
 
 		if (prevProps === this.props) return;
+		if (!revision) return;
 
 		this.setState({
 			inputs: {
@@ -87,7 +94,7 @@ class EditArticleMetadata extends Component {
 	}
 
 	render() {
-		const { error, loading, inputs } = this.state;
+		const { error, success, loading, inputs } = this.state;
 
 		return (
 			<section>
@@ -98,6 +105,11 @@ class EditArticleMetadata extends Component {
 							<ul>
 								{error.split(",").map((e, i) => <li key={i}>{e}</li>)}
 							</ul>
+						</section>
+					)}
+					{success && (
+						<section className="uk-alert uk-alert-success">
+							<strong>Success:</strong> {success}
 						</section>
 					)}
 					<Inputs $loading={loading}>

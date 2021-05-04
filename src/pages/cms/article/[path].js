@@ -6,7 +6,6 @@ import Article from "../../../components/molecules/Article";
 import Markdown from "../../../components/atoms/Markdown";
 import ProtectedPageTemplate from "../../../components/templates/ProtectedPageTemplate";
 import Container from "../../../components/templates/Container";
-import ImageManager from "../../../components/organisms/ImageManager";
 import Button from "../../../components/atoms/Button";
 import ArticleService from "../../../services/ArticleService";
 import EditArticleMetadata from "../../../components/organisms/EditArticleMetadata";
@@ -126,7 +125,7 @@ class ManageArticle extends Component {
 
 			const articleData = await this.articleService.getArticleById(articleId);
 			const revisionsData = await this.articleService.getArticleRevisions(articleId);
-			const activeRevision = revisionsData.find(revision => revision.id === revisionId) ?? articleData.revision;
+			const activeRevision = revisionsData[revisionsData.length - 1];
 
 			this.setState({
 				articleData,
@@ -178,7 +177,7 @@ Select one via the dropdown to the right or create a new one by pressing "save".
 							<ul data-uk-tab>
 								<li
 									onClick={() => this.setActiveTab(PreviewTab.CONTENT)}
-									className={activeTab === PreviewTab.CONTENT && "uk-active"}
+									className={activeTab === PreviewTab.CONTENT ? "uk-active" : ""}
 								>
 									<a>
 										Content
@@ -186,7 +185,7 @@ Select one via the dropdown to the right or create a new one by pressing "save".
 								</li>
 								<li
 									onClick={() => this.setActiveTab(PreviewTab.PREVIEW)}
-									className={activeTab === PreviewTab.PREVIEW && "uk-active"}
+									className={activeTab === PreviewTab.PREVIEW ? "uk-active" : ""}
 								>
 									<a>
 										Preview
@@ -194,7 +193,7 @@ Select one via the dropdown to the right or create a new one by pressing "save".
 								</li>
 								<li
 									onClick={() => this.setActiveTab(PreviewTab.METADATA)}
-									className={activeTab === PreviewTab.METADATA && "uk-active"}
+									className={activeTab === PreviewTab.METADATA ? "uk-active" : ""}
 								>
 									<a>
 										Metadata
@@ -243,7 +242,7 @@ Select one via the dropdown to the right or create a new one by pressing "save".
 								<strong>Revision</strong>
 							</label>
 							<div className="uk-form-controls">
-								<select defaultValue="-1" className="uk-select" id="revision-selector" onChange={this.setRevisionData}>
+								<select defaultValue={activeRevision?.id ?? "-1"} className="uk-select" id="revision-selector" onChange={this.setRevisionData}>
 									{revisionsData.length === 0 && (
 										<option value="-1">No Revision Created</option>
 									)}
@@ -252,7 +251,6 @@ Select one via the dropdown to the right or create a new one by pressing "save".
 									)}
 									{revisionsData.sort((a, b) => a.id < b.id).map(revision => (
 										<option
-											selected={revision.id === activeRevision?.id}
 											value={revision.id}
 											key={revision.id}
 										>
@@ -264,8 +262,6 @@ Select one via the dropdown to the right or create a new one by pressing "save".
 									To publish your article revision please speak to an administrator.
 								</PublishText>
 							</div>
-							<br />
-							<ImageManager />
 						</aside>
 					</Layout>
 				</Container>

@@ -16,7 +16,7 @@ function Breadcrumb({ links }) {
 			<ul className="uk-breadcrumb">
 				{links.map((link, i) => (
 					<li key={i}>
-						{link.link && <Link href="/cms">{link.text}</Link>}
+						{link.link && <Link href="/cms"><a>{link.text}</a></Link>}
 						{!link.link && <span>{link.text}</span>}
 					</li>
 				))}

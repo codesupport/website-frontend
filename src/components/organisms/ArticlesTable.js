@@ -1,9 +1,18 @@
 import React, { useState, useEffect } from "react";
+import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { faPencilAlt, faTrash } from "@fortawesome/free-solid-svg-icons";
 import ArticleService from "../../services/ArticleService";
 import UserService from "../../services/UserService";
+
+const ArticleActionIcon = styled(FontAwesomeIcon)`
+	cursor: pointer;
+	
+	:hover {
+		color: var(--cs-blue);
+	}
+`;
 
 function ArticleTable() {
 	const userService = new UserService();
@@ -47,9 +56,8 @@ function ArticleTable() {
 								<td>{article.published ? "True" : "False"}</td>
 								<td className="uk-flex uk-flex-between">
 									<Link href={`/cms/article/${article.id}`}>
-										<FontAwesomeIcon icon={faPencilAlt} />
+										<ArticleActionIcon icon={faPencilAlt} />
 									</Link>
-									<FontAwesomeIcon icon={faTrash} />
 								</td>
 							</tr>
 						))}
