@@ -221,6 +221,7 @@ Select one via the dropdown to the right or create a new one by pressing "save".
 								<EditArticleMetadata
 									article={articleData}
 									revision={activeRevision}
+									content={content}
 									updateRevision={this.setRevisionData}
 								/>
 							)}

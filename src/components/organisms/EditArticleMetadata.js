@@ -4,7 +4,6 @@ import FormLabel from "../molecules/FormLabel";
 import TextInput from "../atoms/TextInput";
 import Button from "../atoms/Button";
 import ArticleRevisionService from "../../services/ArticleRevisionService";
-import Container from "../templates/Container";
 
 const Inputs = styled("div")`
 	${({ $loading }) => $loading && "opacity: 50%;"}
@@ -42,7 +41,7 @@ class EditArticleMetadata extends Component {
 			}
 
 			const revisionId = await this.revision.createArticleRevision(articleData.id, {
-				content: articleData.revision?.content ?? "No content supplied with saved metadata revision.",
+				content: articleData.revision?.content ?? this.props.content,
 				description,
 				tags
 			});
@@ -80,9 +79,6 @@ class EditArticleMetadata extends Component {
 
 	componentDidMount(prevProps) {
 		const { article, revision } = this.props;
-
-		if (prevProps === this.props) return;
-		if (!revision) return;
 
 		this.setState({
 			inputs: {
