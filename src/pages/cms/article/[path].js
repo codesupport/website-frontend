@@ -243,7 +243,7 @@ Select one via the dropdown to the right or create a new one by pressing "save".
 								<strong>Revision</strong>
 							</label>
 							<div className="uk-form-controls">
-								<select defaultValue={activeRevision?.id ?? "-1"} className="uk-select" id="revision-selector" onChange={this.setRevisionData}>
+								<select value={activeRevision?.id ?? "-1"} className="uk-select" id="revision-selector" onChange={this.setRevisionData}>
 									{revisionsData.length === 0 && (
 										<option value="-1">No Revision Created</option>
 									)}
