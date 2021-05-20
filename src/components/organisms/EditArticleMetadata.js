@@ -9,6 +9,8 @@ const Inputs = styled("div")`
 	${({ $loading }) => $loading && "opacity: 50%;"}
 `;
 
+const DESCRIPTION = "description";
+
 class EditArticleMetadata extends Component {
 	revision = new ArticleRevisionService();
 	state = {
@@ -16,9 +18,9 @@ class EditArticleMetadata extends Component {
 		error: false,
 		success: false,
 		inputs: {
-			title: "",
-			description: "",
-			tags: ""
+			title: this.props.article.title,
+			description: this.props.description,
+			tags: ["__origin_cms__"]
 		}
 	}
 
@@ -41,7 +43,7 @@ class EditArticleMetadata extends Component {
 			}
 
 			const revisionId = await this.revision.createArticleRevision(articleData.id, {
-				content: articleData.revision?.content ?? this.props.content,
+				content: this.props.content,
 				description,
 				tags
 			});
@@ -49,7 +51,7 @@ class EditArticleMetadata extends Component {
 			this.setState({
 				error: false,
 				loading: false,
-				success: "Saved updated metadata."
+				success: `Created and saved new revision (Revision ID: ${revisionId})`
 			});
 
 			this.props.updateRevision({
@@ -75,20 +77,10 @@ class EditArticleMetadata extends Component {
 				[target.name]: target.value
 			}
 		}));
-	}
 
-	componentDidMount(prevProps) {
-		const { article, revision } = this.props;
-
-		if (!revision) return;
-
-		this.setState({
-			inputs: {
-				title: article?.title,
-				description: revision?.description,
-				tags: revision?.tags
-			}
-		});
+		if (target.name === DESCRIPTION) {
+			this.props.setDescription(target.value);
+		}
 	}
 
 	render() {

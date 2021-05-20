@@ -17,6 +17,10 @@ const Layout = styled("div")`
 	display: grid;
 	grid-template-columns: auto 275px;
 	grid-column-gap: 25px;
+	
+	@media only screen and (max-width: 800px) {
+		grid-template-columns: 1fr;
+	}
 `;
 
 const PublishText = styled("p")`
@@ -52,19 +56,20 @@ class ManageArticle extends Component {
 		activeTab: PreviewTab.CONTENT,
 		activeRevision: undefined,
 		content: "",
+		description: "",
 		articleData: {},
 		revisionsData: []
 	};
 
 	saveContent = async event => {
-		const { articleData, content } = this.state;
+		const { articleData, content, description } = this.state;
 
 		event.preventDefault();
 
 		try {
 			const revisionId = await this.revisionService.createArticleRevision(articleData.id, {
 				content,
-				description: articleData.revision?.description ?? "Not set",
+				description,
 				tags: articleData.revision?.tags
 			});
 
@@ -104,7 +109,8 @@ class ManageArticle extends Component {
 
 		this.setState({
 			activeRevision,
-			content: activeRevision.content
+			content: activeRevision.content,
+			description: activeRevision.description
 		});
 	}
 
@@ -135,6 +141,7 @@ class ManageArticle extends Component {
 WARNING - NO ACTIVE REVISION SET
 Select one via the dropdown to the right or create a new one by pressing "save".
 				`.trim(),
+				description: activeRevision?.description ?? "Not set.",
 				error: undefined,
 				loading: false
 			});
@@ -151,7 +158,16 @@ Select one via the dropdown to the right or create a new one by pressing "save".
 	}
 
 	render() {
-		const { error, success, activeTab, content, articleData, revisionsData, activeRevision } = this.state;
+		const {
+			error,
+			success,
+			activeTab,
+			content,
+			description,
+			articleData,
+			revisionsData,
+			activeRevision
+		} = this.state;
 
 		return (
 			<ProtectedPageTemplate page="Manage Article">
@@ -222,6 +238,13 @@ Select one via the dropdown to the right or create a new one by pressing "save".
 									article={articleData}
 									revision={activeRevision}
 									content={content}
+									description={description}
+									setDescription={desc => {
+										console.log(desc);
+										this.setState({
+											description: desc
+										});
+									}}
 									updateRevision={this.setRevisionData}
 								/>
 							)}
