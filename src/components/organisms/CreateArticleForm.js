@@ -4,18 +4,19 @@ import { useRouter } from "next/router";
 import Button from "../atoms/Button";
 import FormLabel from "../molecules/FormLabel";
 import TextInput from "../atoms/TextInput";
-import AuthService from "../../services/AuthService";
-import UserService from "../../services/UserService";
-import { analytics } from "../../services/FirebaseService";
-import Alert from "../atoms/Alert";
+import ArticleService from "../../services/ArticleService";
 
 const Form = styled("form")`
 	max-width: 600px;
 	padding: var(--gridGap);
 	background-color: var(--foreground);
-
+	
+	.uk-alert-danger {
+		padding: 5px;
+	}
+	
 	ul { margin: 0; }
-
+	
 	button[type=submit] {
 		margin-top: 10px;
 	}
@@ -25,17 +26,13 @@ const Inputs = styled("div")`
 	${({ $loading }) => $loading && "opacity: 50%;"}
 `;
 
-const SESSION_STORAGE_KEY = "user_data";
-
-class LoginForm extends Component {
-	auth = new AuthService();
-	user = new UserService();
+class CreateArticleForm extends Component {
+	article = new ArticleService();
 	state = {
 		error: false,
 		loading: false,
 		inputs: {
-			email: "",
-			password: ""
+			title: ""
 		}
 	};
 
@@ -47,23 +44,19 @@ class LoginForm extends Component {
 		});
 
 		try {
-			const { email, password } = this.state.inputs;
+			const { title } = this.state.inputs;
 
-			if ([email, password].includes("")) {
-				this.setState({
-					error: "You must supply both an email and password.",
+			if ([title].includes("")) {
+				return this.setState({
+					error: "You must supply a title for your article.",
 					loading: false
 				});
 			}
 
-			await this.auth.login(email, password);
+			const data = await this.article.createArticle(title);
+			const articleId = data.response[0].id;
 
-			const user = await this.user.getCurrentUser();
-
-			analytics.setUserId(user.id);
-			sessionStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(user));
-
-			this.props.router.push("/cms");
+			this.props.router.push(`/cms/article/${articleId}`);
 		} catch ({ message }) {
 			this.setState({
 				error: message,
@@ -86,47 +79,31 @@ class LoginForm extends Component {
 
 		return (
 			<Form className="uk-form-stacked" onSubmit={this.handleSubmit}>
-				<h1>
-					Login to CodeSupport
-				</h1>
-				<p>
-					When you login with your CodeSupport account you are able to do stuff.
-				</p>
+				<h2>
+					Create An Article
+				</h2>
 				{error && (
-					<Alert
-						type="danger"
-						title="There was a problem logging you in:"
-					>
+					<section className="uk-alert-danger">
+						<strong>There was a problem creating the article:</strong>
 						<ul>
 							{error.split(",").map((e, i) => <li key={i}>{e}</li>)}
 						</ul>
-					</Alert>
+					</section>
 				)}
 				<Inputs $loading={loading}>
 					<FormLabel>
-						Email
+						Title
 						<TextInput
 							disabled={loading}
-							name="email"
+							name="title"
 							onChange={this.handleInputChange}
-							placeholder="richard.hendricks@piedpiper.com"
+							placeholder="Introduction To Programming"
 							required
 							type="text"
 						/>
 					</FormLabel>
-					<FormLabel>
-						Password
-						<TextInput
-							disabled={loading}
-							name="password"
-							onChange={this.handleInputChange}
-							placeholder="••••••••"
-							required
-							type="password"
-						/>
-					</FormLabel>
 					<Button type="submit">
-						Login
+						Create Article
 					</Button>
 				</Inputs>
 			</Form>
@@ -137,5 +114,5 @@ class LoginForm extends Component {
 export default props => {
 	const router = useRouter();
 
-	return <LoginForm {...props} router={router} />;
+	return <CreateArticleForm {...props} router={router} />;
 };

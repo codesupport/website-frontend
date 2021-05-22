@@ -75,12 +75,14 @@ describe("ArticleService", () => {
 						{
 							id: 1,
 							title: "An Article",
-							createdOn: 1613046414697
+							createdOn: 1613046414697,
+							updatedOn: 1613046414697
 						},
 						{
 							id: 2,
 							title: "Another Article",
-							createdOn: 1613046414697
+							createdOn: 1613046414697,
+							updatedOn: 1613046414697
 						}
 					]
 				}
@@ -93,12 +95,14 @@ describe("ArticleService", () => {
 					id: 1,
 					title: "An Article",
 					createdOn: "11 Feb 2021",
+					updatedOn: "11 Feb 2021",
 					path: "an-article"
 				},
 				{
 					id: 2,
 					title: "Another Article",
 					createdOn: "11 Feb 2021",
+					updatedOn: "11 Feb 2021",
 					path: "another-article"
 				}
 			]);
@@ -124,7 +128,8 @@ describe("ArticleService", () => {
 						{
 							id: 1,
 							title: "An Article",
-							createdOn: 1613046414697
+							createdOn: 1613046414697,
+							updatedOn: 1613046414697
 						}
 					]
 				}
@@ -136,6 +141,7 @@ describe("ArticleService", () => {
 				id: 1,
 				title: "An Article",
 				createdOn: "11 Feb 2021",
+				updatedOn: "11 Feb 2021",
 				path: "an-article"
 			});
 		});
