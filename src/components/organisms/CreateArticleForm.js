@@ -56,7 +56,7 @@ class CreateArticleForm extends Component {
 			const data = await this.article.createArticle(title);
 			const articleId = data.response[0].id;
 
-			this.props.router.push(`/cms/article/${articleId}`);
+			this.props.router.push(`/cms/article?id=${articleId}`);
 		} catch ({ message }) {
 			this.setState({
 				error: message,

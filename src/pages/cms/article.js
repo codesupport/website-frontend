@@ -2,15 +2,15 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { withRouter } from "next/router";
 import UIkit from "uikit";
-import Article from "../../../components/molecules/Article";
-import Markdown from "../../../components/atoms/Markdown";
-import ProtectedPageTemplate from "../../../components/templates/ProtectedPageTemplate";
-import Container from "../../../components/templates/Container";
-import Button from "../../../components/atoms/Button";
-import ArticleService from "../../../services/ArticleService";
-import EditArticleMetadata from "../../../components/organisms/EditArticleMetadata";
-import Breadcrumb from "../../../components/molecules/Breadcrumb";
-import ArticleRevisionService from "../../../services/ArticleRevisionService";
+import Article from "../../components/molecules/Article";
+import Markdown from "../../components/atoms/Markdown";
+import ProtectedPageTemplate from "../../components/templates/ProtectedPageTemplate";
+import Container from "../../components/templates/Container";
+import Button from "../../components/atoms/Button";
+import ArticleService from "../../services/ArticleService";
+import EditArticleMetadata from "../../components/organisms/EditArticleMetadata";
+import Breadcrumb from "../../components/molecules/Breadcrumb";
+import ArticleRevisionService from "../../services/ArticleRevisionService";
 
 const Layout = styled("div")`
 	margin: 0 auto;
@@ -121,7 +121,8 @@ class ManageArticle extends Component {
 	}
 
 	getData = async revisionId => {
-		const articleId = +window.location.pathname.replace("/cms/article/", "");
+		const articleId = +this.props.router.query.id ?? +window.location.pathname
+			.replace("/cms/article?id=", "");
 
 		try {
 			this.setState({
