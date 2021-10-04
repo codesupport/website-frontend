@@ -1,5 +1,5 @@
 import axios from "axios";
-import ArticleService from "../../src/services/ArticleService";
+import ArticleService from "../../../src/services/ArticleService";
 
 describe("ArticleService", () => {
 	const instance = new ArticleService();

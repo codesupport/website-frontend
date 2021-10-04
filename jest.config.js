@@ -4,6 +4,6 @@ module.exports = {
 		"<rootDir>/test"
 	],
 	testMatch: [
-		"**/test/**/*Test.js"
+		"**/test/unit/**/*Test.js"
 	]
 };
