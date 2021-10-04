@@ -19,7 +19,6 @@ function ArticlePreviewer({ data }) {
 		createdBy,
 		revision,
 		createdOn,
-		description,
 		path
 	} = data;
 
@@ -31,7 +30,7 @@ function ArticlePreviewer({ data }) {
 
 	return (
 		<PageTemplate page={title} meta={{
-			description,
+			description: revision?.description,
 			schema: ArticleService.buildArticleRichResult(data)
 		}}>
 			<IntroHero
