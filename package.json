@@ -20,7 +20,7 @@
     "@fortawesome/react-fontawesome": "^0.1.11",
     "axios": "^0.21.1",
     "firebase": "^7.17.2",
-    "next": "9.4.4",
+    "next": "11.1.1",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-markdown": "^4.3.1",
