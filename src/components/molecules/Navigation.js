@@ -16,6 +16,7 @@ const NavList = styled("ul")`
 
 const Logo = styled("img")`
 	object-fit: contain;
+	cursor: pointer;
 	
 	&& {
 		height: 50px;
