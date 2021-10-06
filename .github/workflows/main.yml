@@ -50,6 +50,7 @@ jobs:
       runs-on: ubuntu-latest
       needs: deploy_preview
       steps:
+        - uses: actions/checkout@v1
         - name: Run Acceptance Tests
           run: |
             npm ci
