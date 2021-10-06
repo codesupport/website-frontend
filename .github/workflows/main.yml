@@ -30,8 +30,10 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: frontend-build
+      - name: List Directories
         run: |
           ls
+      - name: Deploy
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
