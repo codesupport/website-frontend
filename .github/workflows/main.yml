@@ -30,6 +30,8 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: frontend-build
+        run: |
+          ls
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
@@ -44,7 +46,6 @@ jobs:
         run: |
           npm ci
           npm run test
-          name: CI
   acceptance_tests:
       runs-on: ubuntu-latest
       needs: deploy_preview
