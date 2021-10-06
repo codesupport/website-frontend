@@ -16,8 +16,26 @@ jobs:
       - name: Build Source Code
         run: |
           npm ci
-          npm run build
-  test:
+          npm run export
+      - name: Cache Build
+        uses: actions/upload-artifact@v2
+        with:
+          name: frontend-build
+          path: out
+  deploy_preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/download-artifact@v2
+        with:
+          name: frontend-build
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}"
+          expires: 7d
+          projectId: codesupport-development
+  unit_tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -25,3 +43,12 @@ jobs:
         run: |
           npm ci
           npm run test
+          name: CI
+  acceptance_tests:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Run Acceptance Tests
+          run: |
+            npm ci
+            cd out
+            ./node_modules/.bin/codeceptjs run --override '{ "helpers": { "Puppeteer": { "url": "${{ steps.deploy_preview.details_url }}" }}}'

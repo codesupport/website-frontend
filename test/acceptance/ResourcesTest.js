@@ -1,7 +1,7 @@
 Feature("Resources Page");
 
 Scenario("Hides Results Which Do Not Match Search Query", ({ I }) => {
-	I.amOnPage("https://codesupport.dev/resources");
+	I.amOnPage("/resources");
 	I.seeElement("input[name=search]");
 	I.see("1 Line Layouts");
 	I.fillField("input[name=search]", "Firebase");
@@ -9,7 +9,7 @@ Scenario("Hides Results Which Do Not Match Search Query", ({ I }) => {
 });
 
 Scenario("Takes Me To A Result When Clicked", ({ I }) => {
-	I.amOnPage("https://codesupport.dev/resources");
+	I.amOnPage("/resources");
 	I.see("1 Line Layouts");
 	I.click("1 Line Layouts");
 	I.dontSee("1 Line Layouts");
@@ -17,7 +17,7 @@ Scenario("Takes Me To A Result When Clicked", ({ I }) => {
 });
 
 Scenario("Hides Any Paid Resources If Set To Free", ({ I }) => {
-	I.amOnPage("https://codesupport.dev/resources");
+	I.amOnPage("/resources");
 	I.see("Digital Ocean");
 	I.see("1 Line Layouts");
 	I.selectOption("price", "Free");
@@ -26,7 +26,7 @@ Scenario("Hides Any Paid Resources If Set To Free", ({ I }) => {
 });
 
 Scenario("Hides Any Free Resources If Set To Paid", ({ I }) => {
-	I.amOnPage("https://codesupport.dev/resources");
+	I.amOnPage("/resources");
 	I.see("1 Line Layouts");
 	I.see("Digital Ocean");
 	I.selectOption("price", "Paid");
@@ -35,7 +35,7 @@ Scenario("Hides Any Free Resources If Set To Paid", ({ I }) => {
 });
 
 Scenario("Shows Only Resources Within The Selected Category", ({ I }) => {
-	I.amOnPage("https://codesupport.dev/resources");
+	I.amOnPage("/resources");
 	I.see("1 Line Layouts");
 	I.see("Digital Ocean");
 	I.selectOption("category", "Hosting");
@@ -43,8 +43,8 @@ Scenario("Shows Only Resources Within The Selected Category", ({ I }) => {
 	I.see("Digital Ocean");
 });
 
-Scenario("Says Not Matches Are Found If Invalid Search", ({ I }) => {
-	I.amOnPage("https://codesupport.dev/resources");
+Scenario("Says No Matches Are Found If Invalid Search", ({ I }) => {
+	I.amOnPage("/resources");
 	I.fillField("input[name=search]", "This Resource Does Not Exist");
 	I.see("No matches found...");
 });

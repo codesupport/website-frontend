@@ -7,7 +7,7 @@ exports.config = {
 	output: "./output",
 	helpers: {
 		Puppeteer: {
-			url: "https://codesupport.dev",
+			url: "",
 			show: false,
 			windowSize: "1200x900"
 		}
