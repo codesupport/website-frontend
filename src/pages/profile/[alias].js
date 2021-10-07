@@ -6,6 +6,9 @@ import { getProfileById, getAllProfiles } from "../../lib/fetchProfiles";
 import UserService from "../../services/UserService";
 import Container from "../../components/templates/Container";
 import ProfileHeader from "../../components/organisms/ProfileHeader";
+import CardGroup from "../../components/molecules/CardGroup";
+import URLCard from "../../components/molecules/URLCard";
+import { getAllArticlesByUser } from "../../lib/fetchArticles";
 
 const Wrapper = styled(Container)`
 	padding-top: 50px;
@@ -18,9 +21,11 @@ const Layout = styled("div")`
 	grid-column-gap: var(--gridGap);
 `;
 
+
+
 const ALIAS_TO_ID_FILE = "./temp-alias-to-id.json";
 
-function ProfileViewer({ data }) {
+function ProfileViewer({ data, articles }) {
 	return (
 		<PageTemplate page={`${data.alias}'s Profile`} meta={{
 			description: data.biography,
@@ -31,7 +36,20 @@ function ProfileViewer({ data }) {
 				<Layout>
 					<section>
 						<h2>Article Feed</h2>
-						<p>{data.alias} has not published any articles yet.</p>
+						{ !articles.length && <p>{data.alias} has not published any articles yet.</p> }
+						<CardGroup width="1">
+							{articles && articles.map(article => <URLCard
+								key={article.id}
+								href={`/article/${article.path}`}
+								title={article.title}
+								description={article.revision?.description}
+							>
+								<p className="uk-text-small">
+									{article.createdOn} by {article.createdBy?.alias}
+								</p>
+								<p className="uk-text-uppercase">Read More</p>
+							</URLCard>)}
+						</CardGroup>
 					</section>
 					<div>
 						<section>
@@ -74,9 +92,10 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
 	const aliasToId = JSON.parse((await fs.readFile(ALIAS_TO_ID_FILE)).toString());
 	const data = await getProfileById(aliasToId[params.alias.toLowerCase()]);
+	const articles = await getAllArticlesByUser(aliasToId[params.alias.toLowerCase()]);
 
 	return {
-		props: { data }
+		props: { data, articles: articles.reverse() }
 	};
 }
 
