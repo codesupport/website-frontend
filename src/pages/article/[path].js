@@ -43,7 +43,7 @@ function ArticlePreviewer({ data }) {
 						Written on {createdOn} by
 						{" "}
 						<Link href={`/profile/${createdBy.alias.toLowerCase()}`}>
-							{createdBy.alias}
+							<a>{createdBy.alias}</a>
 						</Link>
 					</p>
 					<Markdown content={revision?.content} />
