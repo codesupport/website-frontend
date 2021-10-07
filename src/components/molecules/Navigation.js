@@ -5,7 +5,6 @@ import styled from "styled-components";
 const Nav = styled("nav")`
 	width: 100%;
 	top: 0;
-	position: absolute;
 `;
 
 const NavList = styled("ul")`

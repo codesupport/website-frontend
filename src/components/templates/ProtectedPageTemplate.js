@@ -40,7 +40,7 @@ function ProtectedPageTemplate({ children, page, meta }) {
 		case PageState.NO_PERMISSION: return (
 			<PageTemplate page={page} meta={meta}>
 				<Wrapper>
-					<section className="uk-alert uk-alert-danger">
+					<section className="uk-alert uk-alert-danger uk-margin-large-top">
 						<strong>Error:</strong> You do not have permission to view this page.
 					</section>
 					<Links>
