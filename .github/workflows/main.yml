@@ -54,5 +54,4 @@ jobs:
         - name: Run Acceptance Tests
           run: |
             npm ci
-            cd out
             ./node_modules/.bin/codeceptjs run --override '{ "helpers": { "Puppeteer": { "url": "${{ steps.deploy_preview.details_url }}" }}}'
