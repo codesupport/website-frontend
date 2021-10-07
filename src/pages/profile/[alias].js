@@ -8,7 +8,7 @@ import Container from "../../components/templates/Container";
 import ProfileHeader from "../../components/organisms/ProfileHeader";
 import CardGroup from "../../components/molecules/CardGroup";
 import URLCard from "../../components/molecules/URLCard";
-import { getAllArticlesByUser } from "../../lib/fetchArticles";
+import { getAllArticlesByUser, getAllPublishedArticlesByUser } from "../../lib/fetchArticles";
 
 const Wrapper = styled(Container)`
 	padding-top: 50px;
@@ -90,7 +90,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
 	const aliasToId = JSON.parse((await fs.readFile(ALIAS_TO_ID_FILE)).toString());
 	const profileData = await getProfileById(aliasToId[params.alias.toLowerCase()]);
-	const articles = await getAllArticlesByUser(aliasToId[params.alias.toLowerCase()]);
+	const articles = await getAllPublishedArticlesByUser(aliasToId[params.alias.toLowerCase()]);
 
 	return {
 		props: { profileData, articles: articles.reverse() }

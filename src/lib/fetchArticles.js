@@ -10,6 +10,6 @@ export async function getArticleById(id) {
 	return await articles.getArticleById(id);
 }
 
-export async function getAllArticlesByUser(userId) {
-	return await articles.getAllArticlesByUser(userId);
+export async function getAllPublishedArticlesByUser(userId) {
+	return await articles.getAllPublishedArticlesByUser(userId);
 }
