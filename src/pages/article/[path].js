@@ -42,8 +42,8 @@ function ArticlePreviewer({ data }) {
 					<p className="uk-article-meta">
 						Written on {createdOn} by
 						{" "}
-						<Link href={`/profile/${createdBy.alias.toLowerCase()}`}>  
-                            <a>{createdBy.alias}</a>
+						<Link href={`/profile/${createdBy.alias.toLowerCase()}`}>
+							<a>{createdBy.alias}</a>
 						</Link>
 					</p>
 					<Markdown content={revision?.content} />
