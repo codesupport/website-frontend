@@ -56,7 +56,7 @@ export class ArticleService {
 
 	async getAllArticlesByUser(userId) {
 		try {
-			const { data } = await axios.get(`${backendAPI}/${this.BASE_URL}?creatorId=${userId}`);
+			const { data } = await axios.get(`${backendAPI}/${this.BASE_URL}?publishedonly=true&creatorId=${userId}`);
 
 			return data.response.map(article => ({
 				...article,
