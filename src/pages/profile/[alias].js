@@ -43,7 +43,7 @@ function ProfileViewer({ profileData, articles }) {
 								description={article.revision?.description}
 							>
 								<p className="uk-text-small">
-									{article.createdOn} by {article.createdBy?.alias}
+									{article.createdOn}
 								</p>
 								<p className="uk-text-uppercase">Read More</p>
 							</URLCard>)}
