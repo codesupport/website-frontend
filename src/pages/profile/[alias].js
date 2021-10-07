@@ -23,18 +23,18 @@ const Layout = styled("div")`
 
 const ALIAS_TO_ID_FILE = "./temp-alias-to-id.json";
 
-function ProfileViewer({ data, articles }) {
+function ProfileViewer({ profileData, articles }) {
 	return (
-		<PageTemplate page={`${data.alias}'s Profile`} meta={{
-			description: data.biography,
-			schema: UserService.buildProfileRichResult(data)
+		<PageTemplate page={`${profileData.alias}'s Profile`} meta={{
+			description: profileData.biography,
+			schema: UserService.buildProfileRichResult(profileData)
 		}}>
 			<Wrapper>
-				<ProfileHeader profile={data} />
+				<ProfileHeader profile={profileData} />
 				<Layout>
 					<section>
 						<h2>Article Feed</h2>
-						{ !articles.length && <p>{data.alias} has not published any articles yet.</p> }
+						{ !articles.length && <p>{profileData.alias} has not published any articles yet.</p> }
 						<CardGroup width="1">
 							{articles && articles.map(article => <URLCard
 								key={article.id}
@@ -52,14 +52,14 @@ function ProfileViewer({ data, articles }) {
 					<div>
 						<section>
 							<h2>Showcase Projects</h2>
-							<p>{data.alias} has not published any showcase projects yet.</p>
+							<p>{profileData.alias} has not published any showcase projects yet.</p>
 						</section>
 						<section>
 							<h2>GitHub Repositories</h2>
-							{data.githubUsername ? (
-								<p>{data.alias} has created any public GitHub repositories yet.</p>
+							{profileData.githubUsername ? (
+								<p>{profileData.alias} has created any public GitHub repositories yet.</p>
 							) : (
-								<p>{data.alias} has not connected their GitHub account yet.</p>
+								<p>{profileData.alias} has not connected their GitHub account yet.</p>
 							)}
 						</section>
 					</div>
@@ -89,11 +89,11 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
 	const aliasToId = JSON.parse((await fs.readFile(ALIAS_TO_ID_FILE)).toString());
-	const data = await getProfileById(aliasToId[params.alias.toLowerCase()]);
+	const profileData = await getProfileById(aliasToId[params.alias.toLowerCase()]);
 	const articles = await getAllArticlesByUser(aliasToId[params.alias.toLowerCase()]);
 
 	return {
-		props: { data, articles: articles.reverse() }
+		props: { profileData, articles: articles.reverse() }
 	};
 }
 
