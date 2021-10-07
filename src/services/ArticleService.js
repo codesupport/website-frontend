@@ -68,6 +68,20 @@ export class ArticleService {
 			throw new Error(response?.data?.message ?? defaultError);
 		}
 	}
+	async getAllPublishedArticlesByUser(userId) {
+		try {
+			const { data } = await axios.get(`${backendAPI}/${this.BASE_URL}?publishedonly=true&creatorId=${userId}`);
+
+			return data.response.map(article => ({
+				...article,
+				createdOn: ArticleService.formatArticleDate(+article.createdOn),
+				updatedOn: ArticleService.formatArticleDate(+article.updatedOn),
+				path: ArticleService.buildArticleURL(article)
+			}));
+		} catch ({ response }) {
+			throw new Error(response?.data?.message ?? defaultError);
+		}
+	}
 
 	async getArticleById(id) {
 		try {
