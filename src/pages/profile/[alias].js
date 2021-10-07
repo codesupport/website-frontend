@@ -21,8 +21,6 @@ const Layout = styled("div")`
 	grid-column-gap: var(--gridGap);
 `;
 
-
-
 const ALIAS_TO_ID_FILE = "./temp-alias-to-id.json";
 
 function ProfileViewer({ data, articles }) {
