@@ -6,6 +6,9 @@ import { getProfileById, getAllProfiles } from "../../lib/fetchProfiles";
 import UserService from "../../services/UserService";
 import Container from "../../components/templates/Container";
 import ProfileHeader from "../../components/organisms/ProfileHeader";
+import CardGroup from "../../components/molecules/CardGroup";
+import URLCard from "../../components/molecules/URLCard";
+import { getAllArticlesByUser, getAllPublishedArticlesByUser } from "../../lib/fetchArticles";
 
 const Wrapper = styled(Container)`
 	padding-top: 50px;
@@ -20,30 +23,43 @@ const Layout = styled("div")`
 
 const ALIAS_TO_ID_FILE = "./temp-alias-to-id.json";
 
-function ProfileViewer({ data }) {
+function ProfileViewer({ profileData, articles }) {
 	return (
-		<PageTemplate page={`${data.alias}'s Profile`} meta={{
-			description: data.biography,
-			schema: UserService.buildProfileRichResult(data)
+		<PageTemplate page={`${profileData.alias}'s Profile`} meta={{
+			description: profileData.biography,
+			schema: UserService.buildProfileRichResult(profileData)
 		}}>
 			<Wrapper>
-				<ProfileHeader profile={data} />
+				<ProfileHeader profile={profileData} />
 				<Layout>
 					<section>
 						<h2>Article Feed</h2>
-						<p>{data.alias} has not published any articles yet.</p>
+						{ !articles.length && <p>{profileData.alias} has not published any articles yet.</p> }
+						<CardGroup width="1">
+							{articles && articles.map(article => <URLCard
+								key={article.id}
+								href={`/article/${article.path}`}
+								title={article.title}
+								description={article.revision?.description}
+							>
+								<p className="uk-text-small">
+									{article.createdOn}
+								</p>
+								<p className="uk-text-uppercase">Read More</p>
+							</URLCard>)}
+						</CardGroup>
 					</section>
 					<div>
 						<section>
 							<h2>Showcase Projects</h2>
-							<p>{data.alias} has not published any showcase projects yet.</p>
+							<p>{profileData.alias} has not published any showcase projects yet.</p>
 						</section>
 						<section>
 							<h2>GitHub Repositories</h2>
-							{data.githubUsername ? (
-								<p>{data.alias} has created any public GitHub repositories yet.</p>
+							{profileData.githubUsername ? (
+								<p>{profileData.alias} has created any public GitHub repositories yet.</p>
 							) : (
-								<p>{data.alias} has not connected their GitHub account yet.</p>
+								<p>{profileData.alias} has not connected their GitHub account yet.</p>
 							)}
 						</section>
 					</div>
@@ -73,10 +89,11 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
 	const aliasToId = JSON.parse((await fs.readFile(ALIAS_TO_ID_FILE)).toString());
-	const data = await getProfileById(aliasToId[params.alias.toLowerCase()]);
+	const profileData = await getProfileById(aliasToId[params.alias.toLowerCase()]);
+	const articles = await getAllPublishedArticlesByUser(aliasToId[params.alias.toLowerCase()]);
 
 	return {
-		props: { data }
+		props: { profileData, articles: articles.reverse() }
 	};
 }
 

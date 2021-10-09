@@ -9,3 +9,7 @@ export async function getAllArticles() {
 export async function getArticleById(id) {
 	return await articles.getArticleById(id);
 }
+
+export async function getAllPublishedArticlesByUser(userId) {
+	return await articles.getAllPublishedArticlesByUser(userId);
+}
