@@ -38,7 +38,23 @@ const Info = styled("div")`
 `;
 
 const Alias = styled("h1")`
-	margin: 10px 0 5px 0;
+	margin-bottom: 10px;
+
+	@media only screen and (max-width: 800px) {
+		margin: 10px 0 -30px 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+`;
+
+const Label = styled("span")`
+	margin-left: 5px;
+	
+	@media only screen and (max-width: 800px) {
+		margin: 0;
+	}
 `;
 
 const ConnectedAccounts = styled("ul")`
@@ -73,9 +89,9 @@ function ProfileHeader({ profile }) {
 					<Alias>
 						{profile.alias}
 						{profile.role && (
-							<span className="uk-label uk-margin-small uk-margin-small-left">
+							<Label className="uk-label uk-margin-small">
 								{profile.role.label}
-							</span>
+							</Label>
 						)}
 					</Alias>
 					{profile.jobTitle && (
