@@ -10,7 +10,7 @@ const Wrapper = styled("header")`
 	grid-template-columns: 250px 1fr;
 	grid-column-gap: var(--gridGap);
 
-	@media only screen and (max-width: 1000px) {
+	@media only screen and (max-width: 800px) {
 		display: initial;
 	}
 `;
@@ -18,7 +18,7 @@ const Wrapper = styled("header")`
 const Image = styled("img")`
 	border-radius: 3px;
 
-	@media only screen and (max-width: 1000px) {
+	@media only screen and (max-width: 800px) {
 		width: 200px;
 	}
 `;
