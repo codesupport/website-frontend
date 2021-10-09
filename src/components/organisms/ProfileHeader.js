@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDiscord, faGithub } from "@fortawesome/free-brands-svg-icons";
-import Image from "../atoms/Image";
 
 const DEFAULT_AVATAR = "https://codesupport.dev/logo.png";
 
@@ -10,6 +9,18 @@ const Wrapper = styled("header")`
 	display: grid;
 	grid-template-columns: 250px 1fr;
 	grid-column-gap: var(--gridGap);
+
+	@media only screen and (max-width: 1000px) {
+		display: initial;
+	}
+`;
+
+const Image = styled("img")`
+	border-radius: 3px;
+
+	@media only screen and (max-width: 1000px) {
+		width: 200px;
+	}
 `;
 
 const Info = styled("div")`
@@ -24,7 +35,7 @@ const Info = styled("div")`
 `;
 
 const Alias = styled("h1")`
-	margin-bottom: 5px;
+	margin: 10px 0 5px 0;
 `;
 
 const ConnectedAccounts = styled("ul")`
@@ -50,6 +61,7 @@ function ProfileHeader({ profile }) {
 	return (
 		<Wrapper>
 			<Image
+				className="uk-shadow-large"
 				src={profile.avatarLink ?? DEFAULT_AVATAR}
 				alt={`${profile.alias}'s avatar`}
 			/>
