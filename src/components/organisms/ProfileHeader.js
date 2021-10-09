@@ -20,7 +20,7 @@ const Image = styled("img")`
 	border-radius: 3px;
 
 	@media only screen and (max-width: 800px) {
-		width: 200px;
+		width: 150px;
 		display: block;
 		margin: 20px auto 0 auto;
 	}
