@@ -22,7 +22,7 @@ const Image = styled("img")`
 	@media only screen and (max-width: 800px) {
 		width: 150px;
 		display: block;
-		margin: 20px auto 0 auto;
+		margin: 50px auto 0 auto;
 	}
 `;
 
