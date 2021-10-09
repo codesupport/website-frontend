@@ -19,6 +19,16 @@ const Layout = styled("div")`
 	display: grid;
 	grid-template-columns: 3fr 2fr;
 	grid-column-gap: var(--gridGap);
+
+	@media only screen and (max-width: 800px) {
+		display: block;
+	}
+`;
+
+const ArticleSection = styled("section")`
+	@media only screen and (max-width: 800px) {
+		margin-bottom: 20px;
+	}
 `;
 
 const ALIAS_TO_ID_FILE = "./temp-alias-to-id.json";
@@ -32,7 +42,7 @@ function ProfileViewer({ profileData, articles }) {
 			<Wrapper>
 				<ProfileHeader profile={profileData} />
 				<Layout>
-					<section>
+					<ArticleSection>
 						<h2>Article Feed</h2>
 						{ !articles.length && <p>{profileData.alias} has not published any articles yet.</p> }
 						<CardGroup width="1">
@@ -48,7 +58,7 @@ function ProfileViewer({ profileData, articles }) {
 								<p className="uk-text-uppercase">Read More</p>
 							</URLCard>)}
 						</CardGroup>
-					</section>
+					</ArticleSection>
 					<div>
 						<section>
 							<h2>Showcase Projects</h2>
