@@ -52,12 +52,12 @@ function ArticlePreviewer({ data }) {
 					{
 						icon: faTwitter,
 						title: "Twitter",
-						url: twitterURL.toString()
+						url: twitterURL.toString().concat("?utm_content=share_article&utm_medium=social&utm_source=twitter")
 					},
 					{
 						icon: faRedditAlien,
 						title: "Reddit",
-						url: encodeURI(`http://www.reddit.com/submit?url=https://codesupport.dev/article/${path}`)
+						url: encodeURI(`http://www.reddit.com/submit?url=https://codesupport.dev/article/${path}?utm_content=share_article&utm_medium=social&utm_source=reddit`)
 					}
 				]} />
 			</Container>
