@@ -12,6 +12,7 @@ const Wrapper = styled("header")`
 
 	@media only screen and (max-width: 800px) {
 		display: initial;
+		text-align: center;
 	}
 `;
 
@@ -20,6 +21,8 @@ const Image = styled("img")`
 
 	@media only screen and (max-width: 800px) {
 		width: 200px;
+		display: block;
+		margin: 20px auto 0 auto;
 	}
 `;
 
