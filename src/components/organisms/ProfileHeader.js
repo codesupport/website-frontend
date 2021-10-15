@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDiscord, faGithub } from "@fortawesome/free-brands-svg-icons";
-import Image from "../atoms/Image";
 
 const DEFAULT_AVATAR = "https://codesupport.dev/logo.png";
 
@@ -10,6 +9,21 @@ const Wrapper = styled("header")`
 	display: grid;
 	grid-template-columns: 250px 1fr;
 	grid-column-gap: var(--gridGap);
+
+	@media only screen and (max-width: 800px) {
+		display: initial;
+		text-align: center;
+	}
+`;
+
+const Image = styled("img")`
+	border-radius: 3px;
+
+	@media only screen and (max-width: 800px) {
+		width: 150px;
+		display: block;
+		margin: 50px auto 0 auto;
+	}
 `;
 
 const Info = styled("div")`
@@ -24,7 +38,23 @@ const Info = styled("div")`
 `;
 
 const Alias = styled("h1")`
-	margin-bottom: 5px;
+	margin-bottom: 10px;
+
+	@media only screen and (max-width: 800px) {
+		margin: 10px 0 -30px 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+`;
+
+const Label = styled("span")`
+	margin-left: 5px;
+	
+	@media only screen and (max-width: 800px) {
+		margin: 0;
+	}
 `;
 
 const ConnectedAccounts = styled("ul")`
@@ -50,6 +80,7 @@ function ProfileHeader({ profile }) {
 	return (
 		<Wrapper>
 			<Image
+				className="uk-shadow-large"
 				src={profile.avatarLink ?? DEFAULT_AVATAR}
 				alt={`${profile.alias}'s avatar`}
 			/>
@@ -58,9 +89,9 @@ function ProfileHeader({ profile }) {
 					<Alias>
 						{profile.alias}
 						{profile.role && (
-							<span className="uk-label uk-margin-small uk-margin-small-left">
+							<Label className="uk-label uk-margin-small">
 								{profile.role.label}
-							</span>
+							</Label>
 						)}
 					</Alias>
 					{profile.jobTitle && (
