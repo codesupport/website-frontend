@@ -32,6 +32,7 @@ jobs:
           name: frontend-build
           path: out
       - name: Deploy
+        id: deploy_preview_channel
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
@@ -54,4 +55,4 @@ jobs:
         - name: Run Acceptance Tests
           run: |
             npm ci
-            ./node_modules/.bin/codeceptjs run --override '{ "helpers": { "Puppeteer": { "url": "${{ steps.deploy_preview.details_url }}" }}}'
+            ./node_modules/.bin/codeceptjs run --override '{ "helpers": { "Puppeteer": { "url": "${{ steps.deploy_preview_channel.details_url }}" }}}'
