@@ -10,7 +10,7 @@ import Markdown from "../../components/atoms/Markdown";
 import { ArticleService } from "../../services/ArticleService";
 import Link from "next/link";
 import ShareButtons from "../../components/molecules/ShareButtons";
-
+import addUtmParams from "../../helpers/addUtmParams";
 const PATH_TO_ID_FILE = "./temp-path-to-id.json";
 
 function ArticlePreviewer({ data }) {
@@ -52,12 +52,12 @@ function ArticlePreviewer({ data }) {
 					{
 						icon: faTwitter,
 						title: "Twitter",
-						url: twitterURL.toString()
+						url: addUtmParams(twitterURL.toString(), "twitter")
 					},
 					{
 						icon: faRedditAlien,
 						title: "Reddit",
-						url: encodeURI(`http://www.reddit.com/submit?url=https://codesupport.dev/article/${path}`)
+						url: addUtmParams(encodeURI(`http://www.reddit.com/submit?url=https://codesupport.dev/article/${path}`), "reddit")
 					}
 				]} />
 			</Container>
