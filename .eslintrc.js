@@ -2,7 +2,8 @@ module.exports = {
 	root: true,
 	parser: "babel-eslint",
 	plugins: [
-		"react"
+		"react",
+		"jsx-a11y"
 	],
 	parserOptions: {
 		ecmaVersion: 6,
@@ -13,6 +14,7 @@ module.exports = {
 		}
 	},
 	rules: {
+		"jsx-a11y/no-onchange": "off",
 		"no-unused-vars": "off",
 		"no-invalid-this": "off",
 		"multiline-ternary": "off",
@@ -33,6 +35,7 @@ module.exports = {
 		}]
 	},
 	extends: [
-		"eslint-config-codesupport"
+		"eslint-config-codesupport",
+		"plugin:jsx-a11y/recommended"
 	]
 };
