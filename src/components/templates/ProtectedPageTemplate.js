@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import PageTemplate from "./PageTemplate";
-import Link from "next/link";
+import Link from "../atoms/Link";
 
 const Wrapper = styled("section")`
 	width: 600px;
@@ -46,12 +46,12 @@ function ProtectedPageTemplate({ children, page, meta }) {
 					<Links>
 						<li>
 							<Link href="/">
-								<a>Homepage</a>
+								Homepage
 							</Link>
 						</li>
 						<li>
 							<Link href="/login">
-								<a>Login</a>
+								Login
 							</Link>
 						</li>
 					</Links>

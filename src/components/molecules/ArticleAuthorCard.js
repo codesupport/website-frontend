@@ -1,6 +1,6 @@
 import React from "react";
-import Link from "next/link";
 import Card from "./Card";
+import Link from "../atoms/Link";
 
 function ArticleAuthorCard({ author }) {
 	return (
@@ -13,8 +13,8 @@ function ArticleAuthorCard({ author }) {
 			title={author.name}
 			description={author.bio}
 		>
-			<Link href={`/profile/${author.name}`}>
-				<a className="uk-button uk-button-text">View Profile</a>
+			<Link href={`/profile/${author.name}`} className="uk-button uk-button-text">
+				View Profile
 			</Link>
 		</Card>
 	);

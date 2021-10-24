@@ -1,6 +1,6 @@
 import React from "react";
-import Link from "next/link";
 import styled from "styled-components";
+import Link from "../atoms/Link";
 
 const Nav = styled("nav")`
 	width: 100%;
@@ -39,17 +39,17 @@ function Navigation() {
 					</Link>
 					<li>
 						<Link href="/">
-							<a>Home</a>
+							Home
 						</Link>
 					</li>
 					<li>
 						<Link href="/articles">
-							<a>Articles</a>
+							Articles
 						</Link>
 					</li>
 					<li>
 						<Link href="/resources">
-							<a>Resources</a>
+							Resources
 						</Link>
 					</li>
 				</NavList>

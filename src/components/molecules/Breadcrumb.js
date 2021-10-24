@@ -1,6 +1,6 @@
 import React from "react";
-import Link from "next/link";
 import styled from "styled-components";
+import Link from "../atoms/Link";
 
 const Wrapper = styled("div")`
 	padding: 5px;
@@ -16,7 +16,7 @@ function Breadcrumb({ links }) {
 			<ul className="uk-breadcrumb">
 				{links.map((link, i) => (
 					<li key={i}>
-						{link.link && <Link href="/cms"><a>{link.text}</a></Link>}
+						{link.link && <Link href="/cms">{link.text}</Link>}
 						{!link.link && <span>{link.text}</span>}
 					</li>
 				))}

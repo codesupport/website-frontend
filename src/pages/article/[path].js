@@ -8,9 +8,10 @@ import Article from "../../components/molecules/Article";
 import IntroHero from "../../components/molecules/IntroHero";
 import Markdown from "../../components/atoms/Markdown";
 import { ArticleService } from "../../services/ArticleService";
-import Link from "next/link";
 import ShareButtons from "../../components/molecules/ShareButtons";
 import addUtmParams from "../../helpers/addUtmParams";
+import Link from "../../components/atoms/Link";
+
 const PATH_TO_ID_FILE = "./temp-path-to-id.json";
 
 function ArticlePreviewer({ data }) {
@@ -43,7 +44,7 @@ function ArticlePreviewer({ data }) {
 						Written on {createdOn} by
 						{" "}
 						<Link href={`/profile/${createdBy.alias.toLowerCase()}`}>
-							<a>{createdBy.alias}</a>
+							{createdBy.alias}
 						</Link>
 					</p>
 					<Markdown content={revision?.content} />

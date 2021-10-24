@@ -15,7 +15,7 @@ class CustomDocument extends Document {
 
 	render() {
 		return (
-			<html>
+			<html lang="en">
 				<Head>
 					{this.props.styleTags}
 				</Head>

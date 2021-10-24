@@ -192,32 +192,39 @@ Select one via the dropdown to the right or create a new one by pressing "save".
 							<h2>Editor</h2>
 							<ul data-uk-tab>
 								<li
-									onClick={() => this.setActiveTab(PreviewTab.CONTENT)}
 									className={activeTab === PreviewTab.CONTENT ? "uk-active" : ""}
 								>
-									<a>
+									<a
+										href="#content"
+										onClick={() => this.setActiveTab(PreviewTab.CONTENT)}
+									>
 										Content
 									</a>
 								</li>
 								<li
-									onClick={() => this.setActiveTab(PreviewTab.PREVIEW)}
 									className={activeTab === PreviewTab.PREVIEW ? "uk-active" : ""}
 								>
-									<a>
+									<a
+
+										href="#preview"
+										onClick={() => this.setActiveTab(PreviewTab.PREVIEW)}
+									>
 										Preview
 									</a>
 								</li>
 								<li
-									onClick={() => this.setActiveTab(PreviewTab.METADATA)}
 									className={activeTab === PreviewTab.METADATA ? "uk-active" : ""}
 								>
-									<a>
+									<a
+										href="#metadata"
+										onClick={() => this.setActiveTab(PreviewTab.METADATA)}
+									>
 										Metadata
 									</a>
 								</li>
 							</ul>
 							{activeTab === PreviewTab.CONTENT && (
-								<section>
+								<section id="content">
 									<form onSubmit={this.saveContent}>
 										<TextArea onChange={this.setContent} value={content} cols={50} />
 										<Button type="submit">
@@ -227,7 +234,7 @@ Select one via the dropdown to the right or create a new one by pressing "save".
 								</section>
 							)}
 							{activeTab === PreviewTab.PREVIEW && (
-								<section>
+								<section id="preview">
 									<Preview className="uk-article">
 										<Markdown content={content} />
 									</Preview>
@@ -235,6 +242,7 @@ Select one via the dropdown to the right or create a new one by pressing "save".
 							)}
 							{activeTab === PreviewTab.METADATA && (
 								<EditArticleMetadata
+									id="metadata"
 									article={articleData}
 									revision={activeRevision}
 									content={content}
