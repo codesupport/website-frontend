@@ -23,6 +23,9 @@ This repository contains the frontend for the CodeSupport Website. The project i
 2. Start the React app with `npm run dev`
 3. Navigate to [http://localhost:3000](http://localhost:3000) in your browser
 
+### Backend API
+For developing parts of the website which rely on the CodeSupport API you will need to setup and run a local install of the [API](https://github.com/codesupport/website-backend).
+
 **Want an easier setup?** Pull down our [website development environment](https://github.com/codesupport/website-dev-env) and quickly start working.
 
 ## Structure
