@@ -1,4 +1,4 @@
-import Document, { Head, Main, NextScript } from "next/document";
+import Document, { Html, Head, Main, NextScript } from "next/document";
 import { ServerStyleSheet } from "styled-components";
 
 class CustomDocument extends Document {
@@ -15,7 +15,7 @@ class CustomDocument extends Document {
 
 	render() {
 		return (
-			<html>
+			<Html>
 				<Head>
 					{this.props.styleTags}
 				</Head>
@@ -23,7 +23,7 @@ class CustomDocument extends Document {
 					<Main/>
 					<NextScript/>
 				</body>
-			</html>
+			</Html>
 		);
 	}
 }

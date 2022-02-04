@@ -55,7 +55,7 @@ function ArticleTable() {
 								<td>{article.updatedOn}</td>
 								<td>{article.published ? "True" : "False"}</td>
 								<td className="uk-flex uk-flex-between">
-									<Link href={`/cms/article/${article.id}`}>
+									<Link href={`/cms/article/${article.id}`} passHref>
 										<ArticleActionIcon icon={faPencilAlt} />
 									</Link>
 								</td>

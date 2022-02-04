@@ -29,7 +29,7 @@ function Navigation() {
 		<Nav className="uk-navbar-container uk-box-shadow-large" data-uk-navbar>
 			<div className="uk-navbar-left">
 				<NavList className="uk-navbar-nav">
-					<Link href="/">
+					<Link href="/" passHref>
 						<Logo
 							className="uk-navbar-item uk-logo"
 							alt="CodeSupport Logo"
@@ -38,17 +38,17 @@ function Navigation() {
 						/>
 					</Link>
 					<li>
-						<Link href="/">
+						<Link href="/" passHref>
 							<a>Home</a>
 						</Link>
 					</li>
 					<li>
-						<Link href="/articles">
+						<Link href="/articles" passhref>
 							<a>Articles</a>
 						</Link>
 					</li>
 					<li>
-						<Link href="/resources">
+						<Link href="/resources" passHref>
 							<a>Resources</a>
 						</Link>
 					</li>
