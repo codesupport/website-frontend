@@ -8,11 +8,11 @@ function CodeBlock({ children, language, props }) {
 
 	return (
 		<SyntaxHighlighter
-			children={String(children).replace(/\n$/, '')}
+			children={String(children).replace(/\n$/, "")}
 			style={darcula}
 			language={language}
 			{...props}
-	  />
+		/>
 	);
 }
 
@@ -23,7 +23,8 @@ function Markdown({ content, highlight = true }) {
 			linkTarget="_blank"
 			components={{
 				code({node, inline, className, children, ...props}) {
-				  const match = /language-(\w+)/.exec(className || '')
+					const match = /language-(\w+)/.exec(className || "");
+
 					return !inline && match ? (
 						<CodeBlock
 							children={children}
@@ -34,9 +35,9 @@ function Markdown({ content, highlight = true }) {
 						<code className={className} {...props}>
 							{children}
 						</code>
-					)
+					);
 				}
-			  }}
+			}}
 		/>
 	);
 }
