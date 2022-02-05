@@ -3,27 +3,40 @@ import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { darcula } from "react-syntax-highlighter/dist/cjs/styles/prism";
 
-function CodeBlock({ language, value }) {
-	if (!value) return null;
+function CodeBlock({ children, language, props }) {
+	if (!children) return null;
 
 	return (
 		<SyntaxHighlighter
-			language={language}
+			children={String(children).replace(/\n$/, '')}
 			style={darcula}
-		>
-			{value}
-		</SyntaxHighlighter>
+			language={language}
+			{...props}
+	  />
 	);
 }
 
 function Markdown({ content, highlight = true }) {
 	return (
 		<ReactMarkdown
-			source={content}
+			children={content}
 			linkTarget="_blank"
-			renderers={highlight ? {
-				code: CodeBlock
-			} : {}}
+			components={{
+				code({node, inline, className, children, ...props}) {
+				  const match = /language-(\w+)/.exec(className || '')
+					return !inline && match ? (
+						<CodeBlock
+							children={children}
+							language={match[1]}
+							{...props}
+						/>
+					) : (
+						<code className={className} {...props}>
+							{children}
+						</code>
+					)
+				}
+			  }}
 		/>
 	);
 }
