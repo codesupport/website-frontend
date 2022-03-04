@@ -6,8 +6,6 @@ import { darcula } from "react-syntax-highlighter/dist/cjs/styles/prism";
 function CodeBlock({ children, language, props }) {
 	if (!children) return null;
 
-	console.log(language, props);
-
 	return (
 		<SyntaxHighlighter
 			children={String(children).replace(/\n$/, "")}
