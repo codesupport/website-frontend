@@ -33,6 +33,7 @@ module.exports = {
 		}]
 	},
 	extends: [
-		"eslint-config-codesupport"
+		"eslint-config-codesupport",
+		"plugin:@next/next/recommended"
 	]
 };
