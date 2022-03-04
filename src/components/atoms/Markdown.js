@@ -6,6 +6,8 @@ import { darcula } from "react-syntax-highlighter/dist/cjs/styles/prism";
 function CodeBlock({ children, language, props }) {
 	if (!children) return null;
 
+	console.log(language, props);
+
 	return (
 		<SyntaxHighlighter
 			children={String(children).replace(/\n$/, "")}
@@ -16,19 +18,19 @@ function CodeBlock({ children, language, props }) {
 	);
 }
 
-function Markdown({ content, highlight = true }) {
+function Markdown({ content }) {
 	return (
 		<ReactMarkdown
 			children={content}
 			linkTarget="_blank"
 			components={{
-				code({node, inline, className, children, ...props}) {
+				code({ node, inline, className, children, ...props }) {
 					const match = /language-(\w+)/.exec(className || "");
 
-					return !inline && match ? (
+					return !inline ? (
 						<CodeBlock
 							children={children}
-							language={match[1]}
+							language={match?.[1] ?? "text"}
 							{...props}
 						/>
 					) : (
