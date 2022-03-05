@@ -63,10 +63,6 @@ body {
     color: var(--text);
 }
 
-/* body #__next > :nth-child(2) {
-    margin-top: 80px;
-} */
-
 pre {
     background: none;
     border: none;
