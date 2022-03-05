@@ -1,75 +1,58 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 import styled from "styled-components";
 import PageTemplate from "./PageTemplate";
-import Link from "next/link";
 
-const Wrapper = styled("section")`
-	width: 600px;
-	margin: 0 auto;
+const Wrapper = styled("div")`
+	margin: 250px auto;
+	text-align: center;
+
+	button {
+		font-family: "Open Sans", sans-serif;
+		font-weight: 500;
+		padding: 5px 15px;
+		background: none;
+		color: var(--cs-blue);
+		border: 1px solid var(--cs-blue);
+		border-radius: 5px;
+
+		:hover {
+			font-weight: 700;
+			cursor: pointer;
+			border: 2px solid var(--cs-blue);
+		}
+	}
 `;
-
-const Links = styled("ul")`
-	display: flex;
-	justify-content: space-evenly;
-	list-style: none;
-	
-	li { display: inline }
-`;
-
-const SESSION_STORAGE_KEY = "user_data";
-
-const PageState = {
-	LOADING: 0,
-	NO_PERMISSION: 1,
-	HAS_PERMISSION: 2
-};
 
 function ProtectedPageTemplate({ children, page, meta }) {
-	const [visible, setVisible] = useState(PageState.LOADING);
+	const { isLoading, isAuthenticated, loginWithRedirect } = useAuth0();
 
-	useEffect(() => {
-		const loggedIn = sessionStorage.getItem(SESSION_STORAGE_KEY);
-
-		if (loggedIn) return setVisible(PageState.HAS_PERMISSION);
-
-		setVisible(PageState.NO_PERMISSION);
-	}, []);
-
-	/* eslint-disable indent */
-	switch (visible) {
-		case PageState.NO_PERMISSION: return (
-			<PageTemplate page={page} meta={meta}>
-				<Wrapper>
-					<section className="uk-alert uk-alert-danger">
-						<strong>Error:</strong> You do not have permission to view this page.
-					</section>
-					<Links>
-						<li>
-							<Link href="/">
-								<a>Homepage</a>
-							</Link>
-						</li>
-						<li>
-							<Link href="/login">
-								<a>Login</a>
-							</Link>
-						</li>
-					</Links>
-				</Wrapper>
-			</PageTemplate>
-		);
-		case PageState.HAS_PERMISSION: return (
-			<PageTemplate page={page} meta={meta}>
-				{children}
-			</PageTemplate>
-		);
-		case PageState.LOADING: return (
+	if (isLoading) {
+		return (
 			<PageTemplate page={page} meta={meta}>
 				<p>Loading...</p>
 			</PageTemplate>
 		);
 	}
-	/* eslint-enable indent */
+
+	if (isAuthenticated) {
+		return (
+			<PageTemplate page={page} meta={meta}>
+				{children}
+			</PageTemplate>
+		);
+	}
+
+	return (
+		<PageTemplate page={page} meta={meta}>
+			<Wrapper>
+				<p>You must be logged in to view this page.</p>
+				<button type="button" onClick={loginWithRedirect}>
+					Log In
+				</button>
+			</Wrapper>
+		</PageTemplate>
+	);
 }
 
 export default ProtectedPageTemplate;

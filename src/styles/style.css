@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Courier+Prime&family=Open+Sans:wght@400;500;700&display=swap");
+
 * { box-sizing: border-box; }
 
 :root {
@@ -59,10 +61,6 @@ html {
 
 body {
     color: var(--text);
-}
-
-body #__next > :nth-child(2) {
-    margin-top: 80px;
 }
 
 pre {

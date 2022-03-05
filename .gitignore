@@ -7,3 +7,6 @@ out/
 temp-path-to-id.json
 temp-alias-to-id.json
 public/sitemap.xml
+.env.local
+.DS_Store
+output/

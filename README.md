@@ -5,28 +5,16 @@
 ## About
 This repository contains the frontend for the CodeSupport Website. The project is written in JavaScript using the React user interface library on top of Next.js.
 
-## Dependencies
-
-### Production
-- [React](https://www.npmjs.com/package/react)
-- [React DOM](https://www.npmjs.com/package/react-dom)
-- [Next](http://npmjs.com/package/next)
-- [UI Kit](http://npmjs.com/package/uikit)
-- [Styled Components](http://npmjs.com/package/styled-components)
-- [Axios](https://www.npmjs.com/package/axios)
-- [Firebase](https://www.npmjs.com/package/firebase)
-- [React Markdown](https://www.npmjs.com/package/react-markdown)
-- [React Syntax Highlighter](https://www.npmjs.com/package/react-syntax-highlighter)
-
 ## Setup
 1. Navigate into the repository on your computer and run `npm i`
 2. Start the React app with `npm run dev`
 3. Navigate to [http://localhost:3000](http://localhost:3000) in your browser
 
-### Backend API
-For developing parts of the website which rely on the CodeSupport API you will need to setup and run a local install of the [API](https://github.com/codesupport/website-backend).
-
-**Want an easier setup?** Pull down our [website development environment](https://github.com/codesupport/website-dev-env) and quickly start working.
+### Auth0
+This project uses [Auth0](https://auth0.com) for authentication. You will need to create a development project and register a SPA against it for free on their website and provide the following environment variables up and running:
+- `NEXT_PUBLIC_AUTH_DOMAIN` - your Auth0 application's auth domain
+- `NEXT_PUBLIC_AUTH_CLIENT_ID` - your Auth0 application's client ID
+- `NEXT_PUBLIC_BASE_URL` - the base URL to your Next.js project (likely `http://localhost:3000`)
 
 ## Structure
 - All pages live inside `pages/`
