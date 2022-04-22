@@ -12,6 +12,7 @@ function App({ Component, pageProps }) {
 		<Auth0Provider
 			domain={process.env.NEXT_PUBLIC_AUTH_DOMAIN}
 			clientId={process.env.NEXT_PUBLIC_AUTH_CLIENT_ID}
+			audience={process.env.NEXT_PUBLIC_AUTH_AUDIENCE_URL}
 			redirectUri={process.env.NEXT_PUBLIC_BASE_URL}
 			cacheLocation="localstorage"
 		>

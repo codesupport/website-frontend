@@ -15,6 +15,7 @@ This project uses [Auth0](https://auth0.com) for authentication. You will need t
 - `NEXT_PUBLIC_AUTH_DOMAIN` - your Auth0 application's auth domain
 - `NEXT_PUBLIC_AUTH_CLIENT_ID` - your Auth0 application's client ID
 - `NEXT_PUBLIC_BASE_URL` - the base URL to your Next.js project (likely `http://localhost:3000`)
+- `NEXT_PUBLIC_AUTH_AUDIENCE_URL` - the base URL to the API (likely `http://localhost:8080`)
 
 ## Structure
 - All pages live inside `pages/`
