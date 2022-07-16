@@ -3,7 +3,7 @@ import {backendAPI, defaultError} from "../config.json";
 import UserService from "./UserService";
 
 export class ArticleService {
-	BASE_URL = "article/v1/articles";
+	BASE_URL = "article";
 
 	static buildArticleURL(article) {
 		return article.title
@@ -17,9 +17,9 @@ export class ArticleService {
 			"@context": "https://schema.org",
 			"@type": "Article",
 			"headline": article.title,
-			"datePublished": new Date(article.createdOn).toISOString(),
-			"dateModified": new Date(article.updatedOn).toISOString(),
-			"author": UserService.buildProfileRichResult(article.createdBy),
+			"datePublished": article.created,
+			"dateModified": article.modified,
+			"author": UserService.buildProfileRichResult(article.user),
 			"publisher": {
 				"@type": "Organization",
 				"name": "CodeSupport",
@@ -39,14 +39,9 @@ export class ArticleService {
 
 	async getAllArticles() {
 		try {
-			const { data } = await axios.get(`${backendAPI}/${this.BASE_URL}?publishedonly=true`);
+			const { data } = await axios.get(`${backendAPI}/${this.BASE_URL}`);
 
-			return data.response.map(article => ({
-				...article,
-				createdOn: ArticleService.formatArticleDate(+article.createdOn),
-				updatedOn: ArticleService.formatArticleDate(+article.updatedOn),
-				path: ArticleService.buildArticleURL(article)
-			}));
+			return data;
 		} catch ({ message }) {
 			console.error(message);
 		}
@@ -86,14 +81,8 @@ export class ArticleService {
 	async getArticleById(id) {
 		try {
 			const { data } = await axios.get(`${backendAPI}/${this.BASE_URL}/${id}`);
-			const [article] = data.response;
 
-			return {
-				...article,
-				createdOn: ArticleService.formatArticleDate(+article.createdOn),
-				updatedOn: ArticleService.formatArticleDate(+article.updatedOn),
-				path: ArticleService.buildArticleURL(article)
-			};
+			return data;
 		} catch ({ message }) {
 			console.error(message);
 		}

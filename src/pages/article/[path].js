@@ -16,37 +16,38 @@ const PATH_TO_ID_FILE = "./temp-path-to-id.json";
 function ArticlePreviewer({ data }) {
 	const {
 		title,
-		createdBy,
-		revision,
-		createdOn,
-		path
+		description,
+		user,
+		content,
+		created,
+		slug
 	} = data;
 
 	const twitterURL = new URL("https://twitter.com/intent/tweet");
 
 	twitterURL.searchParams.append("original_referer", "https://codesupport.dev");
 	twitterURL.searchParams.append("related", "codesupportdev");
-	twitterURL.searchParams.append("text", `Checkout "${title}" by ${createdBy?.alias} on @codesupportdev\nhttps://codesupport.dev/article/${path}`);
+	twitterURL.searchParams.append("text", `Checkout "${title}" by ${user.username} on @codesupportdev\nhttps://codesupport.dev/article/${slug}`);
 
 	return (
 		<PageTemplate page={title} meta={{
-			description: revision?.description,
+			description: description,
 			schema: ArticleService.buildArticleRichResult(data)
 		}}>
 			<IntroHero
 				title={title}
-				description={revision?.description}
+				description={description}
 			/>
 			<Container>
 				<Article className="uk-article">
 					<p className="uk-article-meta">
-						Written on {createdOn} by
+						Written on {created} by
 						{" "}
-						<Link href={`/profile/${createdBy.alias.toLowerCase()}`}>
-							<a>{createdBy.alias}</a>
+						<Link href={`/profile/${user.username.toLowerCase()}`}>
+							<a>{user.username}</a>
 						</Link>
 					</p>
-					<Markdown content={revision?.content} />
+					<Markdown content={content} />
 				</Article>
 				<ShareButtons links={[
 					{
@@ -57,7 +58,7 @@ function ArticlePreviewer({ data }) {
 					{
 						icon: faRedditAlien,
 						title: "Reddit",
-						url: addUtmParams(encodeURI(`http://www.reddit.com/submit?url=https://codesupport.dev/article/${path}`), "reddit")
+						url: addUtmParams(encodeURI(`http://www.reddit.com/submit?url=https://codesupport.dev/article/${slug}`), "reddit")
 					}
 				]} />
 			</Container>
@@ -68,7 +69,7 @@ function ArticlePreviewer({ data }) {
 export async function getStaticPaths() {
 	const articles = await getAllArticles();
 	const pathToId = Object.assign({}, ...articles.map(article => ({
-		[article.path]: article.id
+		[article.slug]: article.id
 	})));
 
 	await fs.writeFile(PATH_TO_ID_FILE, JSON.stringify(pathToId));
@@ -76,7 +77,7 @@ export async function getStaticPaths() {
 	return {
 		paths: articles.map(article => ({
 			params: {
-				path: article.path
+				path: article.slug
 			}})
 		),
 		fallback: false

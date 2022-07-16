@@ -5,6 +5,7 @@ import Container from "../components/templates/Container";
 import CardGroup from "../components/molecules/CardGroup";
 import URLCard from "../components/molecules/URLCard";
 import { getAllArticles } from "../lib/fetchArticles";
+import ArticleService from "../services/ArticleService";
 
 const MAX_ARTICLES_TO_FETCH = 10;
 
@@ -25,12 +26,12 @@ function Articles({ articles }) {
 					<CardGroup>
 						{articles && articles.map(article => <URLCard
 							key={article.id}
-							href={`/article/${article.path}`}
+							href={`/article/${article.slug}`}
 							title={article.title}
-							description={article.revision?.description}
+							description={article.description}
 						>
 							<p className="uk-text-small">
-								{article.createdOn} by {article.createdBy?.alias}
+								{ArticleService.formatArticleDate(article.created)} by {article.user.username}
 							</p>
 							<p className="uk-text-uppercase">Read More</p>
 						</URLCard>)}

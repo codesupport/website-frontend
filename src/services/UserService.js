@@ -8,8 +8,8 @@ class UserService {
 		let richResult = {
 			"@context": "https://schema.org",
 			"@type": "Person",
-			"name": profile.alias,
-			"url": `https://codesupport.dev/profile/${profile.alias.toLowerCase()}`
+			"name": profile.username,
+			"url": `https://codesupport.dev/profile/${profile.username.toLowerCase()}`
 		};
 
 		if (profile.jobTitle) {
