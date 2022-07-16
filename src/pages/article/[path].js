@@ -1,17 +1,25 @@
 import React from "react";
 import { promises as fs } from "fs";
 import { faRedditAlien, faTwitter } from "@fortawesome/free-brands-svg-icons";
+import styled from "styled-components";
 import { getArticleById, getAllArticles } from "../../lib/fetchArticles";
 import PageTemplate from "../../components/templates/PageTemplate";
 import Container from "../../components/templates/Container";
 import Article from "../../components/molecules/Article";
-import IntroHero from "../../components/molecules/IntroHero";
 import Markdown from "../../components/atoms/Markdown";
 import { ArticleService } from "../../services/ArticleService";
 import Link from "next/link";
 import ShareButtons from "../../components/molecules/ShareButtons";
 import addUtmParams from "../../helpers/addUtmParams";
+
 const PATH_TO_ID_FILE = "./temp-path-to-id.json";
+
+const ArticleMeta = styled("p")`
+	margin: 0;
+	margin-bottom: 10px;
+	color: var(--text-light);
+	font-size: 10px;
+`;
 
 function ArticlePreviewer({ data }) {
 	const {
@@ -34,19 +42,16 @@ function ArticlePreviewer({ data }) {
 			description: description,
 			schema: ArticleService.buildArticleRichResult(data)
 		}}>
-			<IntroHero
-				title={title}
-				description={description}
-			/>
 			<Container>
 				<Article className="uk-article">
-					<p className="uk-article-meta">
-						Written on {created} by
-						{" "}
+					<h1>{title}</h1>
+					<ArticleMeta>
+						By {" "}
 						<Link href={`/profile/${user.username.toLowerCase()}`}>
 							<a>{user.username}</a>
 						</Link>
-					</p>
+						{" "} on {ArticleService.formatArticleDate(created)}
+					</ArticleMeta>
 					<Markdown content={content} />
 				</Article>
 				<ShareButtons links={[
