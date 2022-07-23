@@ -16,10 +16,10 @@ const openSourceProjects = [
 		repository: "https://github.com/codesupport/website-frontend"
 	},
 	{
-		title: "Website Backend",
-		language: "Java",
-		description: "CodeSupport's website backend API service which is powered by Spring Boot.",
-		repository: "https://github.com/codesupport/website-backend"
+		title: "API",
+		language: "TypeScript",
+		description: "CodeSupport's API service which is powered by NestJS.",
+		repository: "https://github.com/codesupport/api"
 	},
 	{
 		title: "Resources API",
@@ -50,7 +50,6 @@ function OpenSourceProjects() {
 						tagClass={`lang-${project.language.toLowerCase()}`}
 						description={project.description}
 					>
-						<p className="uk-text-uppercase">GitHub Repository</p>
 					</URLCard>
 				)}
 			</CardGroup>

@@ -1,5 +1,5 @@
 import axios from "axios";
-import {backendAPI, defaultError} from "../config.json";
+import { backendAPI, defaultError } from "../config.json";
 import UserService from "./UserService";
 
 export class ArticleService {
@@ -63,16 +63,11 @@ export class ArticleService {
 			throw new Error(response?.data?.message ?? defaultError);
 		}
 	}
-	async getAllPublishedArticlesByUser(userId) {
+	async getAllApprovedArticlesByUser(userId) {
 		try {
-			const { data } = await axios.get(`${backendAPI}/${this.BASE_URL}?publishedonly=true&creatorId=${userId}`);
+			const { data } = await axios.get(`${backendAPI}/${this.BASE_URL}?status=APPROVED&userId=${userId}`);
 
-			return data.response.map(article => ({
-				...article,
-				createdOn: ArticleService.formatArticleDate(+article.createdOn),
-				updatedOn: ArticleService.formatArticleDate(+article.updatedOn),
-				path: ArticleService.buildArticleURL(article)
-			}));
+			return data;
 		} catch ({ response }) {
 			throw new Error(response?.data?.message ?? defaultError);
 		}

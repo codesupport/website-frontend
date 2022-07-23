@@ -5,58 +5,19 @@ class UserService {
 	static BASE_URL = "user";
 
 	static buildProfileRichResult(profile) {
-		let richResult = {
+		return {
 			"@context": "https://schema.org",
 			"@type": "Person",
 			"name": profile.username,
 			"url": `https://codesupport.dev/profile/${profile.username.toLowerCase()}`
 		};
-
-		if (profile.jobTitle) {
-			richResult = {
-				...richResult,
-				jobTitle: profile.jobTitle
-			};
-		}
-
-		if (profile.jobCompany) {
-			richResult = {
-				...richResult,
-				worksFor: {
-					"@type": "Organization",
-					"name": profile.jobCompany
-				}
-			};
-		}
-
-		if (profile.avatarLink) {
-			richResult = {
-				...richResult,
-				"image": {
-					"@type": "ImageObject",
-					"url": profile.avatarLink
-				}
-			};
-		}
-
-		return richResult;
-	}
-
-	async getCurrentUser() {
-		try {
-			const { data } = await axios.get(`${backendAPI}/${UserService.BASE_URL}/v1/current`);
-
-			return data.response[0];
-		} catch ({ response }) {
-			throw new Error(response?.data?.message ?? defaultError);
-		}
 	}
 
 	async getAllUsers() {
 		try {
-			const { data } = await axios.get(`${backendAPI}/${UserService.BASE_URL}/v1/users`);
+			const { data } = await axios.get(`${backendAPI}/${UserService.BASE_URL}`);
 
-			return data.response;
+			return data;
 		} catch ({ response }) {
 			throw new Error(response?.data?.message ?? defaultError);
 		}
@@ -64,29 +25,9 @@ class UserService {
 
 	async getUserById(id) {
 		try {
-			const { data } = await axios.get(`${backendAPI}/${UserService.BASE_URL}/v1/users/${id}`);
+			const { data } = await axios.get(`${backendAPI}/${UserService.BASE_URL}/${id}`);
 
-			return data.response[0];
-		} catch ({ response }) {
-			throw new Error(response?.data?.message ?? defaultError);
-		}
-	}
-
-	async getAllProfiles() {
-		try {
-			const { data } = await axios.get(`${backendAPI}/${UserService.BASE_URL}/v1/profiles`);
-
-			return data.response;
-		} catch ({ response }) {
-			throw new Error(response?.data?.message ?? defaultError);
-		}
-	}
-
-	async getUserProfileById(id) {
-		try {
-			const { data } = await axios.get(`${backendAPI}/${UserService.BASE_URL}/v1/profiles/${id}`);
-
-			return data.response[0];
+			return data;
 		} catch ({ response }) {
 			throw new Error(response?.data?.message ?? defaultError);
 		}

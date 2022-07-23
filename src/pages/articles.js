@@ -1,11 +1,10 @@
 import React from "react";
+import { getAllArticles } from "../lib/fetchArticles";
 import PageTemplate from "../components/templates/PageTemplate";
 import IntroHero from "../components/molecules/IntroHero";
 import Container from "../components/templates/Container";
 import CardGroup from "../components/molecules/CardGroup";
-import URLCard from "../components/molecules/URLCard";
-import { getAllArticles } from "../lib/fetchArticles";
-import ArticleService from "../services/ArticleService";
+import ArticleCard from "../components/molecules/ArticleCard";
 
 const MAX_ARTICLES_TO_FETCH = 10;
 
@@ -18,24 +17,20 @@ function Articles({ articles }) {
 			/>
 			<main>
 				<Container>
-					{!articles.length && <p>
-						<strong>Sorry, there are no articles available. </strong>
-						This may be because there is no connection to the server
-						or because no articles have been published yet.
-					</p>}
-					<CardGroup>
-						{articles && articles.map(article => <URLCard
-							key={article.id}
-							href={`/article/${article.slug}`}
-							title={article.title}
-							description={article.description}
-						>
-							<p className="uk-text-small">
-								{ArticleService.formatArticleDate(article.created)} by {article.user.username}
-							</p>
-							<p className="uk-text-uppercase">Read More</p>
-						</URLCard>)}
-					</CardGroup>
+					{articles.length > 0 ? (
+						<section>
+							<h2>Latest Articles</h2>
+							<CardGroup>
+								{articles && articles.map(article => <ArticleCard key={article.id} article={article} />)}
+							</CardGroup>
+						</section>
+					) : (
+						<p>
+							<strong>Sorry, there are no articles available. </strong>
+							This may be because there is no connection to the server
+							or because no articles have been published yet.
+						</p>
+					)}
 				</Container>
 			</main>
 		</PageTemplate>
