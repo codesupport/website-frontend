@@ -21,7 +21,10 @@ function Articles({ articles }) {
 						<section>
 							<h2>Latest Articles</h2>
 							<CardGroup>
-								{articles && articles.map(article => <ArticleCard key={article.id} article={article} />)}
+								{articles && articles
+									.sort((a, b) => new Date(a.created).getTime() < new Date(b.created).getTime())
+									.map(article => <ArticleCard key={article.id} article={article} />)
+								}
 							</CardGroup>
 						</section>
 					) : (
@@ -42,7 +45,7 @@ export async function getStaticProps() {
 
 	return {
 		props: {
-			articles: articles.reverse().slice(0, MAX_ARTICLES_TO_FETCH)
+			articles: articles.slice(0, MAX_ARTICLES_TO_FETCH)
 		}
 	};
 }

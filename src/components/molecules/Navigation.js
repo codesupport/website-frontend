@@ -86,11 +86,6 @@ function Navigation() {
 							<a>Home</a>
 						</Link>
 					</NavItem>
-					<NavItem $active={activeTab === "community"}>
-						<Link href="/community" passHref>
-							<a>Community</a>
-						</Link>
-					</NavItem>
 					<NavItem $active={["articles", "article"].includes(activeTab)}>
 						<Link href="/articles" passhref>
 							<a>Articles</a>

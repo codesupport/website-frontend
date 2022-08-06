@@ -22,6 +22,11 @@
         "source": "/advent",
         "destination": "https://adventofcode.com/2021/leaderboard/private/view/490120",
         "type": 301
+      },
+      {
+        "source": "/article",
+        "destination": "https://codesupport.dev/articles",
+        "type": 301
       }
     ],
     "ignore": [

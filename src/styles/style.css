@@ -75,19 +75,27 @@ h1 {
     font-size: 25px;
 }
 
-h2 {
+h2, .markdown-content h1 {
     font-size: 20px;
 }
 
-h3 {
+h3, .markdown-content h2 {
     font-size: 15px;
 }
 
-h4 {
+h4, .markdown-content h3 {
     font-size: 13px;
 }
 
 p {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 500;
+    color: var(--text);
+    font-size: 13px;
+}
+
+ul, ol {
+    margin: 5px 0;
     font-family: "Open Sans", sans-serif;
     font-weight: 500;
     color: var(--text);
@@ -103,8 +111,15 @@ p a:hover {
 }
 
 pre {
+    margin: 5px;
+    padding: 0;
     background: none;
     border: none;
+}
+
+blockquote {
+    border-left: 2px solid var(--border);
+    padding-left: 5px;
 }
 
 @media only screen and (max-width: 600px) {
