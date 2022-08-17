@@ -19,7 +19,12 @@ function CodeBlock({ children, language, props }) {
 function Markdown({ content }) {
 	return (
 		<ReactMarkdown
-			children={content}
+			className="markdown-content"
+			children={content
+				.replace(/\\n/g, " \n ")
+				.replace(/\\t/g, "    ")
+				.replace(/\\"/g, "\"")
+			}
 			linkTarget="_blank"
 			components={{
 				code({ node, inline, className, children, ...props }) {

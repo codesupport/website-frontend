@@ -9,6 +9,7 @@
     --foreground: #FFFFFF;
     --border: #C0C0C0;
     --text: #242424;
+    --text-light: #707070;
     --error: #DC143C;
 
     --lang-typescript: #396272;
@@ -18,6 +19,7 @@
     --lang-python: #3A72A2;
     --lang-html: #E04D31;
     --lang-css: #563D79;
+    --lang-ui: #4A4D59;
 
     --mobileDevice: 600px;
     --gridGap: 25px;
@@ -63,9 +65,61 @@ body {
     color: var(--text);
 }
 
+h1, h2, h3, h4 {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 700;
+    color: var(--text);
+}
+
+h1 {
+    font-size: 25px;
+}
+
+h2, .markdown-content h1 {
+    font-size: 20px;
+}
+
+h3, .markdown-content h2 {
+    font-size: 15px;
+}
+
+h4, .markdown-content h3 {
+    font-size: 13px;
+}
+
+p {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 500;
+    color: var(--text);
+    font-size: 13px;
+}
+
+ul, ol {
+    margin: 5px 0;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 500;
+    color: var(--text);
+    font-size: 13px;
+}
+
+p a {
+    color: var(--cs-blue);
+}
+
+p a:hover {
+    text-decoration: underline;
+}
+
 pre {
+    margin: 5px;
+    padding: 0;
     background: none;
     border: none;
+}
+
+blockquote {
+    border-left: 2px solid var(--border);
+    padding-left: 5px;
 }
 
 @media only screen and (max-width: 600px) {

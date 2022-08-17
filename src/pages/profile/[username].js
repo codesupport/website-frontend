@@ -5,17 +5,17 @@ import PageTemplate from "../../components/templates/PageTemplate";
 import { getProfileById, getAllProfiles } from "../../lib/fetchProfiles";
 import UserService from "../../services/UserService";
 import Container from "../../components/templates/Container";
-import ProfileHeader from "../../components/organisms/ProfileHeader";
 import CardGroup from "../../components/molecules/CardGroup";
-import URLCard from "../../components/molecules/URLCard";
-import { getAllArticlesByUser, getAllPublishedArticlesByUser } from "../../lib/fetchArticles";
+import { getAllApprovedArticlesByUser } from "../../lib/fetchArticles";
+import ArticleCard from "../../components/molecules/ArticleCard";
+import IntroHero from "../../components/molecules/IntroHero";
 
 const Wrapper = styled(Container)`
-	padding-top: 50px;
+	margin: 0 auto;
 `;
 
 const Layout = styled("div")`
-	margin-top: 50px;
+	margin-top: 25px;
 	display: grid;
 	grid-template-columns: 3fr 2fr;
 	grid-column-gap: var(--gridGap);
@@ -31,45 +31,34 @@ const ArticleSection = styled("section")`
 	}
 `;
 
-const ALIAS_TO_ID_FILE = "./temp-alias-to-id.json";
+const USERNAME_TO_ID_FILE = "./temp-username-to-id.json";
 
 function ProfileViewer({ profileData, articles }) {
 	return (
-		<PageTemplate page={`${profileData.alias}'s Profile`} meta={{
-			description: profileData.biography,
+		<PageTemplate page={`${profileData.username}'s Profile`} meta={{
 			schema: UserService.buildProfileRichResult(profileData)
 		}}>
+			<IntroHero title={`${profileData.username}'s Profile`} />
 			<Wrapper>
-				<ProfileHeader profile={profileData} />
 				<Layout>
 					<ArticleSection>
 						<h2>Article Feed</h2>
-						{ !articles.length && <p>{profileData.alias} has not published any articles yet.</p> }
+						{!articles.length && <p>{profileData.username} has not published any articles yet.</p> }
 						<CardGroup width="1">
-							{articles && articles.map(article => <URLCard
-								key={article.id}
-								href={`/article/${article.path}`}
-								title={article.title}
-								description={article.revision?.description}
-							>
-								<p className="uk-text-small">
-									{article.createdOn}
-								</p>
-								<p className="uk-text-uppercase">Read More</p>
-							</URLCard>)}
+							{articles && articles.map(article => <ArticleCard article={article} />)}
 						</CardGroup>
 					</ArticleSection>
 					<div>
 						<section>
 							<h2>Showcase Projects</h2>
-							<p>{profileData.alias} has not published any showcase projects yet.</p>
+							<p>{profileData.username} has not published any showcase projects yet.</p>
 						</section>
 						<section>
 							<h2>GitHub Repositories</h2>
 							{profileData.githubUsername ? (
-								<p>{profileData.alias} has created any public GitHub repositories yet.</p>
+								<p>{profileData.username} has created any public GitHub repositories yet.</p>
 							) : (
-								<p>{profileData.alias} has not connected their GitHub account yet.</p>
+								<p>{profileData.username} has not connected their GitHub account yet.</p>
 							)}
 						</section>
 					</div>
@@ -81,16 +70,17 @@ function ProfileViewer({ profileData, articles }) {
 
 export async function getStaticPaths() {
 	const profiles = await getAllProfiles();
+
 	const aliasToId = Object.assign({}, ...profiles.map(profile => ({
-		[profile.alias.toLowerCase()]: profile.id
+		[profile.username.toLowerCase()]: profile.id
 	})));
 
-	await fs.writeFile(ALIAS_TO_ID_FILE, JSON.stringify(aliasToId));
+	await fs.writeFile(USERNAME_TO_ID_FILE, JSON.stringify(aliasToId));
 
 	return {
 		paths: profiles.map(profile => ({
 			params: {
-				alias: profile.alias.toLowerCase()
+				username: profile.username.toLowerCase()
 			}
 		})),
 		fallback: false
@@ -98,9 +88,9 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-	const aliasToId = JSON.parse((await fs.readFile(ALIAS_TO_ID_FILE)).toString());
-	const profileData = await getProfileById(aliasToId[params.alias.toLowerCase()]);
-	const articles = await getAllPublishedArticlesByUser(aliasToId[params.alias.toLowerCase()]);
+	const aliasToId = JSON.parse((await fs.readFile(USERNAME_TO_ID_FILE)).toString());
+	const profileData = await getProfileById(aliasToId[params.username.toLowerCase()]);
+	const articles = await getAllApprovedArticlesByUser(aliasToId[params.username.toLowerCase()]);
 
 	return {
 		props: { profileData, articles: articles.reverse() }
