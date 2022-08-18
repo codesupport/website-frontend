@@ -12,16 +12,16 @@ const Nav = styled("nav")`
 `;
 
 const NavContent = styled("div")`
-	max-width: 1000px;
-	margin: 0 auto;
-	display: grid;
-	grid-template-columns: 2fr 4fr 2fr;
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 4fr 2fr;
 
-	ul {
-		display: flex;
-		list-style: none;
-		color: var(--text);
-	}
+  ul {
+    display: flex;
+    list-style: none;
+    color: var(--text);
+  }
 `;
 
 const NavItem = styled("li")`
@@ -84,11 +84,6 @@ function Navigation() {
 					<NavItem $active={activeTab === ""}>
 						<Link href="/" passHref>
 							<a>Home</a>
-						</Link>
-					</NavItem>
-					<NavItem $active={activeTab === "community"}>
-						<Link href="/community" passHref>
-							<a>Community</a>
 						</Link>
 					</NavItem>
 					<NavItem $active={["articles", "article"].includes(activeTab)}>

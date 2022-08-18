@@ -1,25 +1,43 @@
 import styled from "styled-components";
 
 export default styled("article")`
+	max-width: 600px;
+	margin: 0 auto;
+	
 	h1 {
-		font-size: 1.75rem;
+		margin: 0;
 	}
 	
 	h2 {
-		font-size: 1.5rem;
+		margin: 12px 0 6px 0;
 	}
 	
 	h3 {
-		font-size: 1.25rem;
+		margin: 10px 0 6px 0;
 	}
 	
 	h4 {
-		font-size: 1rem;
+		margin: 8px 0 6px 0;
+	}
+	
+	p {
+		margin: 6px 0 6px 0;
 	}
 	
 	img {
 		margin: 0 auto;
 		display: block;
 		border-radius: 3px;
+	}
+	
+	em {
+		color: var(--text);
+	}
+	
+	code {
+		padding: 2px;
+		font-family: "Courier New", monospace;
+		font-size: 13px;
+		color: var(--text);
 	}
 `;

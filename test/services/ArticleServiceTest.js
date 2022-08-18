@@ -34,10 +34,10 @@ describe("ArticleService", () => {
 		it("returns the correct schema for the given article", () => {
 			const article = {
 				title: "This Is My Article",
-				createdOn: "13 Feb 2021",
-				updatedOn: 1613046414697,
-				createdBy: {
-					alias: "ExampleUser"
+				created: "2021-02-13T00:00:00.000Z",
+				modified: "2021-02-11T12:26:54.697Z",
+				user: {
+					username: "ExampleUser"
 				}
 			};
 
@@ -68,46 +68,6 @@ describe("ArticleService", () => {
 	});
 
 	describe("getAllArticles()", () => {
-		it("returns an array of all the articles mapped to the correct format", async () => {
-			jest.spyOn(axios, "get").mockImplementation(() => Promise.resolve({
-				data: {
-					response: [
-						{
-							id: 1,
-							title: "An Article",
-							createdOn: 1613046414697,
-							updatedOn: 1613046414697
-						},
-						{
-							id: 2,
-							title: "Another Article",
-							createdOn: 1613046414697,
-							updatedOn: 1613046414697
-						}
-					]
-				}
-			}));
-
-			const res = await instance.getAllArticles();
-
-			expect(res).toEqual([
-				{
-					id: 1,
-					title: "An Article",
-					createdOn: "11 Feb 2021",
-					updatedOn: "11 Feb 2021",
-					path: "an-article"
-				},
-				{
-					id: 2,
-					title: "Another Article",
-					createdOn: "11 Feb 2021",
-					updatedOn: "11 Feb 2021",
-					path: "another-article"
-				}
-			]);
-		});
-
 		it("returns an empty array if the API request fails", async () => {
 			jest.spyOn(console, "error").mockImplementation(() => undefined);
 			jest.spyOn(axios, "get").mockImplementation(() => Promise.reject(
@@ -121,31 +81,6 @@ describe("ArticleService", () => {
 	});
 
 	describe("getArticleById()", () => {
-		it("returns the article mapped to the correct format", async () => {
-			jest.spyOn(axios, "get").mockImplementation(() => Promise.resolve({
-				data: {
-					response: [
-						{
-							id: 1,
-							title: "An Article",
-							createdOn: 1613046414697,
-							updatedOn: 1613046414697
-						}
-					]
-				}
-			}));
-
-			const res = await instance.getArticleById(1);
-
-			expect(res).toEqual({
-				id: 1,
-				title: "An Article",
-				createdOn: "11 Feb 2021",
-				updatedOn: "11 Feb 2021",
-				path: "an-article"
-			});
-		});
-
 		it("returns an empty object if the API request fails", async () => {
 			jest.spyOn(console, "error").mockImplementation(() => undefined);
 			jest.spyOn(axios, "get").mockImplementation(() => Promise.reject(

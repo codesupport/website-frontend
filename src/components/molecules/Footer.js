@@ -29,17 +29,17 @@ const SocialLinks = styled("ul")`
 `;
 
 const SocialIcon = styled("li")`
-    display: inline;
-    font-size: 1.5rem;
-    
-    a {
-        color: var(--text);
-        transition: color 0.1s;
-        
-        :hover {
-            color: var(--cs-blue);  
-        }
+  display: inline;
+  font-size: 1.5rem;
+
+  a {
+    color: var(--text);
+    transition: color 0.1s;
+
+    :hover {
+      color: var(--cs-blue);
     }
+  }
 `;
 
 const Copyright = styled("p")`
