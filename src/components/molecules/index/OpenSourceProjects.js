@@ -10,22 +10,10 @@ const openSourceProjects = [
 		repository: "https://github.com/codesupport/discord-bot"
 	},
 	{
-		title: "Website Frontend",
+		title: "Website",
 		language: "JavaScript",
 		description: "The frontend of the CodeSupport website written using the React user interface library.",
 		repository: "https://github.com/codesupport/website-frontend"
-	},
-	{
-		title: "API",
-		language: "TypeScript",
-		description: "CodeSupport's API service which is powered by NestJS.",
-		repository: "https://github.com/codesupport/api"
-	},
-	{
-		title: "Resources API",
-		language: "JSON",
-		description: "A simple repository containing various resources that the community recommends.",
-		repository: "https://github.com/codesupport/resources-api"
 	}
 ];
 
