@@ -15,7 +15,7 @@ export class ArticleService {
 			"headline": article.title,
 			"datePublished": article.created,
 			"dateModified": article.modified,
-			"author": UserService.buildProfileRichResult(article.user),
+			"author": UserService.buildProfileRichResult(article.author),
 			"publisher": {
 				"@type": "Organization",
 				"name": "CodeSupport",
