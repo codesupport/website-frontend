@@ -64,7 +64,7 @@ function ArticlePreviewer({ data }) {
 }
 
 export async function getStaticPaths() {
-	const articles = getAllArticles()
+	const articles = getAllArticles();
 
 	return {
 		paths: articles.map(article => ({

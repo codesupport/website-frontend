@@ -5,7 +5,7 @@ class UserService {
 		return {
 			"@context": "https://schema.org",
 			"@type": "Person",
-			"name": author,
+			"name": author
 		};
 	}
 }
