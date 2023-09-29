@@ -23,7 +23,7 @@ function Articles({ articles }) {
 							<CardGroup>
 								{articles && articles
 									.sort((a, b) => new Date(a.created).getTime() < new Date(b.created).getTime())
-									.map(article => <ArticleCard key={article.id} article={article} />)
+									.map(article => <ArticleCard key={article.slug} article={article} />)
 								}
 							</CardGroup>
 						</section>
