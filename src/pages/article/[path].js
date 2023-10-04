@@ -1,18 +1,14 @@
 import React from "react";
-import { promises as fs } from "fs";
 import { faRedditAlien, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import styled from "styled-components";
-import { getArticleById, getAllArticles } from "../../lib/fetchArticles";
+import { getAllArticles, getArticleBySlug } from "../../lib/fetchArticles";
 import PageTemplate from "../../components/templates/PageTemplate";
 import Container from "../../components/templates/Container";
 import Article from "../../components/molecules/Article";
 import Markdown from "../../components/atoms/Markdown";
 import { ArticleService } from "../../services/ArticleService";
-import Link from "next/link";
 import ShareButtons from "../../components/molecules/ShareButtons";
 import addUtmParams from "../../helpers/addUtmParams";
-
-const PATH_TO_ID_FILE = "./temp-path-to-id.json";
 
 const ArticleMeta = styled("p")`
 	margin: 0;
@@ -25,9 +21,9 @@ function ArticlePreviewer({ data }) {
 	const {
 		title,
 		description,
-		user,
+		author,
 		content,
-		created,
+		date,
 		slug
 	} = data;
 
@@ -35,7 +31,7 @@ function ArticlePreviewer({ data }) {
 
 	twitterURL.searchParams.append("original_referer", "https://codesupport.dev");
 	twitterURL.searchParams.append("related", "codesupportdev");
-	twitterURL.searchParams.append("text", `Checkout "${title}" by ${user.username} on @codesupportdev\nhttps://codesupport.dev/article/${slug}`);
+	twitterURL.searchParams.append("text", `Checkout "${title}" by ${author} on @codesupportdev\nhttps://codesupport.dev/article/${slug}`);
 
 	return (
 		<PageTemplate page={title} meta={{
@@ -46,11 +42,7 @@ function ArticlePreviewer({ data }) {
 				<Article className="uk-article">
 					<h1>{title}</h1>
 					<ArticleMeta>
-						By {" "}
-						<Link href={`/profile/${user.username.toLowerCase()}`}>
-							<a>{user.username}</a>
-						</Link>
-						{" "} on {ArticleService.formatArticleDate(created)}
+						By {author} on {new Date(date).toDateString()}
 					</ArticleMeta>
 					<Markdown content={content} />
 				</Article>
@@ -63,7 +55,7 @@ function ArticlePreviewer({ data }) {
 					{
 						icon: faRedditAlien,
 						title: "Reddit",
-						url: addUtmParams(encodeURI(`http://www.reddit.com/submit?url=https://codesupport.dev/article/${slug}`), "reddit")
+						url: addUtmParams(encodeURI(`https://www.reddit.com/submit?url=https://codesupport.dev/article/${slug}`), "reddit")
 					}
 				]} />
 			</Container>
@@ -72,12 +64,7 @@ function ArticlePreviewer({ data }) {
 }
 
 export async function getStaticPaths() {
-	const articles = await getAllArticles();
-	const pathToId = Object.assign({}, ...articles.map(article => ({
-		[article.slug]: article.id
-	})));
-
-	await fs.writeFile(PATH_TO_ID_FILE, JSON.stringify(pathToId));
+	const articles = getAllArticles();
 
 	return {
 		paths: articles.map(article => ({
@@ -90,8 +77,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-	const pathToId = JSON.parse((await fs.readFile(PATH_TO_ID_FILE)).toString());
-	const data = await getArticleById(pathToId[params.path]);
+	const data = getArticleBySlug(params.path);
 
 	return {
 		props: { data }
