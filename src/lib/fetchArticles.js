@@ -26,5 +26,5 @@ export function getAllArticles() {
 	const slugs = getArticleSlugs();
 	const articles = slugs.map(getArticleBySlug);
 
-	return articles.sort((a, b) => a.date > b.date ? 1 : -1);
+	return articles.sort((a, b) => (a.date > b.date ? 1 : -1));
 }

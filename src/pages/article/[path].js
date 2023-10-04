@@ -68,7 +68,7 @@ function ArticlePreviewer({ data }) {
 }
 
 export async function getStaticPaths() {
-	const articles = getAllArticles()
+	const articles = getAllArticles();
 
 	return {
 		paths: articles.map(article => ({
@@ -92,7 +92,7 @@ export async function getStaticProps({ params }) {
 	const metaImagePath = path.join(publicPath, "article-assets", params.path, "meta-image.jpeg");
 
 	await htmlToImage({
-		type: 'jpeg',
+		type: "jpeg",
 		output: metaImagePath,
 		content: {
 			title: data.title,
