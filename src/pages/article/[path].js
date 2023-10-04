@@ -9,6 +9,7 @@ import Markdown from "../../components/atoms/Markdown";
 import { ArticleService } from "../../services/ArticleService";
 import ShareButtons from "../../components/molecules/ShareButtons";
 import addUtmParams from "../../helpers/addUtmParams";
+import {generateArticlePreviewImage} from "../../lib/generateArticlePreviewImage";
 
 const ArticleMeta = styled("p")`
 	margin: 0;
@@ -36,6 +37,7 @@ function ArticlePreviewer({ data }) {
 	return (
 		<PageTemplate page={title} meta={{
 			description: description,
+			image: `https://codesupport.dev/article-assets/${slug}/meta-image.jpeg`,
 			schema: ArticleService.buildArticleRichResult(data)
 		}}>
 			<Container>
@@ -78,6 +80,8 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
 	const data = getArticleBySlug(params.path);
+
+	await generateArticlePreviewImage(data, params.path);
 
 	return {
 		props: { data }

@@ -10,3 +10,4 @@ public/sitemap.xml
 .env.local
 .DS_Store
 output/
+public/article-assets/**/meta-image.jpeg
