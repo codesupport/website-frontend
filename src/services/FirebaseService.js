@@ -1,16 +1,17 @@
-import firebase from "firebase/app";
-import "firebase/performance";
-import "firebase/analytics";
+import { getApps, initializeApp } from "firebase/app";
+import { getPerformance } from "firebase/performance";
+import { getAnalytics } from "firebase/analytics";
 
 let firebaseAnalytics;
 let firebasePerformance;
 
-if (typeof window !== "undefined" && !firebase.apps.length) {
+if (typeof window !== "undefined" && !getApps().length) {
 	const isLocal = location.hostname === "localhost";
 	const isPreviewChannel = location.hostname.includes("web.app");
+	let app;
 
 	if (isLocal || isPreviewChannel) {
-		firebase.initializeApp({
+		app = initializeApp({
 			apiKey: "AIzaSyBshIWr5s-dU8ugQTHKJstI4E5ZyLi_V6g",
 			authDomain: "codesupport-development.firebaseapp.com",
 			databaseURL: "https://codesupport-development.firebaseio.com",
@@ -21,7 +22,7 @@ if (typeof window !== "undefined" && !firebase.apps.length) {
 			measurementId: "G-XHEJ625R85"
 		});
 	} else {
-		firebase.initializeApp({
+		app = initializeApp({
 			apiKey: "AIzaSyBsZyamFTYt1iNsVISi5mWPGJAINEdrnwA",
 			authDomain: "codesupport-production.firebaseapp.com",
 			databaseURL: "https://codesupport-production.firebaseio.com",
@@ -33,10 +34,9 @@ if (typeof window !== "undefined" && !firebase.apps.length) {
 		});
 	}
 
-	firebaseAnalytics = firebase.analytics();
-	firebasePerformance = firebase.performance();
+	firebaseAnalytics = getAnalytics(app);
+	firebasePerformance = getPerformance(app);
 }
 
 export const analytics = firebaseAnalytics;
 export const performance = firebasePerformance;
-export default firebase;

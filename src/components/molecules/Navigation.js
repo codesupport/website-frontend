@@ -2,7 +2,6 @@ import React from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import styled from "styled-components";
-import { useAuth0 } from "@auth0/auth0-react";
 
 const Nav = styled("nav")`
 	height: 75px;
@@ -59,12 +58,7 @@ const PageLinks = styled("ul")`
 	justify-content: center;
 `;
 
-const ProfileLinks = styled("ul")`
-	margin-left: auto;
-`;
-
 function Navigation() {
-	const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
 	const router = useRouter();
 
 	const activeTab = router.pathname.replace("/", "").split("/")[0];
@@ -97,24 +91,6 @@ function Navigation() {
 						</Link>
 					</NavItem>
 				</PageLinks>
-				<ProfileLinks>
-					{isAuthenticated ? (
-						<>
-							<NavItem $active={activeTab === "profile"}>
-								<Link href="/profile" passHref>
-									<a>Profile</a>
-								</Link>
-							</NavItem>
-							<NavItem>
-								<a onClick={() => logout({ returnTo: window.location.origin })}>Log Out</a>
-							</NavItem>
-						</>
-					) : (
-						<NavItem>
-							<a onClick={loginWithRedirect}>Login</a>
-						</NavItem>
-					)}
-				</ProfileLinks>
 			</NavContent>
 		</Nav>
 	);
