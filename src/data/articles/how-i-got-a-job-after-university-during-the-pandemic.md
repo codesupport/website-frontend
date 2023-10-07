@@ -2,7 +2,7 @@
 title: How I Got A Job After University During The Pandemic
 author: jamiecee20
 date: '2021-04-16'
-description: Many people struggle with seeing a task through to completion. It can be really tough to find productivity methods that work for you, so the key takeaway is to try a few different ones out.
+description: Coming to the end of your University experience is an exciting but scary time. The joy and sensation of completing your graduation is rewarding, but then comes the time to go into the big bad world.
 ---
 
 Coming to the end of your University experience is an exciting but scary time. The joy and sensation of completing your graduation is rewarding, but then comes the time to go into the big bad world.

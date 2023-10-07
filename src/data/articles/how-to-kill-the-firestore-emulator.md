@@ -2,7 +2,7 @@
 title: How To Kill The Firestore Emulator
 author: LamboCreeper
 date: '2021-04-15'
-description: Many people struggle with seeing a task through to completion. It can be really tough to find productivity methods that work for you, so the key takeaway is to try a few different ones out.
+description: A common problem which I face when using the Firebase Emulator with the Node.js debugger is that my debugger stops running when I am done, but the Firestore Emulator does not stop running.
 ---
 
 A common problem which I face when using the Firebase Emulator with the Node.js debugger is that my debugger stops running when I am done, but the Firestore Emulator does not stop running. In this article I will explain how you can get around this issue.
