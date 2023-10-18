@@ -7,6 +7,8 @@ sitemap({
 	ignoredPaths: ["404", "article/[path]", "index"],
 	ignoredExtensions: [
 		"png",
+		"jpg",
+		"jpeg",
 		"ico"
 	]
 });
