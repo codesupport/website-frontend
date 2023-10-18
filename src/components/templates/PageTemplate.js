@@ -2,17 +2,24 @@ import React from "react";
 import Head from "next/head";
 import Navigation from "../molecules/Navigation";
 import Footer from "../molecules/Footer";
+import {useRouter} from "next/router";
 
+const BASE_URL = "https://codesupport.dev";
 const SUMMARY_CARD = "summary";
 const LARGE_IMAGE_CARD = "summary_large_image";
 const DEFAULT_DESCRIPTION = "CodeSupport is a community dedicated to giving guidance about programming, as well as creating conversation with one another. No matter your skill level, you are welcome in this community.";
 const DEFAULT_IMAGE = "https://codesupport.dev/logo.png";
 
 function PageTemplate({ children, page, meta }) {
+	const router = useRouter();
+	const path = router.asPath === "/" ? "" : router.asPath;
+	const canonical = `${BASE_URL}${path}`.split("?")[0];
+
 	return (
 		<>
 			<Head>
 				<title>{page} - CodeSupport</title>
+				<link rel="canonical" href={canonical} />
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<meta name="theme-color" content="#1457B3" />
 				<meta name="description" content={meta?.description ?? DEFAULT_DESCRIPTION} />
