@@ -25,6 +25,11 @@
     --gridGap: 25px;
 }
 
+body {
+    margin: 0;
+    font-family: "Open Sans", sans-serif;
+}
+
 .uk-label {
     background-color: #1E56AF;
 }

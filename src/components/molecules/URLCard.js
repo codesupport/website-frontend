@@ -4,9 +4,7 @@ import styled from "styled-components";
 import Card from "./Card";
 
 const LinkCard = styled("a")`
-	&:hover {
-		text-decoration: none;
-	}
+	text-decoration: none;
 `;
 
 function URLCard({ href, target, rel, title, description, children, tag, tagClass }) {

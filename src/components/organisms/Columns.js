@@ -21,8 +21,13 @@ const Wrapper = styled("div")`
 `;
 
 const Column = styled("article")`
-	h2 {
+	svg {
+		height: 30px;
 		margin-top: 15px;
+	}
+
+	h3 {
+		margin-top: 0;
 		margin-bottom: 5px;
 	}
 `;
