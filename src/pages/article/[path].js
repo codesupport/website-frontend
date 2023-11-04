@@ -9,7 +9,7 @@ import Markdown from "../../components/atoms/Markdown";
 import { ArticleService } from "../../services/ArticleService";
 import ShareButtons from "../../components/molecules/ShareButtons";
 import addUtmParams from "../../helpers/addUtmParams";
-import {generateArticlePreviewImage} from "../../lib/generateArticlePreviewImage";
+import { generateArticlePreviewImage } from "../../lib/generateArticlePreviewImage";
 
 const ArticleMeta = styled("p")`
 	margin: 0;
