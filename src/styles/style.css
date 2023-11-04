@@ -107,11 +107,12 @@ ul, ol {
     font-size: 13px;
 }
 
-p a {
+p a, li a {
     color: var(--cs-blue);
+    text-decoration: none;
 }
 
-p a:hover {
+p a:hover, li a:hover {
     text-decoration: underline;
 }
 
@@ -123,6 +124,7 @@ pre {
 }
 
 blockquote {
+    margin-left: 0;
     border-left: 2px solid var(--border);
     padding-left: 5px;
 }
