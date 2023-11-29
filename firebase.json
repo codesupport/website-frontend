@@ -20,7 +20,7 @@
       },
       {
         "source": "/advent",
-        "destination": "https://adventofcode.com/2022/leaderboard/private/view/490120",
+        "destination": "https://adventofcode.com/2023/leaderboard/private/view/490120",
         "type": 301
       },
       {
