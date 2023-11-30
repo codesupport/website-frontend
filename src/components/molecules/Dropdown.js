@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Label } from "../atoms/Label";
 
 const Drop = styled("select")`
 	&&&& {
@@ -10,12 +11,12 @@ const Drop = styled("select")`
 
 function Dropdown({ name, className, label, value, onChangeHandler, children }) {
 	return (
-		<label>
+		<Label>
 			{label}
 			<Drop name={name} className={`${className } uk-select`} onChange={onChangeHandler} value={value}>
 				{children}
 			</Drop>
-		</label>
+		</Label>
 	);
 }
 
