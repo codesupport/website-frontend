@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 
 const Wrapper = styled("div")`
@@ -37,7 +37,7 @@ const Column = styled("article")`
 		margin-bottom: 5px;
 	}
 	svg {
-		height: 140px;
+		height: 100px;
 		padding: 20px 0;
 	}
 `;
@@ -48,12 +48,8 @@ function Columns({ columns }) {
 			{columns.map(column => (
 				<Column key={column.name}>
 					<FontAwesomeIcon icon={column.icon} size="2x" />
-					<h3 className="uk-margin-small">
-						{column.title}
-					</h3>
-					<p className="uk-margin-small-top">
-						{column.description}
-					</p>
+					<h3 className="uk-margin-small">{column.title}</h3>
+					<p className="uk-margin-small-top">{column.description}</p>
 				</Column>
 			))}
 		</Wrapper>
