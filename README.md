@@ -19,4 +19,4 @@ This repository contains the frontend for the CodeSupport Website. The project i
 - To start the React app use `npm start`
 - To run the development server use `npm run dev`
 
-**Any Questions?** Feel free to mention @LamboCreeper#6510 in the [CodeSupport Discord](https://discord.gg/Hn9SETt).
+**Any Questions?** Feel free to mention @LamboCreeper in the [CodeSupport Discord](https://discord.gg/Hn9SETt).
