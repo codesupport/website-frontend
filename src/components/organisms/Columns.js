@@ -27,18 +27,17 @@ const Wrapper = styled("div")`
 `;
 
 const Column = styled("article")`
-	text-align: center;
-	border: 1px solid var(--border);
-	border-radius: 5px;
-	padding: 10px;
-	background-color: var(--foreground);
+	svg {
+	  height: 30px;
+	}
+
 	h2 {
 		margin-top: 15px;
-		margin-bottom: 5px;
 	}
-	svg {
-		height: 100px;
-		padding: 20px 0;
+
+	h3 {
+		margin-top: 0;
+		margin-bottom: 5px;
 	}
 `;
 

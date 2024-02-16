@@ -6,11 +6,14 @@ import styled from "styled-components";
 const Nav = styled("nav")`
 	height: 75px;
 	position: relative;
+	display: grid;
+	align-items: center;
 	background-color: var(--foreground);
 	box-shadow: 0px 3px 6px rgb(0, 0, 0, 0.16);
 `;
 
 const NavContent = styled("div")`
+  width: 100%;
   max-width: 1000px;
   margin: 0 auto;
   display: grid;
@@ -37,10 +40,11 @@ const NavItem = styled("li")`
 
 	a {
 		color: inherit;
+		text-decoration: none;
 
 		:hover {
-			text-decoration: none;
 			color: var(--cs-blue);
+			text-decoration: none;
 		}
 	}
 `;
@@ -48,7 +52,7 @@ const NavItem = styled("li")`
 const Logo = styled("img")`
 	&& {
 		padding: 12.5px;
-		height: 50px;
+		height: 75px;
 		display: block;
 	}
 `;

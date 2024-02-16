@@ -26,6 +26,7 @@ export default styled("article")`
 	
 	img {
 		margin: 0 auto;
+        width: 100%;
 		display: block;
 		border-radius: 3px;
 	}

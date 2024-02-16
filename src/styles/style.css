@@ -25,6 +25,11 @@
     --gridGap: 25px;
 }
 
+body {
+    margin: 0;
+    font-family: "Open Sans", sans-serif;
+}
+
 .uk-label {
     background-color: #1E56AF;
 }
@@ -102,11 +107,12 @@ ul, ol {
     font-size: 13px;
 }
 
-p a {
+p a, li a {
     color: var(--cs-blue);
+    text-decoration: none;
 }
 
-p a:hover {
+p a:hover, li a:hover {
     text-decoration: underline;
 }
 
@@ -118,6 +124,7 @@ pre {
 }
 
 blockquote {
+    margin-left: 0;
     border-left: 2px solid var(--border);
     padding-left: 5px;
 }

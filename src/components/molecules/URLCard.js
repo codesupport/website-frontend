@@ -4,8 +4,10 @@ import styled from "styled-components";
 import Card from "./Card";
 
 const LinkCard = styled("a")`
-	&:hover {
-		text-decoration: none;
+	text-decoration: none;
+	
+	:hover article {
+		border: 1px solid var(--cs-blue);
 	}
 `;
 

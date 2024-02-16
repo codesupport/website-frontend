@@ -23,6 +23,11 @@ const ResourceFilters = styled("div")`
   grid-row-gap: 15px;
 `;
 
+const LearnMore = styled("p")`
+	color: var(--cs-blue);
+	font-weight: 700;
+`;
+
 class Resources extends Component {
 	state = {
 		resources: this.props.resources,
@@ -199,7 +204,7 @@ class Resources extends Component {
 											}
 											description={resource.description}
 										>
-											<p className="uk-text-uppercase">Learn More</p>
+											<LearnMore>Learn More</LearnMore>
 										</URLCard>
 									))}
 								</CardGroup>

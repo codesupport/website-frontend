@@ -30,8 +30,9 @@ const Layout = styled("div")`
 `;
 
 const CardBadge = styled("span")`
-	color: var(--foreground);
-	padding: 2px 5px;
+  	color: var(--foreground);
+	background-color: var(--text);
+  	padding: 2px 5px;
 	font-size: 10px;
 	border-radius: 5px;
 `;
