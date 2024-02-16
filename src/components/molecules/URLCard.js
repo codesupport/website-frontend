@@ -5,6 +5,10 @@ import Card from "./Card";
 
 const LinkCard = styled("a")`
 	text-decoration: none;
+	
+	:hover article {
+		border: 1px solid var(--cs-blue);
+	}
 `;
 
 function URLCard({ href, target, rel, title, description, children, tag, tagClass }) {
