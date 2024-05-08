@@ -4,7 +4,7 @@ author: _xsaratoninx_
 date: '2024-05-07'
 description: How to start teaching yourself to write code, advice from those who've done it before.
 ---
-# A Beginner's Guide to Programming
+
 
 Learning to code is incredibly useful in today's information age. So much of our world is digital nowadays that even if you aren't interested in a tech career, it can still be beneficial to have even a beginner's grasp of programming. This understanding will inform your views and give you a baseline knowledge to understand things like generative AI or the blockchain, often discussed in the media.
 
