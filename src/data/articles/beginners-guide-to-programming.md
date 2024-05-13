@@ -23,11 +23,11 @@ Many programming languages exist; some are designed for specific purposes, while
 ## Find High-Quality Learning Resources
 
 There is an abundance of learning resources available online, from free tutorials to paid courses. Here are a few that we recommend:
-- https://codesupport.dev/resources
-- https://www.freecodecamp.org/
-- https://roadmap.sh/get-started
+- [codesupport.dev/resources](https://codesupport.dev/resources)
+- [freecodecamp.org](https://www.freecodecamp.org/)
+- [roadmap.sh](https://roadmap.sh/get-started)
   - Please avoid the AI-generated roadmaps. I've tested and am not impressed, but the official roadmaps are well-written!
-- https://www.codecademy.com/
+- [codecademy.com](https://www.codecademy.com/)
 
 Documentation is extremely valuable once you start diving deeper into a language.
 
