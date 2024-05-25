@@ -25,3 +25,18 @@ jobs:
         run: |
           npm ci
           npm run test
+  preview_deployment:
+    runs-on: ubuntu-latest
+    needs: [lint, build, test]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Prepare for Deployment
+        run: |
+          npm ci
+          npm run export
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_CODESUPPORT_DEVELOPMENT }}"
+          repoToken: "${{ secrets.GITHUB_ACTION }}"
+          expires: 7d
+          projectId: codesupport-development
