@@ -12,10 +12,10 @@ import addUtmParams from "../../helpers/addUtmParams";
 import { generateArticlePreviewImage } from "../../lib/generateArticlePreviewImage";
 
 const ArticleMeta = styled("p")`
-	margin: 0;
-	margin-bottom: 10px;
-	color: var(--text-light);
-	font-size: 10px;
+	color: var(--article-meta-text-color);
+	font-size: small;
+	margin-bottom: calc(var(--spacer) * 2);
+	margin-top: calc(var(--spacer) / 4);
 `;
 
 function ArticlePreviewer({ data }) {
