@@ -107,14 +107,17 @@ h1, h2, h3, h4, h5, h6 {
 
 .fs-1{
     font-size: var(--fs-1);
+    line-height: 3rem;
 }
 
 .fs-2{
     font-size: var(--fs-2);
+    line-height: 2.5rem;
 }
 
 .fs-3{
     font-size: var(--fs-3);
+    line-height: 2.5rem;
 }
 
 .fs-4{
@@ -129,12 +132,34 @@ h1, h2, h3, h4, h5, h6 {
     font-size: var(--fs-6);
 }
 
-.text-center{
-    text-align: center;
+h1 {
+    font-size: var(--fs-1);
+    line-height: 3rem;
 }
 
-.uk-label {
-    background-color: #1E56AF;
+h2, .markdown-content h1 {
+    font-size: var(--fs-2);
+    line-height:2.75rem;
+}
+
+h3, .markdown-content h2 {
+    font-size: var(--fs-3);
+}
+
+h4, .markdown-content h3 {
+    font-size: var(--fs-4);
+}
+
+h5, .markdown-content h4 {
+    font-size: var(--fs-5);
+}
+
+h6, .markdown-content h5 {
+    font-size: var(--fs-6);
+}
+
+.text-center{
+    text-align: center;
 }
 
 .lang-typescript {
@@ -164,31 +189,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .lang-css {
     background-color: var(--lang-css);
-}
-
-h1 {
-    font-size: var(--fs-1);
-    line-height: 2.5rem;
-}
-
-h2, .markdown-content h1 {
-    font-size: var(--fs-2);
-}
-
-h3, .markdown-content h2 {
-    font-size: var(--fs-3);
-}
-
-h4, .markdown-content h3 {
-    font-size: var(--fs-4);
-}
-
-h5, .markdown-content h4 {
-    font-size: var(--fs-5);
-}
-
-h6, .markdown-content h5 {
-    font-size: var(--fs-6);
 }
 
 p {
