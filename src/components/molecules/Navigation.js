@@ -107,7 +107,7 @@ function Navigation({setMobileNavigationIsOpen}) {
 						</Link>
 					</NavItem>
 				</PageLinks>
-				<div class="hamburger-menu-container">
+				<div className="hamburger-menu-container">
 					<NavigationHamburgerMenuButton setMobileNavigationIsOpen={setMobileNavigationIsOpen}></NavigationHamburgerMenuButton>
 				</div>
 			</NavContent>
