@@ -1,6 +1,6 @@
 ---
 title: On Completion
-author: saratonin
+author: _xsaratoninx_
 date: '2022-09-24'
 description: Many people struggle with seeing a task through to completion. It can be really tough to find productivity methods that work for you, so the key takeaway is to try a few different ones out.
 ---
