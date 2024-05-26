@@ -11,3 +11,5 @@ public/sitemap.xml
 .DS_Store
 output/
 public/article-assets/**/meta-image.jpeg
+
+tsconfig.tsbuildinfo
