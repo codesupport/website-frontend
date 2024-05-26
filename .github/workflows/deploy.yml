@@ -6,9 +6,6 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment:
-      name: Production
-      url: https://codesupport.dev
     steps:
       - uses: actions/checkout@v1
       - name: Build source code
