@@ -29,7 +29,7 @@ function Articles({ articles }) {
 						<ArticlesSection>
 							<CardGroup>
 								{articles && (
-									articles.sort((a, b) => new Date(a.date).getTime() < new Date(b.date).getTime() ? 1 : -1) &&
+									articles.sort((a, b) => (new Date(a.date).getTime() < new Date(b.date).getTime() ? 1 : -1)) &&
 									articles.map(article => <ArticleCard key={article.slug} article={article} />)
 								)}
 							</CardGroup>

@@ -146,7 +146,7 @@ class Resources extends Component {
 				<IntroHero
 					title="Resources"
 					description="A collection of programming resources curated by the CodeSupport community."
-					/>
+				/>
 				<main>
 					<ResourcesPageContentContainer>
 						<section id="filter-resources" role="search">

@@ -12,7 +12,7 @@ function Home() {
 				title="Welcome to <span>CodeSupport</span>!"
 				description="CodeSupport is a community dedicated to giving guidance about programming, as well as creating conversation with one another. No matter your skill level, you are welcome in this community."
 			/>
-			<main> 
+			<main>
 				<Container>
 					<WhyJoinCodeSupport />
 					<OpenSourceProjects />

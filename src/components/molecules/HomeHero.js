@@ -93,7 +93,7 @@ const AnimatedChatBubbles = styled("div")`
 	}
 `;
 
-function HomeHero({title, description}){
+function HomeHero({title, description}) {
 	const chatBubblesContainerRef = React.useRef();
 
 	// Begin the state with a single chat bubble and counter for modularity (even/odd)
@@ -102,24 +102,23 @@ function HomeHero({title, description}){
 
 	React.useEffect(() => {
 		const intervalId = setInterval(() => {
-
 			// Only animate if the window is focused
 			// This avoids weird flashing and sudden element transitions when returning to the tab/window
 			// (But only if there aren't enough to fill the container)
-			if (!document.hasFocus() && chatBubbles.length > 4){
+			if (!document.hasFocus() && chatBubbles.length > 4) {
 				return;
 			}
 
 			// Create a new array with the existing chat bubbles and one new one
-			let newChatBubblesArray = [
-				...chatBubbles, 
+			const newChatBubblesArray = [
+				...chatBubbles,
 				<AnimatedChatBubble key={bubbleCounter} modularity={bubbleCounter % 2 === 0 ? "even" : "odd"}></AnimatedChatBubble>
 			];
 
 			// Cut off the first element the array if there are 6 elements
-			if (newChatBubblesArray.length > 5){
+			if (newChatBubblesArray.length > 5) {
 				setChatBubbles(newChatBubblesArray.slice(1));
-			}else{
+			} else {
 				setChatBubbles(newChatBubblesArray);
 			}
 
@@ -151,6 +150,5 @@ function HomeHero({title, description}){
 		</Hero>
 	);
 }
-	
 
 export default HomeHero;

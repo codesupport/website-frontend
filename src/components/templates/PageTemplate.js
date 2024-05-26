@@ -16,6 +16,7 @@ function PageTemplate({ children, page, meta }) {
 	const path = router.asPath === "/" ? "" : router.asPath;
 	const canonical = `${BASE_URL}${path}`.split("?")[0];
 	const [mobileNavigationIsOpen, setMobileNavigationIsOpen] = React.useState(false);
+
 	return (
 		<>
 			<Head>
