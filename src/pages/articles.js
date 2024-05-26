@@ -21,10 +21,10 @@ function Articles({ articles }) {
 						<section>
 							<h2>Latest Articles</h2>
 							<CardGroup>
-								{articles && articles
-									.sort((a, b) => new Date(a.created).getTime() < new Date(b.created).getTime())
-									.map(article => <ArticleCard key={article.slug} article={article} />)
-								}
+								{articles && (
+									articles.sort((a, b) => new Date(a.date).getTime() < new Date(b.date).getTime() ? 1 : -1) &&
+									articles.map(article => <ArticleCard key={article.slug} article={article} />)
+								)}
 							</CardGroup>
 						</section>
 					) : (
