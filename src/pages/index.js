@@ -1,26 +1,19 @@
 import React from "react";
 import PageTemplate from "../components/templates/PageTemplate";
-import IntroHero from "../components/molecules/IntroHero";
+import HomeHero from "../components/molecules/HomeHero";
 import Container from "../components/templates/Container";
 import OpenSourceProjects from "../components/molecules/index/OpenSourceProjects";
-import CommunityDiscord from "../components/molecules/index/CommunityDiscord";
 import WhyJoinCodeSupport from "../components/molecules/index/WhyJoinCodeSupport";
 
 function Home() {
 	return (
 		<PageTemplate page="Home">
-			<IntroHero
-				title="Welcome to CodeSupport!"
+			<HomeHero
+				title="Welcome to <span>CodeSupport</span>!"
 				description="CodeSupport is a community dedicated to giving guidance about programming, as well as creating conversation with one another. No matter your skill level, you are welcome in this community."
-				button={{
-					target: "_blank",
-					href: "https://codesupport.dev/discord",
-					text: "Join The Community"
-				}}
 			/>
-			<main>
+			<main> 
 				<Container>
-					<CommunityDiscord />
 					<WhyJoinCodeSupport />
 					<OpenSourceProjects />
 				</Container>

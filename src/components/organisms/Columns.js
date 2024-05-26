@@ -4,40 +4,47 @@ import React from "react";
 
 const Wrapper = styled("div")`
 	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	grid-column-gap: var(--gridGap);
+	grid-template-columns: repeat(3, 350px);
+	gap: var(--spacer);
+	justify-content: space-between;
 	
-	@media only screen and (max-width: 800px) {
-		grid-template-columns: repeat(2, 1fr);
-		
-		article:last-child {
-			margin-top: var(--gridGap);
-		}
+	@media (max-width: 1480px){
+		justify-content: center;
+		grid-template-columns: repeat(2, 350px);
+		gap: calc(var(--spacer) * 3);
 	}
 	
-	@media only screen and (max-width: 600px) {
+	@media (max-width: 1200px){
 		grid-template-columns: repeat(1, 1fr);
-		article:first-child {
-			margin-top: 0;
-		}
-		article {
-			margin-top: var(--gridGap);
-		}
 	}
 `;
 
 const Column = styled("article")`
+	display: flex;
+	flex-direction: column;
+	gap: 0.25rem;
+	padding: 3rem;
+	background-color: var(--foreground);
+	box-shadow: var(--box-shadow);
+	position: relative;
+	border-radius: var(--border-radius);
+
 	svg {
-	  height: 30px;
+		height: 45px;
+		color: var(--cs-blue);
+		position: absolute;
+		top: calc(-45px / 2); 
+		right: calc(-45px / 2); 
+
+		@media (max-width: 1200px){
+			right: unset;
+			left: calc(50% - calc(45px / 2));
+			height: 45px;
+		}
 	}
 
-	h2 {
-		margin-top: 15px;
-	}
-
-	h3 {
-		margin-top: 0;
-		margin-bottom: 5px;
+	h5{
+		margin: 0;
 	}
 `;
 
@@ -47,7 +54,7 @@ function Columns({ columns }) {
 			{columns.map(column => (
 				<Column key={column.name}>
 					<FontAwesomeIcon icon={column.icon} size="2x" />
-					<h3 className="uk-margin-small">{column.title}</h3>
+					<h5 className="uk-margin-small" dangerouslySetInnerHTML={{__html: column.title}}></h5>
 					<p className="uk-margin-small-top">{column.description}</p>
 				</Column>
 			))}

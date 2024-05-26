@@ -5,9 +5,15 @@ import Card from "./Card";
 
 const LinkCard = styled("a")`
 	text-decoration: none;
-	
-	:hover article {
-		border: 1px solid var(--cs-blue);
+	transition: opacity 150ms;
+	box-shadow: var(--box-shadow);
+	background-color: var(--foreground);
+	border-radius: var(--border-radius);
+	overflow: hidden;
+
+	&:hover{
+		opacity: 0.8;
+		box-shadow: var(--box-shadow-card-hover); 
 	}
 `;
 

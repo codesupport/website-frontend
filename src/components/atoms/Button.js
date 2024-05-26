@@ -5,7 +5,7 @@ const style = `
 	margin: 0;
 	padding: 13px 30px;
 	border: 0;
-	background-color: var(--text);
+	background-color: var(--cs-blue);
 	color: var(--foreground);
 	text-decoration: none;
 	text-transform: uppercase;
@@ -13,7 +13,7 @@ const style = `
 	display: inline-block;
 	
 	:hover {
-		background-color: var(--cs-blue);
+		background-color: var(--text);
 	}
 `;
 
