@@ -65,6 +65,13 @@
     --border-radius: 0.425rem;
 
     /**
+        Form controls
+    */
+    --input-text-color: hsl(0 0% 28%);
+    --input-border-color: hsl(0 0% 85%);
+    --input-focus-box-shadow: 0 0 0rem 0.1rem hsl(214.72deg 79.9% 39.02% / 0.4);
+
+    /**
         Breakpoints for screen sizes to consider. Right now, they can't be used in media queries and
         only serve as a CSS reference.
     */
@@ -223,6 +230,38 @@ pre {
     padding: 0;
     background: none;
     border: none;
+}
+
+/**
+    Form controls
+*/
+input[type="text"]{
+    appearance: none;
+    padding: calc(var(--spacer) / 1.5) calc(var(--spacer) / 2);
+    border: 1px solid var(--input-border-color);
+    border-radius: 0;
+    color: var(--input-text-color);
+    transition: box-shadow 150ms;
+
+    &:focus{
+        outline: none;
+        box-shadow: var(--input-focus-box-shadow);
+    }
+}
+
+select{
+    box-sizing: content-box;
+    appearance: none;
+    padding: calc(var(--spacer) / 1.5) calc(var(--spacer) / 2);
+    border: 1px solid var(--input-border-color);
+    border-radius: 0;
+    color: var(--input-text-color);
+    transition: box-shadow 150ms;
+
+    &:focus{
+        outline: none;
+        box-shadow: var(--input-focus-box-shadow);
+    }
 }
 
 @media (max-width: 600px) {
