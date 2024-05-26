@@ -1,6 +1,7 @@
 import React from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import NavigationHamburgerMenuButton from "./NavigationHamburgerMenuButton";
 import styled from "styled-components";
 
 const Nav = styled("nav")`
@@ -25,6 +26,10 @@ const NavContent = styled("div")`
     color: var(--text);
 	margin: 0;
   }
+
+  .hamburger-menu-container{
+	width:75px;
+  }
 `;
 
 const NavItem = styled("li")`
@@ -43,6 +48,7 @@ const NavItem = styled("li")`
 		text-decoration: none;
 		transition: all 125ms;
 		padding:0 1rem;
+		width:125px;
 
 		:hover {
 			color: var(--cs-blue);
@@ -62,9 +68,13 @@ const Logo = styled("img")`
 const PageLinks = styled("ul")`
 	display: flex;
 	justify-content: center;
+	padding: 0;
+  @media (max-width: 1200px){
+	  display: none !important;
+	}
 `;
 
-function Navigation() {
+function Navigation({setMobileNavigationIsOpen}) {
 	const router = useRouter();
 
 	const activeTab = router.pathname.replace("/", "").split("/")[0];
@@ -97,7 +107,9 @@ function Navigation() {
 						</Link>
 					</NavItem>
 				</PageLinks>
-				<div></div>
+				<div class="hamburger-menu-container">
+					<NavigationHamburgerMenuButton setMobileNavigationIsOpen={setMobileNavigationIsOpen}></NavigationHamburgerMenuButton>
+				</div>
 			</NavContent>
 		</Nav>
 	);
