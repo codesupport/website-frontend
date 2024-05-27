@@ -1,5 +1,5 @@
-import React from "react";
-import styled, { keyframes } from "styled-components";
+import React, { useState, useRef, useEffect } from "react";
+import styled from "styled-components";
 import Button from "../atoms/Button";
 import Container from "../templates/Container";
 import AnimatedChatBubble from "./index/AnimatedChatBubble";
@@ -94,13 +94,13 @@ const AnimatedChatBubbles = styled("div")`
 `;
 
 function HomeHero({title, description}) {
-	const chatBubblesContainerRef = React.useRef();
+	const chatBubblesContainerRef = useRef();
 
 	// Begin the state with a single chat bubble and counter for modularity (even/odd)
-	const [chatBubbles, setChatBubbles] = React.useState([<AnimatedChatBubble key={0} modularity="even"></AnimatedChatBubble>]);
-	const [bubbleCounter, setBubbleCounter] = React.useState(1);
+	const [chatBubbles, setChatBubbles] = useState([<AnimatedChatBubble key={0} modularity="even"></AnimatedChatBubble>]);
+	const [bubbleCounter, setBubbleCounter] = useState(1);
 
-	React.useEffect(() => {
+	useEffect(() => {
 		const intervalId = setInterval(() => {
 			// Only animate if the window is focused
 			// This avoids weird flashing and sudden element transitions when returning to the tab/window
