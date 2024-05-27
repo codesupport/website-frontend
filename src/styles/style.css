@@ -160,6 +160,7 @@ h2, .markdown-content h1 {
 
 h3, .markdown-content h2 {
     font-size: var(--fs-3);
+    line-height: 2.5rem;
 }
 
 h4, .markdown-content h3 {
