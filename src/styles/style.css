@@ -18,9 +18,16 @@
     --lang-css: #563D79;
     --lang-ui: #4A4D59;
 
+    /**
+        Spacers are used for paddings, margins, and gaps
+    */
     --spacer: 1rem;
     --spacer-increment: 0.5rem;
 
+    /**
+        Component width variables. The container is generally used on every page to constrain
+        general content.
+    */
     --container-max-width: 1200px;
     --article-max-width: 900px;
     --navigation-height: 75px;
