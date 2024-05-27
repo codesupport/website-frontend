@@ -28,8 +28,8 @@
     /**
         Font family definitions. Primarily, always aim to have two font stylings. One for headings and one for general etxt.
     */
-    --font-family-heading: "Lato", sans-serif;
-    --font-family-body: "Roboto", sans-serif;
+    --font-family-heading: "Raleway", sans-serif;
+    --font-family-body: "Open sans", sans-serif;
 
     /**
         Base font size for all text
