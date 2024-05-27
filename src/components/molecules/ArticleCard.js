@@ -13,7 +13,7 @@ const ArticleCardWrapper = styled.div`
 		padding: calc(var(--spacer) * 1.5);
 
 		.meta{
-			font-size: small;
+			font-size: calc(var(--body-font-size) / 1.25);
 			font-style: italic;
 		}
 	}
