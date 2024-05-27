@@ -95,6 +95,10 @@ const AnimatedChatBubbles = styled("div")`
 		margin-left: unset;
 		width: 100%;
 	}
+
+	@media (max-width: 680px){
+		display: none; 
+	}
 `;
 
 function HomeHero({title, description}) {
