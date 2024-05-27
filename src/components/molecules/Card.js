@@ -24,7 +24,7 @@ const Article = styled("article")`
 			font-style: italic;
 		}
 
-		p:last-of-type{
+		.read-more-button{
 			display: flex;
 			align-items: flex-end;
 			flex-grow:1;

@@ -35,7 +35,7 @@ function ArticleCard({ article }) {
 			description={article.description}
 			date={article.date}
 		>
-			<ReadMore href={`/article/${article.slug}`}>Read Article</ReadMore>
+			<ReadMore className="read-more-button" href={`/article/${article.slug}`}>Read Article</ReadMore>
 		</URLCard>
 	);
 }

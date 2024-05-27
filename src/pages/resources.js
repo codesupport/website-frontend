@@ -211,7 +211,7 @@ class Resources extends Component {
 												}
 												description={resource.description}
 											>
-												<LearnMore>Learn More</LearnMore>
+												<LearnMore className="read-more-button">Learn More</LearnMore>
 											</URLCard>
 										))}
 									</CardGroup>
