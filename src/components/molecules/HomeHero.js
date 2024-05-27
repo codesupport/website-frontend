@@ -9,7 +9,6 @@ const Hero = styled("header")`
 	min-height: 550px;
 	padding-bottom: 100px;
 	position: relative;
-	overflow: hidden;
 
 	@media (max-width: 1000px){
 		height: unset;
@@ -47,11 +46,11 @@ const Hero = styled("header")`
 	svg{
 		color: var(--foreground);
 		position: absolute;
-		bottom:0;
+		bottom:-1px;
 		left:0;
 		height:125px;
 		width: 100%;
-		filter: drop-shadow( 0 -5px 12px hsl(214.72deg 79.9% 39.02% / 0.1));
+		filter: drop-shadow( 0 -65px 16px hsl(214.72deg 79.9% 39.02% / 0.02));
 	}
 `;
 

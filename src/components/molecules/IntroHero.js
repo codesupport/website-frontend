@@ -6,7 +6,6 @@ const Hero = styled("header")`
 	padding: calc(var(--spacer) * 8) var(--spacer) calc(var(--spacer) * 9) var(--spacer);
 	background-color: var(--cs-blue);
 	position: relative;
-	overflow: hidden;
 	
 	h1 {
 		margin: 0;
@@ -20,11 +19,11 @@ const Hero = styled("header")`
 	svg{
 		color: var(--foreground);
 		position: absolute;
-		bottom:0;
+		bottom:-1px;
 		left:0;
 		height:75px;
 		width: 100%;
-		filter: drop-shadow( 0 -5px 12px hsl(214.72deg 79.9% 39.02% / 0.1));
+		filter: drop-shadow( 0 -65px 16px hsl(214.72deg 79.9% 39.02% / 0.02));
 		line-height: 0;
 		display: block;
 	}
