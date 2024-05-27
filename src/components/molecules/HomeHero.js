@@ -11,7 +11,7 @@ const Hero = styled("header")`
 	position: relative;
 	overflow: hidden;
 
-	@media (max-width: 1480px){
+	@media (max-width: 1000px){
 		height: unset;
 	}
 
@@ -20,7 +20,7 @@ const Hero = styled("header")`
 		height: 100%;
 		padding: calc(var(--spacer) * 2.5) calc(var(--spacer) * 2);
 
-		@media (max-width: 1480px){
+		@media (max-width: 1000px){
 			flex-direction: column;
 			align-items: center;
 			gap: calc(var(--spacer) * 2.5);
@@ -30,7 +30,7 @@ const Hero = styled("header")`
 	h1 {
 		margin: 0;
 
-		@media (max-width: 1480px){
+		@media (max-width: 1000px){
 			width: 100%;
 			text-align: center;
 		}
@@ -64,6 +64,10 @@ const HeadingTextSection = styled("div")`
 	gap: 1rem;
 	justify-content: center;
 
+	@media (max-width:1200px){
+		min-width:480px;
+	}
+
 	@media (max-width: 680px){
 		max-width: unset;
 		min-width: unset;
@@ -86,7 +90,7 @@ const AnimatedChatBubbles = styled("div")`
 	position:relative;
 	overflow: hidden;
 
-	@media (max-width: 1480px){
+	@media (max-width: 1000px){
 		height: 400px;
 		margin-left: unset;
 		width: 100%;
