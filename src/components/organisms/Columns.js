@@ -8,13 +8,13 @@ const Wrapper = styled("div")`
 	gap: var(--spacer);
 	justify-content: space-between;
 	
-	@media (max-width: 1480px){
+	@media (max-width: 1200px){
 		justify-content: center;
 		grid-template-columns: repeat(2, 350px);
 		gap: calc(var(--spacer) * 3);
 	}
 	
-	@media (max-width: 1200px){
+	@media (max-width: 1000px){
 		grid-template-columns: repeat(1, 1fr);
 	}
 `;
@@ -29,17 +29,35 @@ const Column = styled("article")`
 	position: relative;
 	border-radius: var(--border-radius);
 
-	svg {
+	.icon-wrapper{
+		width: 45px;
 		height: 45px;
-		color: var(--cs-blue);
-		position: absolute;
+		background-color: var(--cs-blue);
 		top: calc(-45px / 2); 
 		right: calc(-45px / 2); 
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		position: absolute;
+		border-radius: 50%;
+		z-index: 2;
 
-		@media (max-width: 1200px){
+		svg {
+			height: 28px;
+			width: 28px;
+			color: white;
+
+			@media (max-width: 1000px){
+				width: 22px;
+				height: 22px;
+			}
+		}
+
+		@media (max-width: 1000px){
 			right: unset;
-			left: calc(50% - calc(45px / 2));
-			height: 45px;
+			left: calc(50% - calc(38px / 2));
+			width: 38px;
+			height: 38px;
 		}
 	}
 
@@ -53,7 +71,9 @@ function Columns({ columns }) {
 		<Wrapper>
 			{columns.map(column => (
 				<Column key={column.name}>
-					<FontAwesomeIcon icon={column.icon} size="2x" />
+					<div className="icon-wrapper">
+						<FontAwesomeIcon icon={column.icon} size="2x" />
+					</div>
 					<h5 className="uk-margin-small" dangerouslySetInnerHTML={{__html: column.title}}></h5>
 					<p className="uk-margin-small-top">{column.description}</p>
 				</Column>
