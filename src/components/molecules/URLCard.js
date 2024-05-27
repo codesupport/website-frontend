@@ -17,7 +17,7 @@ const LinkCard = styled("a")`
 	}
 `;
 
-function URLCard({ href, target, rel, title, description, children, tag, tagClass }) {
+function URLCard({ href, target, rel, title, description, children, tag, tagClass, author, date }) {
 	return (
 		<LinkCard
 			href={href}
@@ -30,6 +30,8 @@ function URLCard({ href, target, rel, title, description, children, tag, tagClas
 				children={children}
 				tag={tag}
 				tagClass={tagClass}
+				author={author}
+				date={date}
 			/>
 		</LinkCard>
 	);

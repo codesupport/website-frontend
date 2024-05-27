@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import URLCard from "./URLCard";
 
 const ArticleCardWrapper = styled.div`
 	display: flex;
@@ -19,33 +20,23 @@ const ArticleCardWrapper = styled.div`
 	}
 `;
 
-const ReadMore = styled.a`
-  	padding: calc(var(--spacer) / 2) var(--spacer);
-  	color: var(--foreground);
-	background-color: var(--cs-blue);
-	text-decoration: none;
-	margin-top: auto;
-	transition: opacity 150ms;
-  
-  	&:hover {
-		opacity: 0.8;
-	}
-
-	@media (max-width: 1200px){
-		text-align: center;
-	}
+const ReadMore = styled.p`
+  	color: var(--cs-blue);
+	font-weight: bold;
 `;
 
 function ArticleCard({ article }) {
 	return (
-		<ArticleCardWrapper>
-			<div className="content">
-				<h2 className="fs-3">{article.title}</h2>
-				{(article.author && article.date) && <span className="meta">By {article.author} on {article.date}</span>}
-				{article.description && <p>{article.description}</p>}
-			</div>
+		<URLCard
+			key={article.slug}
+			href={`/article/${article.slug}`}
+			title={article.title}
+			author={article.author}
+			description={article.description}
+			date={article.date}
+		>
 			<ReadMore href={`/article/${article.slug}`}>Read Article</ReadMore>
-		</ArticleCardWrapper>
+		</URLCard>
 	);
 }
 
