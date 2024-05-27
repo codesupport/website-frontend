@@ -8,7 +8,11 @@ const Wrapper = styled("section")`
 
 	.why-join-wrapper{
 		text-align: center;
-		padding:5rem 0;
+		padding:calc(var(--spacer) * 2) 0 calc(var(--spacer) * 6) 0;
+
+		h2{
+			margin-top: 0;
+		}
 	}
 `;
 
