@@ -88,9 +88,9 @@ const AnimatedChatBubbles = styled("div")`
 	justify-content: flex-end;
 	position:relative;
 	overflow: hidden;
+	height: calc(80px * 3.85);
 
 	@media (max-width: 1000px){
-		height: 400px;
 		margin-left: unset;
 		width: 100%;
 	}
