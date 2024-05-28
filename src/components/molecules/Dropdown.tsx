@@ -13,7 +13,7 @@ export type DropdownProps = PropsWithChildren<{
 	className?: string;
 	label?: string;
 	value: string;
-	onChangeHandler: ComponentPropsWithoutRef<typeof Drop>["onchange"];
+	onChangeHandler: ComponentPropsWithoutRef<typeof Drop>["onChange"];
 }>;
 
 function Dropdown({ name, className, label, value, onChangeHandler, children }: DropdownProps) {

@@ -1,14 +1,15 @@
 import {ComponentPropsWithoutRef, PropsWithChildren} from "react";
 import ReactMarkdown from "react-markdown";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { darcula } from "react-syntax-highlighter/dist/cjs/styles/prism";
+import darcula from "react-syntax-highlighter/dist/esm/styles/prism/darcula";
+import SyntaxHighlighter from "react-syntax-highlighter/dist/esm/prism";
+import {type Element, type Text} from "hast";
 
 export type CodeBlockProps = PropsWithChildren<{
 	language: ComponentPropsWithoutRef<typeof SyntaxHighlighter>["language"];
 	props?: Exclude<ComponentPropsWithoutRef<typeof SyntaxHighlighter>, "children" | "style" | "language">
 }>;
 
-function CodeBlock({ children, language, props }: CodeBlockProps) {
+function CodeBlock({children, language, props}: CodeBlockProps) {
 	if (!children) return null;
 
 	return (
@@ -16,8 +17,7 @@ function CodeBlock({ children, language, props }: CodeBlockProps) {
 			children={String(children).replace(/\n$/, "")}
 			style={darcula}
 			language={language}
-			{...props}
-		/>
+			{...props} />
 	);
 }
 
@@ -25,7 +25,7 @@ export interface MarkdownProps {
 	content: string
 }
 
-function Markdown({ content }: MarkdownProps) {
+function Markdown({content}: MarkdownProps) {
 	return (
 		<ReactMarkdown
 			className="markdown-content"
@@ -34,18 +34,31 @@ function Markdown({ content }: MarkdownProps) {
 				.replace(/\\t/g, "    ")
 				.replace(/\\"/g, "\"")
 			}
-			linkTarget="_blank"
 			components={{
-				code({ node, inline, className, children, ...props }) {
-					const match = /language-(\w+)/.exec(className || "");
+				pre({node, className, children, ...props}) {
+					const codeblocks = node?.children.filter((c): c is Element => c.type === "element" && c.tagName === "code") ?? [];
 
-					return !inline ? (
-						<CodeBlock
-							children={children}
-							language={match?.[1] ?? "text"}
-							{...props}
-						/>
-					) : (
+					return (
+						<>
+							{codeblocks.map((cb, i) => {
+								const match = /language-(\w+)/.exec(cb.properties.className?.toString() || "");
+
+								const x = cb.children
+									.filter((c): c is Text => c.type === "text")
+									.map(c => c.value);
+
+								return <CodeBlock
+									key={i}
+									children={x}
+									language={match?.[1] ?? "text"}
+									{...props}
+								/>;
+							})}
+						</>
+					);
+				},
+				code({node, className, children, ...props}) {
+					return (
 						<code className={className} {...props}>
 							{children}
 						</code>

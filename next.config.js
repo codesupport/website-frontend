@@ -1,7 +1,10 @@
 /** @type {import('next').NextConfig} */
-export default {
+const config = {
 	reactStrictMode: true,
 	compiler: {
 		styledComponents: true
-	}
+	},
+	transpilePackages: ["react-syntax-highlighter"]
 };
+
+export default config;

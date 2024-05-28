@@ -138,7 +138,7 @@ class Resources extends Component<ResourcesProps> {
 	changeUrl(theCategoryFilter: string) {
 		const SHOW_ALL = "Show All";
 
-		this.props.router.push(
+		void this.props.router.push(
 			(theCategoryFilter !== SHOW_ALL) ? `/resources?category=${theCategoryFilter}` : "/resources",
 			undefined,
 			{ shallow: true }

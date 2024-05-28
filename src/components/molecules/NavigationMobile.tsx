@@ -125,8 +125,8 @@ function NavigationMobile({mobileNavigationIsOpen, setMobileNavigationIsOpen}: N
 					</LogoContainer>
 					<MobilePageLinks>
 						{config.navigationLinks.map(navLink => (
-							<Link key={navLink.href} href={navLink.href} passHref>
-								<a>{navLink.text}</a>
+							<Link key={navLink.href} href={navLink.href}>
+								{navLink.text}
 							</Link>
 						))}
 					</MobilePageLinks>

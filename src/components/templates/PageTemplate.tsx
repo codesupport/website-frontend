@@ -14,7 +14,7 @@ const DEFAULT_IMAGE = "https://codesupport.dev/logo.png";
 export type PageTemplateProps = PropsWithChildren<{
 	page: string;
 	meta?: {
-		schema?: unknown;
+		schema?: object;
 		description?: string;
 		image?: string;
 	};
@@ -39,8 +39,6 @@ function PageTemplate({ children, page, meta }: PageTemplateProps) {
 				<meta name="twitter:site" content="@codesupportdev" />
 				<meta name="twitter:title" content={`${page} - CodeSupport`} />
 				<meta name="twitter:description" content={meta?.description ?? DEFAULT_DESCRIPTION} />
-				<link rel="preconnect" href="https://fonts.googleapis.com" />
-				<link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
 				{meta?.schema && (
 					<script type="application/ld+json">
 						{JSON.stringify(meta.schema)}
