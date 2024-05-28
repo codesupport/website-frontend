@@ -14,5 +14,10 @@
     "HTML",
     "Projects",
     "Concepts"
+  ],
+  "navigationLinks":[
+    {"text": "Home", "href": "/"},
+    {"text": "Articles", "href": "/articles", "activeNavigationTabStubs": ["/articles", "/article"]},
+    {"text": "Resources", "href": "/resources", "activeNavigationTabStubs": ["/resources", "/resource"]}
   ]
 }

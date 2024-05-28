@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import NavigationHamburgerMenuButton from "./NavigationHamburgerMenuButton";
 import styled from "styled-components";
+import config from "../../config.json";
 
 const Nav = styled("nav")`
 	height: var(--navigation-height);
@@ -76,8 +77,7 @@ const PageLinks = styled("ul")`
 
 function Navigation({setMobileNavigationIsOpen}) {
 	const router = useRouter();
-
-	const activeTab = router.pathname.replace("/", "").split("/")[0];
+	const currentUrlPath = router.pathname;
 
 	return (
 		<Nav>
@@ -91,21 +91,13 @@ function Navigation({setMobileNavigationIsOpen}) {
 					/>
 				</Link>
 				<PageLinks>
-					<NavItem $active={activeTab === ""}>
-						<Link href="/" passHref>
-							<a>Home</a>
-						</Link>
-					</NavItem>
-					<NavItem $active={["articles", "article"].includes(activeTab)}>
-						<Link href="/articles" passhref>
-							<a>Articles</a>
-						</Link>
-					</NavItem>
-					<NavItem $active={["resources", "resource"].includes(activeTab)}>
-						<Link href="/resources" passHref>
-							<a>Resources</a>
-						</Link>
-					</NavItem>
+					{config.navigationLinks.map(navLink => (
+						<NavItem key={navLink.href} $active={navLink.href === "/" ? currentUrlPath === "/" : navLink.activeNavigationTabStubs?.includes(currentUrlPath)}>
+							<Link href={navLink.href} passHref>
+								<a>{navLink.text}</a>
+							</Link>
+						</NavItem>
+					))}
 				</PageLinks>
 				<div className="hamburger-menu-container">
 					<NavigationHamburgerMenuButton setMobileNavigationIsOpen={setMobileNavigationIsOpen}></NavigationHamburgerMenuButton>

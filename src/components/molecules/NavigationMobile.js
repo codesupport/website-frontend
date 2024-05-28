@@ -1,6 +1,7 @@
 import Link from "next/link";
-import React, { Component } from "react";
+import React from "react";
 import styled, { keyframes } from "styled-components";
+import config from "../../config.json";
 
 const MobileBackdrop = styled.div`
 	position:fixed;
@@ -120,15 +121,11 @@ function NavigationMobile({mobileNavigationIsOpen, setMobileNavigationIsOpen}) {
 						/>
 					</LogoContainer>
 					<MobilePageLinks>
-						<Link href="/" passHref>
-							<a>Home</a>
-						</Link>
-						<Link href="/articles" passhref>
-							<a>Articles</a>
-						</Link>
-						<Link href="/resources" passHref>
-							<a>Resources</a>
-						</Link>
+						{config.navigationLinks.map(navLink => (
+							<Link key={navLink.href} href={navLink.href} passHref>
+								<a>{navLink.text}</a>
+							</Link>
+						))}
 					</MobilePageLinks>
 				</div>
 			</MobileNavigation>
