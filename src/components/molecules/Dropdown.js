@@ -1,21 +1,21 @@
 import React from "react";
 import styled from "styled-components";
+import { Label } from "../atoms/Label";
 
 const Drop = styled("select")`
 	&&&& {
-		width: 100%;
-		height: 25px;
+		max-width: 100%;
     }
 `;
 
 function Dropdown({ name, className, label, value, onChangeHandler, children }) {
 	return (
-		<label>
-			{label}
+		<Label>
+			<span>{label}</span>
 			<Drop name={name} className={`${className } uk-select`} onChange={onChangeHandler} value={value}>
 				{children}
 			</Drop>
-		</label>
+		</Label>
 	);
 }
 

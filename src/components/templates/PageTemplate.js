@@ -3,6 +3,7 @@ import Head from "next/head";
 import Navigation from "../molecules/Navigation";
 import Footer from "../molecules/Footer";
 import {useRouter} from "next/router";
+import NavigationMobile from "../molecules/NavigationMobile";
 
 const BASE_URL = "https://codesupport.dev";
 const SUMMARY_CARD = "summary";
@@ -14,6 +15,7 @@ function PageTemplate({ children, page, meta }) {
 	const router = useRouter();
 	const path = router.asPath === "/" ? "" : router.asPath;
 	const canonical = `${BASE_URL}${path}`.split("?")[0];
+	const [mobileNavigationIsOpen, setMobileNavigationIsOpen] = React.useState(false);
 
 	return (
 		<>
@@ -28,13 +30,16 @@ function PageTemplate({ children, page, meta }) {
 				<meta name="twitter:site" content="@codesupportdev" />
 				<meta name="twitter:title" content={`${page} - CodeSupport`} />
 				<meta name="twitter:description" content={meta?.description ?? DEFAULT_DESCRIPTION} />
+				<link rel="preconnect" href="https://fonts.googleapis.com" />
+				<link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
 				{meta?.schema && (
 					<script type="application/ld+json">
 						{JSON.stringify(meta.schema)}
 					</script>
 				)}
 			</Head>
-			<Navigation />
+			<Navigation setMobileNavigationIsOpen={setMobileNavigationIsOpen} />
+			<NavigationMobile mobileNavigationIsOpen={mobileNavigationIsOpen} setMobileNavigationIsOpen={setMobileNavigationIsOpen} />
 			{children}
 			<Footer />
 		</>

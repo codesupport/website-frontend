@@ -15,8 +15,10 @@ class CustomDocument extends Document {
 
 	render() {
 		return (
-			<Html>
+			<Html lang="en">
 				<Head>
+					<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"></link>
+					<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"></link>
 					{this.props.styleTags}
 				</Head>
 				<body>

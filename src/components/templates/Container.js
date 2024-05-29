@@ -1,12 +1,8 @@
 import styled from "styled-components";
 
 const Container = styled("div")`
-    max-width: 1000px;
-    margin: ${({margin}) => margin || 25}px auto;
-    
-    @media only screen and (max-width: 1000px) {
-    	padding: 15px;
-    }
+    max-width: var(--container-max-width);
+    margin: 0 auto;
 `;
 
 export default Container;

@@ -5,8 +5,16 @@ import IntroHero from "../components/molecules/IntroHero";
 import Container from "../components/templates/Container";
 import CardGroup from "../components/molecules/CardGroup";
 import ArticleCard from "../components/molecules/ArticleCard";
+import styled from "styled-components";
 
 const MAX_ARTICLES_TO_FETCH = 10;
+
+const ArticlesSection = styled.div`
+	padding: calc(var(--spacer) * 5) 0;
+	h2{
+		margin: 0;
+	}
+`;
 
 function Articles({ articles }) {
 	return (
@@ -18,15 +26,14 @@ function Articles({ articles }) {
 			<main>
 				<Container>
 					{articles.length > 0 ? (
-						<section>
-							<h2>Latest Articles</h2>
+						<ArticlesSection>
 							<CardGroup>
-								{articles && articles
-									.sort((a, b) => new Date(a.created).getTime() < new Date(b.created).getTime())
-									.map(article => <ArticleCard key={article.slug} article={article} />)
-								}
+								{articles && (
+									articles.sort((a, b) => (new Date(a.date).getTime() < new Date(b.date).getTime() ? 1 : -1)) &&
+									articles.map(article => <ArticleCard key={article.slug} article={article} />)
+								)}
 							</CardGroup>
-						</section>
+						</ArticlesSection>
 					) : (
 						<p>
 							<strong>Sorry, there are no articles available. </strong>

@@ -2,49 +2,54 @@ import React from "react";
 import styled from "styled-components";
 
 const Article = styled("article")`
+	display: flex;
+	flex-direction: column;
 	height: 100%;
-	padding: 10px;
-	background-color: var(--foreground);
-	border-radius: 5px;
-	border: 1px solid var(--border);
 
-	&:hover {
-		box-shadow: 0 5px 5px rgb(0 0 0 / 15%);
-	}
+	.content{
+		display: flex;
+		flex-direction: column;
+		padding: var(--spacer);
+		height: 100%;
+		overflow: hidden;
+		color: var(--body-text-color);
 
-	h3 {
-		margin-bottom: 5px;
-	}
+		h3{
+			margin: 0;
+		}
 
-	p {
-		margin: 5px 0;
+		.meta{
+			color: var(--body-text-color);
+			font-size: calc(var(--body-font-size) / 1.25);
+			font-style: italic;
+		}
+
+		.read-more-button{
+			display: flex;
+			align-items: flex-end;
+			flex-grow:1;
+			margin-bottom: 0;
+		}
 	}
 `;
 
-const Layout = styled("div")`
-	display: grid;
-	grid-template-columns: 3fr auto;
-	grid-column-gap: 5px;
-
-	align-items: center;
+const CardBadge = styled.div`
+  	color: var(--foreground);
+	background-color: var(--text);
+	width: 100%;
+	padding: calc(var(--spacer) / 2) var(--spacer);
 `;
 
-const CardBadge = styled("span")`
-	color: var(--foreground);
-	padding: 2px 5px;
-	font-size: 10px;
-	border-radius: 5px;
-`;
-
-function Card({ title, description, children, tag, tagClass }) {
+function Card({ title, description, children, tag, tagClass, author, date }) {
 	return (
 		<Article>
-			<Layout>
+			{tag && <CardBadge className={tagClass}>{tag}</CardBadge>}
+			<div className="content">
 				{title && <h3>{title}</h3>}
-				{tag && <CardBadge className={tagClass}>{tag}</CardBadge>}
-			</Layout>
-			{description && <p>{description}</p>}
-			{children}
+				{author && date && <span className="meta">By {author} on {date}</span>}
+				{description && <p>{description}</p>}
+				{children}
+			</div>
 		</Article>
 	);
 }
