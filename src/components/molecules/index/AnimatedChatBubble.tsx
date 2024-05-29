@@ -1,5 +1,6 @@
-import React from "react";
 import styled, { keyframes, css } from "styled-components";
+
+type Modularity = "even" | "odd";
 
 const ChatMovementAnimation = keyframes`
 	from{
@@ -24,7 +25,7 @@ const ChatBubbleAppearAnimation = keyframes`
 `;
 
 // Container for a single chat
-const Chat = styled("div")`
+const Chat = styled("div")<{$modularity: Modularity}>`
 		position: relative;
 		width: calc(100% - 80px);
 		display: flex;
@@ -51,7 +52,7 @@ const Chat = styled("div")`
 `;
 
 // Circular avatar for a chat
-const Avatar = styled("div")`
+const Avatar = styled("div")<{$modularity: Modularity}>`
 	border-radius: 50%;
 	width: 50px;
 	height: 50px;
@@ -68,7 +69,7 @@ const Avatar = styled("div")`
 `;
 
 // Message bubble itself for a chat
-const Bubble = styled("div")`
+const Bubble = styled("div")<{$modularity: Modularity}>`
 	flex-grow: 1;
 	height: 50px;
 	border-radius: 0.3rem;
@@ -117,7 +118,11 @@ const Bubble = styled("div")`
 	}
 `;
 
-function AnimatedChatBubble({modularity}) {
+export type AnimatedChatBubbleProps = {
+	modularity: Modularity;
+}
+
+function AnimatedChatBubble({modularity}: AnimatedChatBubbleProps) {
 	return (
 		<Chat $modularity={modularity}>
 			<Avatar $modularity={modularity}></Avatar>

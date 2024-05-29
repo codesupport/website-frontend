@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export default styled.article`
+export default styled("article")`
 	max-width: var(--article-max-width);
 	margin: var(--spacer) auto;
 	padding: calc(var(--spacer) * 2.5);

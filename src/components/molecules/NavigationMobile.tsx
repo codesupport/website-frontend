@@ -1,9 +1,8 @@
 import Link from "next/link";
-import React from "react";
 import styled, { keyframes } from "styled-components";
 import config from "../../config.json";
 
-const MobileBackdrop = styled.div`
+const MobileBackdrop = styled("div")`
 	position:fixed;
 	top:0;
 	left:0;
@@ -28,7 +27,7 @@ const MobileNavigationOpenAnimation = keyframes`
 	}
 `;
 
-const MobileNavigation = styled.div`
+const MobileNavigation = styled("div")`
 	width:80%;
 	min-width:300px;
 	max-width: 300px;
@@ -54,7 +53,7 @@ const MobileNavigation = styled.div`
 	}
 `;
 
-const MobilePageLinks = styled.ul`
+const MobilePageLinks = styled("ul")`
 	list-style: none;
 	margin: 0;
 	padding: 0;
@@ -72,7 +71,7 @@ const MobilePageLinks = styled.ul`
 	}
 `;
 
-const CloseMobileNavButton = styled.button`
+const CloseMobileNavButton = styled("button")`
 	appearance: none;
 	color: var(--text-light);
 	border: none;
@@ -88,22 +87,27 @@ const CloseMobileNavButton = styled.button`
 	}
 `;
 
-const LogoContainer = styled.div`
+const LogoContainer = styled("div")`
 	padding: var(--spacer) 0;
 	text-align: center;
 	border-bottom: 1px solid hsl(0 0% 70%);
 	margin-bottom: var(--spacer);
 `;
 
-const Logo = styled.img`
+const Logo = styled("img")`
 	max-width: 100%;
 	height: 75px;
 `;
 
-function NavigationMobile({mobileNavigationIsOpen, setMobileNavigationIsOpen}) {
+export type NavigationMobileProps = {
+	mobileNavigationIsOpen: boolean;
+	setMobileNavigationIsOpen: (isOpen: boolean) => void;
+}
+
+function NavigationMobile({mobileNavigationIsOpen, setMobileNavigationIsOpen}: NavigationMobileProps) {
 	return (
 		<>
-			<MobileBackdrop className={mobileNavigationIsOpen ? "open" : ""} onClick={() => setMobileNavigationIsOpen(false)}></MobileBackdrop>
+			<MobileBackdrop className={mobileNavigationIsOpen ? "open" : ""} onClick={() => setMobileNavigationIsOpen(false)} />
 			<MobileNavigation className={mobileNavigationIsOpen ? "open" : ""}>
 				<div className="contents">
 					<CloseMobileNavButton type="button" onClick={() => setMobileNavigationIsOpen(false)}>
@@ -114,7 +118,6 @@ function NavigationMobile({mobileNavigationIsOpen, setMobileNavigationIsOpen}) {
 					</CloseMobileNavButton>
 					<LogoContainer>
 						<Logo
-							className="uk-navbar-item uk-logo"
 							alt="CodeSupport Logo"
 							src="/logo.png"
 							draggable="false"

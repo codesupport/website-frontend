@@ -17,7 +17,7 @@ const openSourceProjects = [
 	}
 ];
 
-const OpenSourceProjectsWrapper = styled.section`
+const OpenSourceProjectsWrapper = styled("section")`
 	padding-bottom: calc(var(--spacer) + calc(var(--spacer-increment) * 10));
 	.header-wrapper{
 		text-align: center;
@@ -45,8 +45,7 @@ function OpenSourceProjects() {
 						tag={project.language}
 						tagClass={`lang-${project.language.toLowerCase()}`}
 						description={project.description}
-					>
-					</URLCard>
+					/>
 				)}
 			</CardGroup>
 		</OpenSourceProjectsWrapper>

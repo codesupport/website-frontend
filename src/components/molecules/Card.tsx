@@ -33,7 +33,7 @@ const Article = styled("article")`
 	}
 `;
 
-const CardBadge = styled.div`
+const CardBadge = styled("div")`
   	color: var(--foreground);
 	background-color: var(--text);
 	width: 100%;
@@ -45,8 +45,8 @@ export type CardProps = PropsWithChildren<{
 	description?: string;
 	tag?: string;
 	tagClass?: string;
-	author: string;
-	date: string;
+	author?: string;
+	date?: string;
 }>;
 
 function Card({ title, description, children, tag, tagClass, author, date }: CardProps) {

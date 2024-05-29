@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import Button from "../atoms/Button";
 import Container from "../templates/Container";
@@ -100,8 +100,13 @@ const AnimatedChatBubbles = styled("div")`
 	}
 `;
 
-function HomeHero({title, description}) {
-	const chatBubblesContainerRef = useRef();
+export type HomeHeroProps = {
+	title: string;
+	description: string;
+}
+
+function HomeHero({title, description}: HomeHeroProps) {
+	const chatBubblesContainerRef = useRef<HTMLDivElement>(null);
 
 	// Begin the state with a single chat bubble and counter for modularity (even/odd)
 	const [chatBubbles, setChatBubbles] = useState([<AnimatedChatBubble key={0} modularity="even"></AnimatedChatBubble>]);

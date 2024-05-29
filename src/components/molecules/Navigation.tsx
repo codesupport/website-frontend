@@ -24,17 +24,17 @@ const NavContent = styled("div")`
     display: flex;
     list-style: none;
     color: var(--text);
-	margin: 0;
+    margin: 0;
   }
 
   .hamburger-menu-container{
-	width:75px;
+    width:75px;
   }
 `;
 
-const NavItem = styled("li")`
+const NavItem = styled("li")<{$active: boolean | undefined}>`
 
-	${({ $active }: {$active: boolean}) => $active && `
+	${({ $active }) => $active && `
 		font-weight: 700;
 		border-bottom: 2px solid var(--cs-blue);
 	`}
@@ -74,7 +74,11 @@ const PageLinks = styled("ul")`
 	}
 `;
 
-function Navigation({setMobileNavigationIsOpen}) {
+export type NavigationProps = {
+	setMobileNavigationIsOpen: (isOpen: boolean) => void;
+};
+
+function Navigation({setMobileNavigationIsOpen}: NavigationProps) {
 	const router = useRouter();
 	const currentUrlPath = router.pathname;
 

@@ -1,4 +1,4 @@
-import {PropsWithChildren} from "react";
+import {PropsWithChildren, useState} from "react";
 import Head from "next/head";
 import Navigation from "../molecules/Navigation";
 import Footer from "../molecules/Footer";
@@ -24,7 +24,7 @@ function PageTemplate({ children, page, meta }: PageTemplateProps) {
 	const router = useRouter();
 	const path = router.asPath === "/" ? "" : router.asPath;
 	const canonical = `${BASE_URL}${path}`.split("?")[0];
-	const [mobileNavigationIsOpen, setMobileNavigationIsOpen] = React.useState(false);
+	const [mobileNavigationIsOpen, setMobileNavigationIsOpen] = useState(false);
 
 	return (
 		<>

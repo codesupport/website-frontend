@@ -1,6 +1,4 @@
-import React from "react";
 import styled from "styled-components";
-import NavigationMobile, { openMobileNavigation } from "./NavigationMobile";
 
 const NavHamburgerMenuButton = styled("button")`
 	appearance: none;
@@ -27,7 +25,11 @@ const NavHamburgerMenuButton = styled("button")`
 	}
 `;
 
-function NavigationHamburgerMenuButton({setMobileNavigationIsOpen}) {
+export type NavigationHamburgerMenuButtonProps = {
+	setMobileNavigationIsOpen: (isOpen: boolean) => void;
+};
+
+function NavigationHamburgerMenuButton({setMobileNavigationIsOpen}: NavigationHamburgerMenuButtonProps) {
 	return (
 		<NavHamburgerMenuButton type="button" onClick={() => setMobileNavigationIsOpen(true)}>
 			<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="bi bi-list" viewBox="0 0 16 16">

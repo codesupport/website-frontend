@@ -29,7 +29,7 @@ const ResourcesPageContentContainer = styled.div`
 	padding: calc(var(--spacer) * 2) 0;
 `;
 
-const LearnMore = styled.p`
+const LearnMore = styled("p")`
 	color: var(--cs-blue);
 	font-weight: 700;
 `;

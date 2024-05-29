@@ -37,7 +37,6 @@ function ShareButtons({ links }: ShareButtonsProps) {
 					key={link.title}
 					target="_blank"
 					link={link.url}
-					display="text"
 				>
 					<FontAwesomeIcon icon={link.icon} /> Share on {link.title}
 				</Button>

@@ -1,32 +1,48 @@
+import styled from "styled-components";
 import {ComponentPropsWithoutRef, PropsWithChildren} from "react";
 
-type BaseButtonProps = {
-	display?: "default" | "primary" | "secondary" | "danger" | "text" | "link";
-};
+const style = `
+	margin: 0;
+	padding: 13px 30px;
+	border: 0;
+	background-color: var(--cs-blue);
+	color: var(--foreground);
+	text-decoration: none;
+	text-transform: uppercase;
+    font-size: 13px;
+	display: inline-block;
+	
+	:hover {
+		background-color: var(--text);
+	}
+`;
+
+const AnchorButton = styled("a")`${style}`;
+const RealButton = styled("button")`${style}`;
 
 type ButtonLinkProps = {
 	link: string;
 	target: ComponentPropsWithoutRef<"a">["target"];
 	type?: never;
-} & BaseButtonProps;
+};
 
 type ButtonButtonProps = {
 	link?: never;
 	target?: never;
 	type: ComponentPropsWithoutRef<"button">["type"];
-} & BaseButtonProps
+};
 
 export type ButtonProps = PropsWithChildren<ButtonLinkProps | ButtonButtonProps>;
 
-function Button({ children, type, link, target, display } : ButtonProps) {
+function Button({ children, type, link, target }: ButtonProps) {
 	return link ?
-		<a className={`uk-button uk-button-${display ?? "secondary"}`} href={link} target={target}>
+		<AnchorButton href={link} target={target}>
 			{children}
-		</a>
+		</AnchorButton>
 		:
-		<button type={type} className={`uk-button uk-button-${display ?? "secondary"}`}>
+		<RealButton type={type}>
 			{children}
-		</button>
+		</RealButton>
 	;
 }
 

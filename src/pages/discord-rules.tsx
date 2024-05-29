@@ -18,7 +18,7 @@ function DiscordRules() {
 	return (
 		<PageTemplate page="Discord Rules">
 			<section>
-				<Container margin={100}>
+				<Container>
 					<h2>
 						CodeSupport Discord Rules
 					</h2>

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import URLCard from "./URLCard";
 
-const ReadMore = styled.p`
+const ReadMore = styled("p")`
   	color: var(--cs-blue);
 	font-weight: bold;
 `;
@@ -12,7 +12,7 @@ export type Article = {
 	title: string;
 	description: string;
 	content: string;
-	date: Date;
+	date: string;
 	created: Date;
 	modified: Date;
 	slug: string;
@@ -32,7 +32,7 @@ function ArticleCard({ article }: ArticleCardProps) {
 			description={article.description}
 			date={article.date}
 		>
-			<ReadMore className="read-more-button" href={`/article/${article.slug}`}>Read Article</ReadMore>
+			<ReadMore className="read-more-button">Read Article</ReadMore>
 		</URLCard>
 	);
 }
