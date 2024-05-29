@@ -15,7 +15,7 @@ const ArticlesSection = styled.section`
 	}
 `;
 
-type ArticlesProps = {
+interface ArticlesProps {
 	articles: Article[];
 }
 

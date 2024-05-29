@@ -99,7 +99,7 @@ const Logo = styled("img")`
 	height: 75px;
 `;
 
-export type NavigationMobileProps = {
+export interface NavigationMobileProps {
 	mobileNavigationIsOpen: boolean;
 	setMobileNavigationIsOpen: (isOpen: boolean) => void;
 }

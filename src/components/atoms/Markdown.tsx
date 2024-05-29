@@ -21,7 +21,9 @@ function CodeBlock({ children, language, props }: CodeBlockProps) {
 	);
 }
 
-export type MarkdownProps = {content: string};
+export interface MarkdownProps {
+	content: string
+}
 
 function Markdown({ content }: MarkdownProps) {
 	return (

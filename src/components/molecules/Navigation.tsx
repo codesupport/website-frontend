@@ -74,9 +74,9 @@ const PageLinks = styled("ul")`
 	}
 `;
 
-export type NavigationProps = {
+export interface NavigationProps {
 	setMobileNavigationIsOpen: (isOpen: boolean) => void;
-};
+}
 
 function Navigation({setMobileNavigationIsOpen}: NavigationProps) {
 	const router = useRouter();

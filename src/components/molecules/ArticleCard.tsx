@@ -6,7 +6,7 @@ const ReadMore = styled("p")`
 	font-weight: bold;
 `;
 
-export type Article = {
+export interface Article {
 	id: string;
 	author: string;
 	title: string;
@@ -16,9 +16,9 @@ export type Article = {
 	created: Date;
 	modified: Date;
 	slug: string;
-};
+}
 
-export type ArticleCardProps = {
+export interface ArticleCardProps {
 	article: Article;
 }
 

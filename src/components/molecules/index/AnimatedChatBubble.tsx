@@ -118,7 +118,7 @@ const Bubble = styled("div")<{$modularity: Modularity}>`
 	}
 `;
 
-export type AnimatedChatBubbleProps = {
+export interface AnimatedChatBubbleProps {
 	modularity: Modularity;
 }
 

@@ -8,7 +8,7 @@ const Search = styled("input")`
 	}
 `;
 
-export type SearchBarProps = {
+export interface SearchBarProps {
 	name: string;
 	className?: string;
 	label: string;

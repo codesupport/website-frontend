@@ -6,7 +6,7 @@ const Img = styled("img")`
 	border-radius: 3px;
 `;
 
-export type ImageProps = {
+export interface ImageProps {
 	src: string;
 	alt: string;
 }

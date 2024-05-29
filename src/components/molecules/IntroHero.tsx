@@ -32,10 +32,10 @@ const Hero = styled("header")`
 	}
 `;
 
-export type IntroHeroProps = {
+export interface IntroHeroProps {
 	title: string;
 	description?: string;
-};
+}
 
 function IntroHero({ title, description }: IntroHeroProps) {
 	return (

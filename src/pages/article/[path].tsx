@@ -19,7 +19,7 @@ const ArticleMeta = styled("p")`
 	margin-top: calc(var(--spacer) / 4);
 `;
 
-export type ArticlePreviewerProps = {
+export interface ArticlePreviewerProps {
 	data: ArticleType;
 }
 

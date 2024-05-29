@@ -100,7 +100,7 @@ const AnimatedChatBubbles = styled("div")`
 	}
 `;
 
-export type HomeHeroProps = {
+export interface HomeHeroProps {
 	title: string;
 	description: string;
 }

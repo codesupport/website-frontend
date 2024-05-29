@@ -17,7 +17,9 @@ const LinkCard = styled("a")`
 	}
 `;
 
-export type URLCardProps = ComponentPropsWithoutRef<typeof LinkCard> & ComponentPropsWithoutRef<typeof Card>;
+export interface URLCardProps extends
+	ComponentPropsWithoutRef<typeof LinkCard>,
+	ComponentPropsWithoutRef<typeof Card> {}
 
 function URLCard({ href, target, rel, title, description, children, tag, tagClass, author, date }: URLCardProps) {
 	return (

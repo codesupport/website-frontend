@@ -34,24 +34,24 @@ const LearnMore = styled("p")`
 	font-weight: 700;
 `;
 
-type ResourcesProps = {
+interface ResourcesProps {
 	resources: Resource[];
 	router: NextRouter;
-};
+}
 
-type FilterEvent = {
+interface FilterEvent {
 	target: {
 		value: string;
 		name: string;
 	}
 }
 
-type ResourcesAndFilters = {
+interface ResourcesAndFilters {
 	resources: Resource[];
 	category: string;
 	price: string;
 	search: string;
-};
+}
 
 const { categories } = config;
 

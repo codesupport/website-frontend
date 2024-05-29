@@ -1,7 +1,7 @@
 import axios from "axios";
 import config from "../config.json";
 
-export type Resource = {
+export interface Resource {
 	name: string;
 	description: string;
 	url: string;
@@ -10,7 +10,7 @@ export type Resource = {
 	category: string;
 	key: string;
 	affiliate_link?: string;
-};
+}
 
 const { resourceAPI, categories } = config;
 

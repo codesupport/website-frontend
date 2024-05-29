@@ -20,17 +20,17 @@ const style = `
 const AnchorButton = styled("a")`${style}`;
 const RealButton = styled("button")`${style}`;
 
-type ButtonLinkProps = {
+interface ButtonLinkProps {
 	link: string;
 	target: ComponentPropsWithoutRef<"a">["target"];
 	type?: never;
-};
+}
 
-type ButtonButtonProps = {
+interface ButtonButtonProps {
 	link?: never;
 	target?: never;
 	type: ComponentPropsWithoutRef<"button">["type"];
-};
+}
 
 export type ButtonProps = PropsWithChildren<ButtonLinkProps | ButtonButtonProps>;
 

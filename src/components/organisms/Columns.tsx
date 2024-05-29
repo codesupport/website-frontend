@@ -66,16 +66,16 @@ const Column = styled("article")`
 	}
 `;
 
-type SingleColumn = {
+interface SingleColumn {
 	name: string;
 	icon: IconProp;
 	title: string;
 	description: string;
-};
+}
 
-export type ColumnsProps = {
+export interface ColumnsProps {
 	columns: SingleColumn[]
-};
+}
 
 function Columns({ columns }: ColumnsProps) {
 	return (

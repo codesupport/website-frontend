@@ -19,13 +19,13 @@ const Wrapper = styled("div")`
 	}
 `;
 
-type Link = {
+interface Link {
 	title: string;
 	url: string;
 	icon: IconProp;
 }
 
-export type ShareButtonsProps = {
+export interface ShareButtonsProps {
 	links: Link[];
 }
 

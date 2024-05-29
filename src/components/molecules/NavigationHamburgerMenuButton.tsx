@@ -25,9 +25,9 @@ const NavHamburgerMenuButton = styled("button")`
 	}
 `;
 
-export type NavigationHamburgerMenuButtonProps = {
+export interface NavigationHamburgerMenuButtonProps {
 	setMobileNavigationIsOpen: (isOpen: boolean) => void;
-};
+}
 
 function NavigationHamburgerMenuButton({setMobileNavigationIsOpen}: NavigationHamburgerMenuButtonProps) {
 	return (
