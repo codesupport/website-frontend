@@ -1,6 +1,7 @@
 import React from "react";
 import URLCard from "../URLCard";
 import CardGroup from "../CardGroup";
+import styled from "styled-components";
 
 const openSourceProjects = [
 	{
@@ -17,15 +18,23 @@ const openSourceProjects = [
 	}
 ];
 
+const OpenSourceProjectsWrapper = styled.section`
+	padding-bottom: calc(var(--spacer) + calc(var(--spacer-increment) * 10));
+	.header-wrapper{
+		text-align: center;
+		padding: calc(var(--spacer) + calc(var(--spacer-increment) * 10)) 0;
+	}
+`;
+
 function OpenSourceProjects() {
 	return (
-		<section>
-			<h2 className="uk-text-center">
-                We Love Open Source
-			</h2>
-			<p className="uk-text-center">
-                At CodeSupport, we believe in building great projects together. Take a look at our open source projects below and start contributing!
-			</p>
+		<OpenSourceProjectsWrapper>
+			<div className="header-wrapper">
+				<h2>We Love Open Projects</h2>
+				<p>
+					At CodeSupport, we believe in building great projects together. Take a look at our open source projects below and start contributing!
+				</p>
+			</div>
 			<CardGroup>
 				{openSourceProjects.map(project =>
 					<URLCard
@@ -41,7 +50,7 @@ function OpenSourceProjects() {
 					</URLCard>
 				)}
 			</CardGroup>
-		</section>
+		</OpenSourceProjectsWrapper>
 	);
 }
 

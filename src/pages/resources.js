@@ -14,16 +14,22 @@ import { fetchResources } from "../lib/fetchResources";
 import { categories } from "../config.json";
 import getQueryParams from "../helpers/getQueryParams";
 
-const ResourceFilters = styled("div")`
-  padding-top: 15px;
-  padding-bottom: 25px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-column-gap: 15px;
-  grid-row-gap: 15px;
+const ResourceFilters = styled.div`
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: var(--spacer);
+	margin: var(--spacer) 0 calc(var(--spacer) * 2) 0;
+
+	@media (max-width: 1200px){
+		grid-template-columns: repeat(1, 1fr);
+	}
 `;
 
-const LearnMore = styled("p")`
+const ResourcesPageContentContainer = styled.div`
+	padding: calc(var(--spacer) * 2) 0;
+`;
+
+const LearnMore = styled.p`
 	color: var(--cs-blue);
 	font-weight: 700;
 `;
@@ -141,78 +147,80 @@ class Resources extends Component {
 					title="Resources"
 					description="A collection of programming resources curated by the CodeSupport community."
 				/>
-				<section id="filter-resources" role="search">
-					<Container>
-						<SearchBar
-							label="Search for a resource"
-							name="search"
-							onChangeHandler={this.filterResources}
-						/>
-						<ResourceFilters>
-							<Dropdown
-								name="category"
-								label="Filter by category"
-								onChangeHandler={this.filterResources}
-								value={this.state.filterCategory}
-							>
-								<option value="Show All" key="all">
-									Show All
-								</option>
-								{sortedCategories.map(category => (
-									<option value={category.toLowerCase()} key={category}>
-										{category}
-									</option>
-								))}
-							</Dropdown>
-							<Dropdown
-								name="price"
-								label="Filter by price"
-								onChangeHandler={this.filterResources}
-								value={this.state.filterPrice}
-							>
-								<option value="Show All" key="all">
-									Show All
-								</option>
-								<option value="true" key="true">
-									Free
-								</option>
-								<option value="false" key="false">
-									Paid
-								</option>
-							</Dropdown>
-						</ResourceFilters>
-					</Container>
-				</section>
 				<main>
-					<Container>
-						{!resources.length
-							? status
-							: (
-								<CardGroup width={3}>
-									{resources.map(resource => (
-										<URLCard
-											key={resource.key}
-											href={resource.url}
-											target="_blank"
-											rel="noopener noreferrer"
-											tag={resource.category}
-											tagClass={`lang-${resource.category.toLowerCase()}`}
-											title={
-												resource.affiliate_link
-													? `${resource.name}*`
-													: resource.name
-											}
-											description={resource.description}
-										>
-											<LearnMore>Learn More</LearnMore>
-										</URLCard>
-									))}
-								</CardGroup>
-							)}
-						<p>
-							<b>Disclaimer:</b> Resources with a <code>*</code> are affiliate links.
-						</p>
-					</Container>
+					<ResourcesPageContentContainer>
+						<section id="filter-resources" role="search">
+							<Container>
+								<SearchBar
+									label="Search for a resource"
+									name="search"
+									onChangeHandler={this.filterResources}
+								/>
+								<ResourceFilters>
+									<Dropdown
+										name="category"
+										label="Filter by category"
+										onChangeHandler={this.filterResources}
+										value={this.state.filterCategory}
+									>
+										<option value="Show All" key="all">
+											Show All
+										</option>
+										{sortedCategories.map(category => (
+											<option value={category.toLowerCase()} key={category}>
+												{category}
+											</option>
+										))}
+									</Dropdown>
+									<Dropdown
+										name="price"
+										label="Filter by price"
+										onChangeHandler={this.filterResources}
+										value={this.state.filterPrice}
+									>
+										<option value="Show All" key="all">
+											Show All
+										</option>
+										<option value="true" key="true">
+											Free
+										</option>
+										<option value="false" key="false">
+											Paid
+										</option>
+									</Dropdown>
+								</ResourceFilters>
+							</Container>
+						</section>
+						<Container>
+							{!resources.length
+								? status
+								: (
+									<CardGroup width={3}>
+										{resources.map(resource => (
+											<URLCard
+												key={resource.key}
+												href={resource.url}
+												target="_blank"
+												rel="noopener noreferrer"
+												tag={resource.category}
+												tagClass={`lang-${resource.category.toLowerCase()}`}
+												title={
+													resource.affiliate_link
+														? `${resource.name}*`
+														: resource.name
+												}
+												description={resource.description}
+											>
+												<LearnMore className="read-more-button">Learn More</LearnMore>
+											</URLCard>
+										))}
+									</CardGroup>
+								)}
+							<p>
+								<b>Disclaimer:</b> Resources with a <code>*</code> are affiliate links.
+							</p>
+						</Container>
+					</ResourcesPageContentContainer>
 				</main>
 			</PageTemplate>
 		);
