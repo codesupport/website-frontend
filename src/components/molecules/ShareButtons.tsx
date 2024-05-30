@@ -9,10 +9,6 @@ const Wrapper = styled("div")`
 	display: flex;
 	justify-content: space-evenly;
 	
-	svg {
-		width: 15px;
-	}
-	
 	a {
 		margin: 0 12.5px;
 		line-height: 15px;

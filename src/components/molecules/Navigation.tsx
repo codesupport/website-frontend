@@ -85,7 +85,7 @@ function Navigation({setMobileNavigationIsOpen}: NavigationProps) {
 	return (
 		<Nav>
 			<NavContent>
-				<Link href="/" passHref>
+				<Link href="/">
 					<Logo
 						className="uk-navbar-item uk-logo"
 						alt="CodeSupport Logo"
@@ -96,8 +96,8 @@ function Navigation({setMobileNavigationIsOpen}: NavigationProps) {
 				<PageLinks>
 					{config.navigationLinks.map(navLink => (
 						<NavItem key={navLink.href} $active={navLink.href === "/" ? currentUrlPath === "/" : navLink.activeNavigationTabStubs?.includes(currentUrlPath)}>
-							<Link href={navLink.href} passHref>
-								<a>{navLink.text}</a>
+							<Link href={navLink.href}>
+								{navLink.text}
 							</Link>
 						</NavItem>
 					))}

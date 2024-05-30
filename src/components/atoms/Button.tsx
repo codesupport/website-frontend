@@ -15,6 +15,10 @@ const style = `
 	:hover {
 		background-color: var(--text);
 	}
+	
+	> svg {
+	  width: 15px;
+	}
 `;
 
 const AnchorButton = styled("a")`${style}`;

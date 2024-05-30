@@ -3,6 +3,8 @@ import styled from "styled-components";
 import Button from "../atoms/Button";
 import Container from "../templates/Container";
 import AnimatedChatBubble from "./index/AnimatedChatBubble";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faDiscord} from "@fortawesome/free-brands-svg-icons";
 
 const Hero = styled("header")`
 	height: 55vh;
@@ -43,7 +45,7 @@ const Hero = styled("header")`
 		font-size: var(--fs-6);
   	}
 
-	svg{
+	> svg{
 		color: var(--foreground);
 		position: absolute;
 		bottom:-1px;
@@ -149,7 +151,8 @@ function HomeHero({title, description}: HomeHeroProps) {
 						{description}
 					</p>)}
 					<Button link="https://codesupport.dev/discord" target="_blank">
-						<i className="bi bi-discord"></i> Join The Discord
+						<FontAwesomeIcon icon={faDiscord} />{" "}
+						Join The Discord
 					</Button>
 				</HeadingTextSection>
 				<AnimatedChatBubbles ref={chatBubblesContainerRef}>

@@ -12,7 +12,7 @@ export interface SearchBarProps {
 	name: string;
 	className?: string;
 	label: string;
-	onChangeHandler: ComponentPropsWithoutRef<typeof Search>["onchange"];
+	onChangeHandler: ComponentPropsWithoutRef<typeof Search>["onChange"];
 }
 
 function SearchBar({ name, className, label, onChangeHandler }: SearchBarProps) {
