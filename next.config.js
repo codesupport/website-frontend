@@ -4,6 +4,7 @@ const config = {
 	compiler: {
 		styledComponents: true
 	},
+	output: 'export',
 	transpilePackages: ["react-syntax-highlighter"]
 };
 

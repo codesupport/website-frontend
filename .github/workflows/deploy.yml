@@ -11,7 +11,7 @@ jobs:
       - name: Build source code
         run: |
           npm i
-          npm run export
+          npm run build
       - name: Generates Sitemap
         run: |
           node .github/scripts/generate-sitemap.js
