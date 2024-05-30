@@ -29,7 +29,7 @@ function PageTemplate({ children, page, meta }: PageTemplateProps) {
 	return (
 		<>
 			<Head>
-				<title>{page} - CodeSupport</title>
+				<title>{`${page} - CodeSupport`}</title>
 				<link rel="canonical" href={canonical} />
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<meta name="theme-color" content="#1457B3" />
