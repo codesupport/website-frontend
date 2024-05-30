@@ -8,7 +8,6 @@
     "dev:debug": "NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
     "start": "next start",
-    "export": "next build && next export",
     "lint": "eslint src --ext .{ts,tsx,js}",
     "lint:fix": "eslint src --ext .{ts,tsx,js} --fix"
   },
