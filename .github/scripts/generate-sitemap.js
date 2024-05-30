@@ -1,4 +1,4 @@
-const sitemap = require("nextjs-sitemap-generator");
+import sitemap from "nextjs-sitemap-generator";
 
 sitemap({
 	baseUrl: "https://codesupport.dev",
