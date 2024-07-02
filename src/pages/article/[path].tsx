@@ -14,7 +14,7 @@ import {GetStaticPropsContext} from "next";
 
 const ArticleMeta = styled("p")`
 	color: var(--article-meta-text-color);
-	font-size: small;
+	font-size: calc(var(--body-font-size) * 0.85);
 	margin-bottom: calc(var(--spacer) * 2);
 	margin-top: calc(var(--spacer) / 4);
 `;

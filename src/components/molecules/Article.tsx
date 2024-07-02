@@ -29,7 +29,7 @@ export default styled("article")`
 	.markdown-content{
 		p{
 			color: var(--article-body-text-color);
-			font-weight: 300;
+			font-weight: var(--article-body-font-weight);
 		}
 
 		blockquote{
@@ -53,7 +53,7 @@ export default styled("article")`
 		ul, ol{
 			li{
 				color: var(--article-body-text-color);
-				font-weight: 300;
+				font-weight: var(--article-body-font-weight);
 			}
 		}
 	}
