@@ -42,6 +42,7 @@
         Font controls for individual articles
     */
     --article-body-font-size: 1rem;
+    --article-body-font-weight: 400;
     --article-meta-text-color: hsl(205, 15%, 60%);
     --article-body-text-color: hsl(206deg 10.69% 35.7%);
 
