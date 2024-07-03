@@ -35,6 +35,7 @@ function Markdown({content}: MarkdownProps) {
 				.replace(/\\"/g, "\"")
 			}
 			components={{
+				h1: 'h2',
 				pre({node, className, children, ...props}) {
 					const codeblocks = node?.children.filter((c): c is Element => c.type === "element" && c.tagName === "code") ?? [];
 
