@@ -18,7 +18,7 @@ java 7254 my.user
 
 This shows us that `java` is running for `my.user` on process ID `7254` (your `PID` and `USER` values will be different). We can then take this information and run kill `7254` (replacing `7254` with your process ID) to kill the Firestore Emulators. This means that you will then be able to start the Firestore Emulators on the same port as before.
 
-# TLDR
+## TLDR
 1. Run `lsof -i :2255`
 2. Find the `PID` of java
 3. Run `kill <the PID of java>`

@@ -8,7 +8,7 @@ While there are lot of hidden gotchas in C++, there are also many useful feature
 
 This post aims to explore a few of the ones I could remember off of the top of my head from looking at my game engine project, [Ona](https://github.com/Kayomn/Ona), and explore how and why they can be helpful in reducing code duplication, avoiding slowdowns, and producing code that needs to do less at run-time.
 
-# Beyond Pimpl
+## Beyond Pimpl
 
 In my experience, I have never found the very rigid examples of the "pimpl" design pattern useful. My issues with pimpl sit with how it adds a lot of unnecessary run-time overhead to excuse poor support for hiding implementation details. That withstanding, it is possible to get a lot more mileage out of this design pattern by ignoring the most common examples of its application.
 
@@ -72,7 +72,7 @@ No performance is lost here by using Pimpl over defining `Value` in the header, 
 
 The example of this version of Pimpl in action can be found [here](https://github.com/Kayomn/Ona/blob/2c6e39326a1f38b1472476b8dc1bc6a351fb1311/engine.hpp#L174) and [here](https://github.com/Kayomn/Ona/blob/2c6e39326a1f38b1472476b8dc1bc6a351fb1311/engine/script.cpp#L4).
 
-# Stateful Lambdas
+## Stateful Lambdas
 
 Lambdas are a very useful feature that was introduced in the C++11 standard revision. While the most popular use of lambdas is as arguments to other functions, they also have a lot of use as local functions.
 
@@ -178,7 +178,7 @@ Languages like C#, ECMAScript, and Python feature very similar concepts with nic
 
 The implementation of `eatToken`, as well as the full lexer and parser source code, can be found [here](https://github.com/Kayomn/Ona/blob/2c6e39326a1f38b1472476b8dc1bc6a351fb1311/engine/script.cpp#L157).
 
-# Small Buffer Optimization
+## Small Buffer Optimization
 
 New C++ users who are familiar with programming may be inclined to always reach for `new` whenever they need a buffer of memory that cannot be reasoned about at compile time. While C++ may resemble more managed languages like C# and Java, its dynamic memory model does anything but - because there is not one.
 
@@ -227,7 +227,7 @@ Further control over what these "limits" are can be given to the user of the lib
 
 The implementation of the above small-buffer optimized `String` struct can be found [here](https://github.com/Kayomn/Ona/blob/2c6e39326a1f38b1472476b8dc1bc6a351fb1311/common.hpp#L219).
 
-# Fixed Array Arguments
+## Fixed Array Arguments
 
 Sometimes you just want to be able to accept an array as an argument. I had this crop up when implementing a static array wrapper called `FixedArray`.
 
@@ -271,5 +271,5 @@ This allows code that wants to act like a regular array, act like an array with 
 
 The implementation and usage of `FixedArray` can be found [here](https://github.com/Kayomn/Ona/blob/2c6e39326a1f38b1472476b8dc1bc6a351fb1311/common.hpp#L771) and [here](https://github.com/Kayomn/Ona/blob/2c6e39326a1f38b1472476b8dc1bc6a351fb1311/engine/opengl.cpp#L9) respectively.
 
-# Conclusion
+## Conclusion
 There is a lot that can be done with C++. Some it is good, some of it is terrible, some of it is even worse than terrible. Despite this, I still find it to be the most versatile tool that exists for systems-level programming, and a lot of these features go a long way to demonstrate why that is.
