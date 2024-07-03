@@ -5,13 +5,19 @@ import {IconProp} from "@fortawesome/fontawesome-svg-core";
 
 const Wrapper = styled("div")`
 	max-width: 500px;
-	margin: 25px auto;
 	display: flex;
+	gap: calc(var(--spacer));
 	justify-content: space-evenly;
+	margin: calc(var(--spacer) * 1.5) auto;
+	padding: 0 calc(var(--spacer));
+	text-align: center;
 	
 	a {
-		margin: 0 12.5px;
 		line-height: 15px;
+	}
+
+	@media (max-width: 450px){
+		flex-direction: column;
 	}
 `;
 
