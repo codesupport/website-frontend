@@ -42,7 +42,7 @@ function WhyJoinCodeSupport() {
 			<div className="why-join-wrapper">
 				<h2>Why Join CodeSupport?</h2>
 				<p>
-					We asked our community what their favourite things about CodeSupport are, here's what they said:
+					We asked our community what their favourite things about CodeSupport are, here&apos;s what they said:
 				</p>
 			</div>
 			<Columns columns={reasons} />
