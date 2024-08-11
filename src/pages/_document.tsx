@@ -6,7 +6,7 @@ class CustomDocument extends Document<{styleTags: ReactNode[]}> {
 	static async getInitialProps({renderPage}: DocumentContext) {
 		const sheet = new ServerStyleSheet();
 		const page = await renderPage(App => props =>
-			sheet.collectStyles(<App {...props} />),
+			sheet.collectStyles(<App {...props} />)
 		);
 
 		const styleTags = sheet.getStyleElement();
