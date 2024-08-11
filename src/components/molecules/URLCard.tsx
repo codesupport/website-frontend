@@ -31,12 +31,13 @@ function URLCard({ href, target, rel, title, description, children, tag, tagClas
 			<Card
 				title={title}
 				description={description}
-				children={children}
 				tag={tag}
 				tagClass={tagClass}
 				author={author}
 				date={date}
-			/>
+			>
+				{children}
+			</Card>
 		</LinkCard>
 	);
 }

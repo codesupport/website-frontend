@@ -1,5 +1,5 @@
-import {Component} from "react";
-import {NextRouter, useRouter} from "next/router";
+import { Component } from "react";
+import { NextRouter, useRouter } from "next/router";
 import styled from "styled-components";
 
 import PageTemplate from "../components/templates/PageTemplate";
@@ -10,47 +10,47 @@ import SearchBar from "../components/molecules/SearchBar";
 import Container from "../components/templates/Container";
 import Dropdown from "../components/molecules/Dropdown";
 
-import {fetchResources, Resource} from "../lib/fetchResources";
+import { fetchResources, Resource } from "../lib/fetchResources";
 import config from "../config.json";
 import getQueryParams from "../helpers/getQueryParams";
 
 const ResourceFilters = styled.div`
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	gap: var(--spacer);
-	margin: var(--spacer) 0 calc(var(--spacer) * 2) 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacer);
+  margin: var(--spacer) 0 calc(var(--spacer) * 2) 0;
 
-	@media (max-width: 1200px){
-		grid-template-columns: repeat(1, 1fr);
-	}
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 `;
 
 const ResourcesPageContentContainer = styled.div`
-	padding: calc(var(--spacer) * 2) 0;
+  padding: calc(var(--spacer) * 2) 0;
 `;
 
 const LearnMore = styled("p")`
-	color: var(--cs-blue);
-	font-weight: 700;
+  color: var(--cs-blue);
+  font-weight: 700;
 `;
 
 interface ResourcesProps {
-	resources: Resource[];
-	router: NextRouter;
+  resources: Resource[];
+  router: NextRouter;
 }
 
 interface FilterEvent {
-	target: {
-		value: string;
-		name: string;
-	}
+  target: {
+    value: string;
+    name: string;
+  };
 }
 
 interface ResourcesAndFilters {
-	resources: Resource[];
-	category: string;
-	price: string;
-	search: string;
+  resources: Resource[];
+  category: string;
+  price: string;
+  search: string;
 }
 
 const { categories } = config;
@@ -72,7 +72,7 @@ class Resources extends Component<ResourcesProps> {
 			resourcesAndFilters.resources,
 			resourcesAndFilters.category,
 			resourcesAndFilters.price,
-			resourcesAndFilters.search,
+			resourcesAndFilters.search
 		);
 
 		this.changeUrl(resourcesAndFilters.category);
@@ -84,7 +84,7 @@ class Resources extends Component<ResourcesProps> {
 			filterSearch: resourcesAndFilters.search
 		});
 
-		const noMatchesFound = resourcesAndFilters.resources.length !== 0;
+		const noMatchesFound = resourcesAndFilters.resources.length === 0;
 
 		if (noMatchesFound) {
 			this.setState({ status: "No matches found..." });
@@ -111,25 +111,20 @@ class Resources extends Component<ResourcesProps> {
 		theResources: Resource[],
 		theCategoryFilter: string,
 		thePriceFilter: string,
-		theSearchFilter: string,
+		theSearchFilter: string
 	) => {
 		const SHOW_ALL = "Show All";
 		const BLANK = "";
 
 		return theResources.filter(resource => {
-			const isResource = theCategoryFilter === SHOW_ALL
-				? true
-				: resource.category.toLowerCase() === theCategoryFilter;
+			const isResource = theCategoryFilter === SHOW_ALL ? true : resource.category.toLowerCase() === theCategoryFilter;
 
-			const isPrice = thePriceFilter === SHOW_ALL
-				? true
-				: resource.free === JSON.parse(thePriceFilter);
+			const isPrice = thePriceFilter === SHOW_ALL ? true : resource.free === JSON.parse(thePriceFilter);
 
 			const name = resource.name.toLowerCase();
 			const filter = theSearchFilter.toLowerCase();
-			const isSearch = theSearchFilter === BLANK
-				? true
-				: name.includes(filter) || resource.tags.some(val => val.includes(filter));
+			const isSearch =
+        theSearchFilter === BLANK ? true : name.includes(filter) || resource.tags.some(val => val.includes(filter));
 
 			return isPrice && isResource && isSearch;
 		});
@@ -139,7 +134,7 @@ class Resources extends Component<ResourcesProps> {
 		const SHOW_ALL = "Show All";
 
 		void this.props.router.push(
-			(theCategoryFilter !== SHOW_ALL) ? `/resources?category=${theCategoryFilter}` : "/resources",
+			theCategoryFilter !== SHOW_ALL ? `/resources?category=${theCategoryFilter}` : "/resources",
 			undefined,
 			{ shallow: true }
 		);
@@ -179,11 +174,7 @@ class Resources extends Component<ResourcesProps> {
 					<ResourcesPageContentContainer>
 						<section id="filter-resources" role="search">
 							<Container>
-								<SearchBar
-									label="Search for a resource"
-									name="search"
-									onChangeHandler={this.filterResources}
-								/>
+								<SearchBar label="Search for a resource" name="search" onChangeHandler={this.filterResources} />
 								<ResourceFilters>
 									<Dropdown
 										name="category"
@@ -192,7 +183,7 @@ class Resources extends Component<ResourcesProps> {
 										value={this.state.filterCategory}
 									>
 										<option value="Show All" key="all">
-											Show All
+                      Show All
 										</option>
 										{sortedCategories.map(category => (
 											<option value={category.toLowerCase()} key={category}>
@@ -207,43 +198,39 @@ class Resources extends Component<ResourcesProps> {
 										value={this.state.filterPrice}
 									>
 										<option value="Show All" key="all">
-											Show All
+                      Show All
 										</option>
 										<option value="true" key="true">
-											Free
+                      Free
 										</option>
 										<option value="false" key="false">
-											Paid
+                      Paid
 										</option>
 									</Dropdown>
 								</ResourceFilters>
 							</Container>
 						</section>
 						<Container>
-							{!resources.length
-								? status
-								: (
-									<CardGroup width={3}>
-										{resources.map(resource => (
-											<URLCard
-												key={resource.key}
-												href={resource.url}
-												target="_blank"
-												rel="noopener noreferrer"
-												tag={resource.category}
-												tagClass={`lang-${resource.category.toLowerCase()}`}
-												title={
-													resource.affiliate_link
-														? `${resource.name}*`
-														: resource.name
-												}
-												description={resource.description}
-											>
-												<LearnMore className="read-more-button">Learn More</LearnMore>
-											</URLCard>
-										))}
-									</CardGroup>
-								)}
+							{!resources.length ? (
+								status
+							) : (
+								<CardGroup width={3}>
+									{resources.map(resource => (
+										<URLCard
+											key={resource.key}
+											href={resource.url}
+											target="_blank"
+											rel="noopener noreferrer"
+											tag={resource.category}
+											tagClass={`lang-${resource.category.toLowerCase()}`}
+											title={resource.affiliate_link ? `${resource.name}*` : resource.name}
+											description={resource.description}
+										>
+											<LearnMore className="read-more-button">Learn More</LearnMore>
+										</URLCard>
+									))}
+								</CardGroup>
+							)}
 							<p>
 								<b>Disclaimer:</b> Resources with a <code>*</code> are affiliate links.
 							</p>
@@ -257,11 +244,15 @@ class Resources extends Component<ResourcesProps> {
 
 type ResourcesHelperProps = Exclude<ResourcesProps, "router">;
 
-export default (props: ResourcesHelperProps) => {
+function ResourcesWithRouter(props: ResourcesHelperProps) {
 	const router = useRouter();
 
 	return <Resources {...props} router={router} />;
-};
+}
+
+ResourcesWithRouter.displayName = "ResourcesWithRouter";
+
+export default ResourcesWithRouter;
 
 export async function getStaticProps() {
 	const resources = await fetchResources();
