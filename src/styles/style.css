@@ -270,3 +270,62 @@ select{
         box-shadow: var(--input-focus-box-shadow);
     }
 }
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --cs-blue: hsla(215, 80%, 55%, 0.712);
+    
+        --background: hsl(0 0% 10% / 1); 
+        --foreground: hsl(0 0% 15% / 1); 
+        --text: #EAEAEA; 
+        --text-light: #A9A9A9;
+        --error: #FF6B6B; 
+    
+        --lang-typescript: hsl(204.92deg 67.51% 60%);
+        --lang-json: #D1D1D1; 
+        --lang-javascript: #F5E774;
+        --lang-java: #D58E54;
+        --lang-python: #8AB4F8;
+        --lang-html: #FF715B;
+        --lang-css: #A279C4;
+        --lang-ui: #B1B3BD;
+    
+        --spacer: 1rem;
+        --spacer-increment: 0.5rem;
+    
+        --container-max-width: 1200px;
+        --article-max-width: 900px;
+        --navigation-height: 75px;
+    
+        --body-font-size: 1rem;
+        --body-text-color: hsl(0deg 0% 85%);
+    
+        --article-body-font-size: 1rem;
+        --article-body-font-weight: 400;
+        --article-meta-text-color: hsl(0deg 0% 70%); 
+        --article-body-text-color: hsl(0deg 0% 80%);
+    
+        --font-size-increment: 0.15rem;
+    
+        --fs-1: calc(var(--body-font-size) + calc(var(--font-size-increment) * 10));
+        --fs-2: calc(var(--body-font-size) + calc(var(--font-size-increment) * 8));
+        --fs-3: calc(var(--body-font-size) + calc(var(--font-size-increment) * 6));
+        --fs-4: calc(var(--body-font-size) + calc(var(--font-size-increment) * 4));
+        --fs-5: calc(var(--body-font-size) + calc(var(--font-size-increment) * 2));
+        --fs-6: calc(var(--body-font-size) + var(--font-size-increment));
+    
+        --box-shadow: 0 0 1rem 0 rgb(0 0 0 / 30%);
+        --box-shadow-card-hover: 0 0 1rem 0 hsl(211.06deg 100% 50% / 50%);
+        --border-radius: 0.425rem;
+    
+        --input-text-color: hsl(0 0% 85%); 
+        --input-border-color: hsl(0 0% 30%);
+        --input-focus-box-shadow: 0 0 0rem 0.1rem hsl(214.72deg 79.9% 55% / 0.4);
+    
+        --breakpoint-xl: 1480px;
+        --breakpoint-lg: 1200px;
+        --breakpoint-md: 1000px;
+        --breakpoint-sm: 680px;
+    }
+    
+}
