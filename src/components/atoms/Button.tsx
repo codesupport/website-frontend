@@ -19,6 +19,10 @@ const style = `
 	> svg {
 	  width: 15px;
 	}
+	
+	@media (prefers-color-scheme: dark) {
+		color:white;
+	}
 `;
 
 const AnchorButton = styled("a")`${style}`;

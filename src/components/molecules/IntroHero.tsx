@@ -30,6 +30,12 @@ const Hero = styled("header")`
 	@media (max-width:1200px){
 		text-align: center;
 	}
+
+	@media (prefers-color-scheme: dark) {
+		h1,p {
+			color:white;
+		}
+	}
 `;
 
 export interface IntroHeroProps {
