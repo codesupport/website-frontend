@@ -45,7 +45,7 @@ const Copyright = styled("p")`
     margin: 0;
     padding-bottom: 25px;
     text-align: center;
-    font-size: 1rem;
+    font-size: var(--body-font-size);
 `;
 
 function Footer() {
