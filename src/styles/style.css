@@ -312,7 +312,7 @@ select{
         --box-shadow: 0 0 1rem 0 rgb(0 0 0 / 30%);
         --box-shadow-card-hover: 0 0 1rem 0 hsl(211.06deg 100% 50% / 50%);
     
-        --input-text-color: hsl(0 0% 85%); 
+        --input-text-color: hsl(0 0% 30%); 
         --input-border-color: hsl(0 0% 30%);
         --input-focus-box-shadow: 0 0 0rem 0.1rem hsl(214.72deg 79.9% 55% / 0.4);
     }
