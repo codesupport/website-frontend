@@ -183,31 +183,37 @@ h6, .markdown-content h5 {
 
 .lang-typescript {
     background-color: var(--lang-typescript);
+    color: var(--lang-typescript-text);
 }
 
 .lang-json {
     background-color: var(--lang-json);
+    color: var(--lang-json-text);
 }
 
 .lang-javascript {
     background-color: var(--lang-javascript);
-    color: var(--text);
+    color: var(--lang-javascript-text);
 }
 
 .lang-java {
     background-color: var(--lang-java);
+    color: var(--lang-java-text);
 }
 
 .lang-python {
     background-color: var(--lang-python);
+    color: var(--lang-python-text);
 }
 
 .lang-html {
     background-color: var(--lang-html);
+    color: var(--lang-html-text);
 }
 
 .lang-css {
     background-color: var(--lang-css);
+    color: var(--lang-css-text);
 }
 
 p {
@@ -282,13 +288,21 @@ select{
         --error: #FF6B6B; 
     
         --lang-typescript: hsl(204.92deg 67.51% 60%);
+        --lang-typescript-text: var(--foreground);
         --lang-json: #D1D1D1; 
+        --lang-json-text: var(--foreground);
         --lang-javascript: #F5E774;
+        --lang-javascript-text: var(--foreground);
         --lang-java: #D58E54;
+        --lang-java-text: var(--foreground);
         --lang-python: #8AB4F8;
+        --lang-python-text: var(--foreground);
         --lang-html: #FF715B;
+        --lang-html-text: var(--foreground);
         --lang-css: #A279C4;
+        --lang-css-text: var(--foreground);
         --lang-ui: #B1B3BD;
+        --lang-ui-text: var(--foreground);
     
         --spacer: 1rem;
         --spacer-increment: 0.5rem;
