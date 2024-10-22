@@ -304,42 +304,17 @@ select{
         --lang-ui: #B1B3BD;
         --lang-ui-text: var(--foreground);
     
-        --spacer: 1rem;
-        --spacer-increment: 0.5rem;
-    
-        --container-max-width: 1200px;
-        --article-max-width: 900px;
-        --navigation-height: 75px;
-    
-        --body-font-size: 1rem;
         --body-text-color: hsl(0deg 0% 85%);
     
-        --article-body-font-size: 1rem;
-        --article-body-font-weight: 400;
         --article-meta-text-color: hsl(0deg 0% 70%); 
         --article-body-text-color: hsl(0deg 0% 80%);
     
-        --font-size-increment: 0.15rem;
-    
-        --fs-1: calc(var(--body-font-size) + calc(var(--font-size-increment) * 10));
-        --fs-2: calc(var(--body-font-size) + calc(var(--font-size-increment) * 8));
-        --fs-3: calc(var(--body-font-size) + calc(var(--font-size-increment) * 6));
-        --fs-4: calc(var(--body-font-size) + calc(var(--font-size-increment) * 4));
-        --fs-5: calc(var(--body-font-size) + calc(var(--font-size-increment) * 2));
-        --fs-6: calc(var(--body-font-size) + var(--font-size-increment));
-    
         --box-shadow: 0 0 1rem 0 rgb(0 0 0 / 30%);
         --box-shadow-card-hover: 0 0 1rem 0 hsl(211.06deg 100% 50% / 50%);
-        --border-radius: 0.425rem;
     
         --input-text-color: hsl(0 0% 85%); 
         --input-border-color: hsl(0 0% 30%);
         --input-focus-box-shadow: 0 0 0rem 0.1rem hsl(214.72deg 79.9% 55% / 0.4);
-    
-        --breakpoint-xl: 1480px;
-        --breakpoint-lg: 1200px;
-        --breakpoint-md: 1000px;
-        --breakpoint-sm: 680px;
     }
     
 }
