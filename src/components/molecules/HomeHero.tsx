@@ -53,6 +53,10 @@ const Hero = styled("header")`
 		height:125px;
 		width: 100%;
 		filter: drop-shadow( 0 -65px 16px hsl(214.72deg 79.9% 39.02% / 0.02));
+
+		@media (prefers-color-scheme: dark) {
+			filter: unset;
+		}
 	}
 `;
 
