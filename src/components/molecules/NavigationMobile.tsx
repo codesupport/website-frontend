@@ -62,7 +62,6 @@ const MobilePageLinks = styled("ul")`
   a {
     display: flex;
     width: 100%;
-    color: var(--text);
     text-decoration: none;
     padding: var(--spacer);
 
@@ -86,7 +85,7 @@ const StyledLink = styled.a<{ isActive: boolean }>`
     isActive &&
     css`
       background-color: white;
-      color: black !important;
+      color: var(--background);
     `}
 `;
 
