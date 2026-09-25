@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "codesupport-production",
     "public": "out",
     "cleanUrls": true,
     "redirects": [
