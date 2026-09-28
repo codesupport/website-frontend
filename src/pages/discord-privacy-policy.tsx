@@ -31,7 +31,7 @@ If you have questions about this policy, contact the CodeSupport Discord moderat
 
 function DiscordPrivacyPolicy() {
 	return (
-		<PageTemplate page="Discord Rules">
+		<PageTemplate page="Discord Privacy Policy">
 			<section>
 				<Container>
 					<h2>
